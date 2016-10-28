@@ -1,9 +1,6 @@
 @import "common";
 
 .top-teaser{
-  .centered{
-    padding: $contentPadding / 2 0;
-  }
   .inspire{
     margin-bottom: $contentPadding * 1.5;
 
@@ -20,9 +17,6 @@
   .column{
     position: relative;
     padding-left: 50px;
-    a{
-      color: inherit;
-    }
     span{
       font-size: 35px;
       position: absolute;
@@ -39,48 +33,6 @@
   .teaser{
     width: 70%;
     margin: 0 auto $contentPadding;
-  }
-  .video{
-    h4{
-      min-height: 1.5em * 3;
-      margin-bottom: $contentPadding / 2;
-      text-align: left;
-    }
-    .x4{
-      > .column{
-        margin-bottom: $contentPadding;
-        background: $dark;
-        &.planned{
-          .info{
-            background: $dark;
-            span{
-              color: $accent;
-            }
-          }
-        }
-      }
-    }
-    img{
-      max-width: 100%;
-    }
-    .info{
-      @extend .small.font.size;
-
-      display: block;
-      background: $extraAccent;
-      padding: $contentPadding / 3;
-    }
-    .details{
-      @extend .extrasmall.font.size;
-      .column{
-        &:last-child{
-          text-align: right;
-        }
-      }
-    }
-    .more{
-      text-align: center;
-    }
   }
 }
 

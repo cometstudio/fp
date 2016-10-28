@@ -152,25 +152,25 @@ button, .button{
     font-weight: 300;
     &.size{
       font-size: 17px;
-      line-height: 1.5em;
+      line-height: 1.4em;
     }
   }
   &.medium{
     &.size{
-      font-size: 21px;
-      line-height: 1.5em;
+      font-size: 20px;
+      line-height: 1.4em;
     }
   }
   &.small{
     &.size{
       font-size: 15px;
-      line-height: 1.5em;
+      line-height: 1.4em;
     }
   }
   &.extrasmall{
     &.size{
       font-size: 11px;
-      line-height: 1.5em;
+      line-height: 1.4em;
     }
   }
 }
@@ -195,14 +195,14 @@ body{
 }
 
 a{
-  color: #fff;
+  color: inherit;
   text-decoration: underline;
   &:hover{
     text-decoration: none;
   }
 }
 
-h1, h2, h4{
+h1, h2{
   @extend .open-sans.font;
 
   margin: 0 0 $contentPadding;
@@ -231,6 +231,52 @@ h2{
   text-align: center;
 }
 
+.cards-grid{
+  img{
+    max-width: 100%;
+  }
+  .x4{
+    > .column{
+      margin-bottom: $contentPadding;
+      background: $dark;
+      &.planned{
+        .info{
+          background: $dark;
+          span{
+            color: $accent;
+          }
+        }
+      }
+    }
+  }
+  .info{
+    @extend .small.font.size;
+
+    display: block;
+    background: $extraAccent;
+    padding: $contentPadding / 3;
+    a{
+      display: inline-block;
+    }
+  }
+  .title{
+    min-height: 1.5em * 3;
+    margin-bottom: $contentPadding / 2;
+    text-align: left;
+  }
+  .details{
+    @extend .extrasmall.font.size;
+    .column{
+      &:last-child{
+        text-align: right;
+      }
+    }
+  }
+  .more{
+    text-align: center;
+  }
+}
+
 .logo-tag{
     @extend .open-sans.font;
 
@@ -240,8 +286,8 @@ h2{
 
 .top-teaser{
   padding-bottom: $contentPadding;
-  background: 50% no-repeat;
-  background-size: cover;
+  background: 50% 0 no-repeat;
+  //background-size: cover;
   .nav{
     @extend .medium.font.size;
 
@@ -271,9 +317,6 @@ h2{
 
 .footer{
   color: $gray;
-  a{
-    color: inherit;
-  }
   ul{
     @extend .small.font.size;
   }

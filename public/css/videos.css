@@ -165,7 +165,7 @@ button, .button {
 .font.medium.size, .top-teaser .nav {
   font-size: 20px;
   line-height: 1.4em; }
-.font.small.size, .cards-grid .info, .footer ul, .section-1 {
+.font.small.size, .cards-grid .info, .footer ul {
   font-size: 15px;
   line-height: 1.4em; }
 .font.extrasmall.size, .cards-grid .details {
@@ -270,25 +270,4 @@ h2 {
   font-size: 23px;
   line-height: 1.5em; }
 
-.section-1 {
-  background: #01af8a; }
-  .section-1 .column {
-    position: relative;
-    padding-left: 50px; }
-    .section-1 .column span {
-      font-size: 35px;
-      position: absolute;
-      top: 4px;
-      left: 0; }
-    .section-1 .column.black {
-      color: #222; }
-
-.section-2 .teaser {
-  width: 70%;
-  margin: 0 auto 36px; }
-
-.section-3 .teaser {
-  width: 70%;
-  margin: 0 auto 36px; }
-
-/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=videos.css.map */

@@ -20,6 +20,8 @@ class VideosController extends Controller
     }
     public function item()
     {
+        $this->css = 'video';
+
         return view(
             'videos.item', [
                 'css'=>$this->css,

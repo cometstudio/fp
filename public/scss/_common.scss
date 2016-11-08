@@ -4,10 +4,8 @@
 @import "clearfix";
 
 $black: #222;
-$dark: lighten($black, 5%);
 $gray: #777;
 $accent: #01af8a;
-$extraAccent: #73568f;
 
 $contentMaxWidth: 1280px;
 $contentPadding: 36px;
@@ -31,8 +29,6 @@ $inputsPadding: 10px;
 
 @mixin gridRow($n, $gutter){
   > .column{
-    @extend .box;
-
     width: (100% - ($gutter * ($n - 1))) / $n;
     margin-right: $gutter;
     &:nth-child(#{$n}n){
@@ -41,20 +37,54 @@ $inputsPadding: 10px;
   }
 }
 
+html, body{
+
+}
+html{
+  height: 100%;
+}
+body{
+  @extend .classic.font;
+  @extend .classic.font.size;
+
+  position: relative;
+  max-height: 100%;
+  color: $black;
+}
+
 .grid {
   .column {
+    @extend .box;
+
     display: inline-block;
     float: left;
   }
-
   .x2 {
     @include gridRow(2, $gridGutter / 2);
   }
   .x3 {
-    @include gridRow(3, $gridGutter / 2);
+    @include gridRow(3, $gridGutter / 3);
   }
-  .x4 {
-    @include gridRow(4, $gridGutter / 4);
+  // x4
+  @media screen and (min-width: 1281px){
+    .x4 {
+      @include gridRow(4, $gridGutter / 4);
+    }
+  }
+  @media screen and (min-width: 801px) and (max-width: 1280px){
+    .x4 {
+      @include gridRow(3, $gridGutter / 3);
+    }
+  }
+  @media screen and (min-width: 481px) and (max-width: 800px){
+    .x4 {
+      @include gridRow(2, $gridGutter / 2);
+    }
+  }
+  @media screen and (max-width: 480px){
+    .x4 {
+      @include gridRow(1, 0);
+    }
   }
 }
 
@@ -62,15 +92,14 @@ input, select, textarea, button, .button, select{
   @extend .box;
 
   font-size: 16px;
-  line-height: 1.2em;
+  line-height: 1.5em;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
 input[type="text"], input[type="email"], input[type="password"], select, textarea, input[type="submit"], button, .button{
-  border: 1px solid $accent;
+  border: 1px solid lighten(#fff, 10%);
   padding: $inputsPadding $inputsPadding * 3;
-  line-height: $inputsHeight;
-  background: #fff;
+  background: lighten(#fff, 5%);
   &.error{
     border-color: red;
     background: lighten(red, 45%);
@@ -78,16 +107,18 @@ input[type="text"], input[type="email"], input[type="password"], select, textare
 }
 input[type="text"], input[type="email"], input[type="password"], select, input[type="submit"], button, .button{
   height: $inputsHeight;
+  line-height: $inputsHeight;
 }
 .input, input[type="text"], input[type="email"], input[type="password"], textarea{
   width: 100%;
+  color: #fff;
 }
 select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
 textarea{
-  padding: $inputsPadding $inputsPadding * 3;
+  padding: 1em $inputsPadding * 3;
   resize: vertical;
 }
 input[type=file]{
@@ -103,13 +134,13 @@ input[type="checkbox"]{
   vertical-align: bottom;
 }
 button, .button{
-  $hoverColor: lighten($extraAccent, 5%);
+  $hoverColor: lighten($accent, 5%);
 
   display: inline-block;
   padding: 0 $inputsPadding * 5;
   vertical-align: middle;
-  border-color: $extraAccent;
-  background: $extraAccent;
+  border-color: $accent;
+  background: $accent;
   color: #fff;
   text-decoration: none;
   white-space: nowrap;
@@ -144,7 +175,7 @@ button, .button{
     font-family: serif;
   }
   &.open-sans{
-    font-family: 'Roboto', 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 500;
   }
   &.classic{
@@ -152,25 +183,25 @@ button, .button{
     font-weight: 300;
     &.size{
       font-size: 17px;
-      line-height: 1.4em;
+      line-height: 1.5em;
     }
   }
   &.medium{
     &.size{
       font-size: 20px;
-      line-height: 1.4em;
+      line-height: 1.5em;
     }
   }
   &.small{
     &.size{
       font-size: 15px;
-      line-height: 1.4em;
+      line-height: 1.5em;
     }
   }
   &.extrasmall{
     &.size{
-      font-size: 11px;
-      line-height: 1.4em;
+      font-size: 14px;
+      line-height: 1.5em;
     }
   }
 }
@@ -179,150 +210,14 @@ b, strong, .b{
   font-weight: 500;
 }
 
-html, body{
-  background: $black;
-}
-html{
-  height: 100%;
-}
-body{
-  @extend .classic.font;
-  @extend .classic.font.size;
-
-  position: relative;
-  max-height: 100%;
-  color: #fff;
-}
-
-a{
-  color: inherit;
-  text-decoration: underline;
-  &:hover{
-    text-decoration: none;
-  }
-}
-
-h1, h2{
-  @extend .open-sans.font;
-
-  margin: 0 0 $contentPadding;
-  text-align: center;
-}
-h1{
-  font-size: 55px;
-  line-height: 1.3em;
-}
-h2{
-  font-size: 37px;
-  line-height: 1.3em;
-}
-
-.content{
-  position: relative;
-  &.wrapper{
-    position: relative;
-    max-width: $contentMaxWidth - ($contentPadding * 2) - 16;
-    padding: $contentPadding * 1.5 $contentPadding;
-    margin: 0 auto;
-  }
-}
-
 .centered{
   text-align: center;
 }
 
-.cards-grid{
-  img{
-    max-width: 100%;
-  }
-  .x4{
-    > .column{
-      margin-bottom: $contentPadding;
-      background: $dark;
-      &.planned{
-        .info{
-          background: $dark;
-          span{
-            color: $accent;
-          }
-        }
-      }
-    }
-  }
-  .info{
-    @extend .small.font.size;
-
-    display: block;
-    background: $extraAccent;
-    padding: $contentPadding / 3;
-    a{
-      display: inline-block;
-    }
-  }
-  .title{
-    min-height: 1.5em * 3;
-    margin-bottom: $contentPadding / 2;
-    text-align: left;
-  }
-  .details{
-    @extend .extrasmall.font.size;
-    .column{
-      &:last-child{
-        text-align: right;
-      }
-    }
-  }
-  .more{
-    text-align: center;
-  }
-}
-
-.logo-tag{
-    @extend .open-sans.font;
-
-    display: inline-block;
+a{
+  color: $accent;
+  text-decoration: underline;
+  &:hover{
     text-decoration: none;
-}
-
-.top-teaser{
-  padding-bottom: $contentPadding;
-  background: 50% 0 no-repeat;
-  //background-size: cover;
-  .nav{
-    @extend .medium.font.size;
-
-    padding: 0 $contentPadding;
-    margin-bottom: $contentPadding * 2;
-    background: $black;
-    > div{
-      @extend .flex;
-
-      height: 50px;
-      &.l{
-        float: left;
-
-      }
-      &.r{
-        float: right;
-      }
-    }
-  }
-  nav{
-    a{
-      display: inline-block;
-      margin: 0 $contentPadding 0 0;
-    }
-  }
-}
-
-.footer{
-  color: $gray;
-  ul{
-    @extend .small.font.size;
-  }
-  .content{
-    &.wrapper{
-      padding-bottom: $contentPadding * 2;
-    }
   }
 }

@@ -190,16 +190,8 @@ return [
         App\Providers\Resizer\ServiceProvider::class,
         // Dictionary
         App\Providers\Dictionary\ServiceProvider::class,
-        // Avito
-        App\Providers\Avito\ServiceProvider::class,
-        // Excel
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-        // System processes manager
-        App\Providers\Pmanager\ServiceProvider::class,
         // Date
         App\Providers\Date\ServiceProvider::class,
-        // Decryptor
-        App\Providers\Decryptor\ServiceProvider::class,
     ],
 
     /*
@@ -251,11 +243,7 @@ return [
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Curl' => Ixudra\Curl\Facades\Curl::class,
         'Resizer' => App\Providers\Resizer\Facade::class,
-        'Avito' => App\Providers\Avito\Facade::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Pmanager' => App\Providers\Pmanager\Facade::class,
         'Date'=> App\Providers\Date\Facade::class,
-        'Decryptor' => App\Providers\Decryptor\Facade::class,
         'Dictionary' => App\Providers\Dictionary\Facade::class,
     ],
 

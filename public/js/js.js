@@ -4,11 +4,11 @@ $(document).ready(function() {
         fitToSection: false,
         fitToSectionDelay: 500,
         scrollBar: true,
-        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#4BBFC3'],
+        //sectionsColor: ['#4BBFC3', '#f2f2f2', '#7BAABE', 'whitesmoke', '#4BBFC3'],
         //Navigation
         lockAnchors: false,
         anchors:['p1', 'p2', 'p3', 'p4'],
-        navigation: true,
+        navigation: false,
         navigationPosition: 'right',
         navigationTooltips: ['firstSlide', 'secondSlide'],
         showActiveTooltip: false

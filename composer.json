@@ -12,8 +12,7 @@
         "barryvdh/laravel-ide-helper": "^2.1",
         "ixudra/curl": "6.*",
         "sunra/php-simple-html-dom-parser": "^1.5",
-        "maatwebsite/excel": "~2.1.0",
-        "phpoffice/phpexcel": "^1.8"
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

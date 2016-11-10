@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,600,600i,800&subset=cyrillic');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i');
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,500,500i,700,700i,900&subset=cyrillic');
 @import "reset";
 @import "clearfix";
 
 $black: #222;
 $gray: #777;
-$accent: #01af8a;
+$accent: #69b9c0;
+$addition: #d680a6;
 
 $contentMaxWidth: 1280px;
 $contentPadding: 36px;
@@ -27,19 +27,20 @@ $inputsPadding: 10px;
   -webkit-align-items: center;
 }
 
-@mixin gridRow($n, $gutter){
+@mixin gridRow($n, $gutter, $responsiveBottomMargin){
   > .column{
     width: (100% - ($gutter * ($n - 1))) / $n;
     margin-right: $gutter;
+    margin-bottom: $responsiveBottomMargin;
     &:nth-child(#{$n}n){
       margin-right: 0;
+    }
+    &:last-child{
+      //margin-bottom: 0;
     }
   }
 }
 
-html, body{
-
-}
 html{
   height: 100%;
 }
@@ -59,31 +60,71 @@ body{
     display: inline-block;
     float: left;
   }
-  .x2 {
-    @include gridRow(2, $gridGutter / 2);
+  @media screen and (min-width: 801px){
+    .x2 {
+      @include gridRow(2, $gridGutter / 2, 0);
+    }
   }
-  .x3 {
-    @include gridRow(3, $gridGutter / 3);
+  @media screen and (max-width: 800px){
+    .x2 {
+      @include gridRow(1, 0, $gridGutter / 2);
+    }
   }
-  // x4
   @media screen and (min-width: 1281px){
     .x4 {
-      @include gridRow(4, $gridGutter / 4);
+      @include gridRow(4, $gridGutter / 4, 0);
     }
   }
   @media screen and (min-width: 801px) and (max-width: 1280px){
     .x4 {
-      @include gridRow(3, $gridGutter / 3);
+      @include gridRow(2, $gridGutter / 2, $gridGutter / 2);
     }
   }
-  @media screen and (min-width: 481px) and (max-width: 800px){
+  @media screen and (max-width: 800px){
     .x4 {
-      @include gridRow(2, $gridGutter / 2);
+      @include gridRow(1, 0, $gridGutter / 2);
     }
   }
-  @media screen and (max-width: 480px){
+}
+
+.matrix-grid {
+  .column {
+    @extend .box;
+
+    display: inline-block;
+    float: left;
+      > img{
+        max-width: 100%;
+      }
+    &.info{
+      > .wrapper{
+        padding: $contentPadding * 1.5;
+      }
+    }
+  }
+  @media screen and (min-width: 801px){
+    .x2 {
+      @include gridRow(2, 0, 0);
+    }
+  }
+  @media screen and (max-width: 800px){
+    .x2 {
+      @include gridRow(1, 0, 0);
+    }
+  }
+  @media screen and (min-width: 1281px){
     .x4 {
-      @include gridRow(1, 0);
+      @include gridRow(4, 0, 0);
+    }
+  }
+  @media screen and (min-width: 801px) and (max-width: 1280px){
+    .x4 {
+      @include gridRow(2, 0, 0);
+    }
+  }
+  @media screen and (max-width: 800px){
+    .x4 {
+      @include gridRow(1, 0, 0);
     }
   }
 }
@@ -93,7 +134,7 @@ input, select, textarea, button, .button, select{
 
   font-size: 16px;
   line-height: 1.5em;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-weight: 300;
 }
 input[type="text"], input[type="email"], input[type="password"], select, textarea, input[type="submit"], button, .button{
@@ -147,7 +188,7 @@ button, .button{
   transition: 0.2s;
   font-style: normal;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: $inputsHeight;
   cursor: pointer;
   &::-moz-focus-inner {
@@ -174,12 +215,8 @@ button, .button{
   &.serif{
     font-family: serif;
   }
-  &.open-sans{
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 500;
-  }
   &.classic{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 300;
     &.size{
       font-size: 17px;
@@ -200,7 +237,7 @@ button, .button{
   }
   &.extrasmall{
     &.size{
-      font-size: 14px;
+      font-size: 12px;
       line-height: 1.5em;
     }
   }
@@ -208,6 +245,9 @@ button, .button{
 
 b, strong, .b{
   font-weight: 500;
+}
+.extrabold{
+  font-weight: 700;
 }
 
 .centered{
@@ -218,6 +258,57 @@ a{
   color: $accent;
   text-decoration: underline;
   &:hover{
+    text-decoration: none;
+    color: $addition;
+  }
+}
+
+h1, h2, h3{
+  @extend .extrabold;
+
+}
+h1{
+  font-size: 50px;
+  line-height: 1.3em;
+  margin-bottom: $gridGutter / 3;
+  @media screen and (max-width: 800px){
+    font-size: 35px;
+    line-height: 1.3em;
+  }
+}
+h2{
+  font-size: 40px;
+  line-height: 1.3em;
+  margin-bottom: $gridGutter / 4;
+  @media screen and (max-width: 800px){
+    font-size: 25px;
+    line-height: 1.3em;
+  }
+}
+h3{
+  font-size: 30px;
+  line-height: 1.3em;
+  margin-bottom: $gridGutter / 4;
+  @media screen and (max-width: 800px){
+    font-size: 21px;
+    line-height: 1.3em;
+  }
+}
+
+.section{
+  > .wrapper{
+    padding: $contentPadding * 1.5 10%;
+  }
+}
+
+.logo-tag{
+  @extend .extrabold;
+}
+
+.social-icons{
+  @extend .medium.font.size;
+
+  a{
     text-decoration: none;
   }
 }

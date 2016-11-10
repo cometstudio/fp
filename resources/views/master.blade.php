@@ -22,7 +22,32 @@
 
 <body>
 
+<div class="header section">
+    <div class="wrapper clearfix">
+        <a href="/" class="logo-tag">#longtag</a>
+    </div>
+</div>
+
 @yield('content')
+
+<div class="footer section">
+    <div class="wrapper clearfix">
+        <div class="grid">
+            <div class="x2 row">
+                <div class="column">
+                    <a href="/" class="logo-tag">#longtag</a>
+                </div>
+                <div class="column">
+                    <nav class="social-icons">
+                        <a href="/" class="fa fa-instagram"></a>
+                        <a href="/" class="fa fa-youtube-square"></a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <script src="/bower_components/jquery-form/jquery.form.js"></script>
 <script src="/bower_components/cookie/cookie.min.js"></script>

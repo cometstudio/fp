@@ -1,0 +1,40 @@
+@import "common";
+
+.videos-grid{
+  .column{
+    margin-bottom: $contentPadding;
+  }
+  .image{
+    position: relative;
+    height: 365px;
+    background: $accent;
+    img{
+      max-width: 100%;
+    }
+    .label{
+      @extend .medium.font.size;
+      @extend .i;
+
+      position: absolute;
+      top: 20px;
+      left: 0;
+      padding: 0.5em 1em;
+      background: $pair;
+      color: #fff;
+    }
+  }
+  .info{
+    padding: $contentPadding / 2 0;
+  }
+  .stat{
+    @extend .small.font.size;
+
+    margin-bottom: $contentPadding / 1.5;
+    .l{
+      float: left;
+    }
+    .r{
+      float: right;
+    }
+  }
+}

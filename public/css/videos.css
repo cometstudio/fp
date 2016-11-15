@@ -141,7 +141,7 @@ button, .button {
   -ms-flex-align: center;
   -webkit-align-items: center; }
 
-.font.serif, i, .i, .main-nav .social-links {
+.font.serif, i, .i, .main-nav .social-links, .videos-grid .image .label {
   font-family: 'PT Serif', serif;
   font-weight: 400; }
 .font.classic, body {
@@ -150,17 +150,17 @@ button, .button {
   .font.classic.size, body {
     font-size: 17px;
     line-height: 1.5em; }
-.font.medium.size, .form label, .form .label {
+.font.medium.size, .form label, .form .label, .videos-grid .image .label {
   font-size: 15px;
   line-height: 1.5em; }
-.font.small.size, .comments-grid .item .info {
+.font.small.size, .comments-grid .item .info, .videos-grid .stat {
   font-size: 13px;
   line-height: 1.5em; }
 
 b, strong, .b, .main-nav .l span, .main-nav .l a, .comments-grid .item .info {
   font-weight: 500; }
 
-i, .i, .main-nav .social-links {
+i, .i, .main-nav .social-links, .videos-grid .image .label {
   font-style: italic; }
 
 .extrabold, h1, h3 {
@@ -313,4 +313,28 @@ h3 {
     margin-bottom: 0;
     border-bottom: none; }
 
-/*# sourceMappingURL=index.css.map */
+.videos-grid .column {
+  margin-bottom: 36px; }
+.videos-grid .image {
+  position: relative;
+  height: 365px;
+  background: #4a447e; }
+  .videos-grid .image img {
+    max-width: 100%; }
+  .videos-grid .image .label {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    padding: 0.5em 1em;
+    background: #f28559;
+    color: #fff; }
+.videos-grid .info {
+  padding: 18px 0; }
+.videos-grid .stat {
+  margin-bottom: 24px; }
+  .videos-grid .stat .l {
+    float: left; }
+  .videos-grid .stat .r {
+    float: right; }
+
+/*# sourceMappingURL=videos.css.map */

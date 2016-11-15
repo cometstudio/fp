@@ -1,7 +1,6 @@
 @extends('master')
 
 @section('content')
-    @include('common.headerShort')
 
     @include('common.mainNav')
 

@@ -112,12 +112,16 @@ a{
   }
 }
 
-h1, h3{
+h1, h2, h3{
   @extend .extrabold;
-
 }
 h1{
   font-size: 50px;
+  line-height: 1.3em;
+  margin-bottom: $contentPadding * 1.5;
+}
+h2{
+  font-size: 30px;
   line-height: 1.3em;
   margin-bottom: $contentPadding * 1.5;
 }
@@ -168,11 +172,16 @@ h3{
 }
 
 .header{
-  background: $accent;
+  $bg: lighten($accent, 10%);
+
+  background: $bg;
   color: #fff;
-  > .wrapper{
-    padding-top: $contentPadding * 4;
-    padding-bottom: $contentPadding * 4;
+  &.full{
+    > .wrapper {
+      padding: 120px 0;
+      background: url("../images/1.png") 100% 100% no-repeat $bg;
+      background-size: contain;
+    }
   }
   &.short{
   > .wrapper{
@@ -190,7 +199,7 @@ h3{
 
 .main-nav{
   margin-bottom: $contentPadding;
-  background: lighten($accent, 10%);
+  background: $accent;
   color: #fff;
   nav{
     > span, > a{
@@ -235,6 +244,44 @@ h3{
       &:hover{
         color: #fff;
       }
+    }
+  }
+}
+
+.videos-grid{
+  .column{
+    margin-bottom: $contentPadding;
+  }
+  .image{
+    position: relative;
+    height: 365px;
+    background: $accent;
+    img{
+      max-width: 100%;
+    }
+    .label{
+      @extend .i;
+
+      position: absolute;
+      top: 20px;
+      left: 0;
+      padding: 0.5em 1em;
+      background: $pair;
+      color: #fff;
+    }
+  }
+  .info{
+    padding: $contentPadding / 2 0;
+  }
+  .stat{
+    @extend .small.font.size;
+
+    margin-bottom: $contentPadding / 1.5;
+    .l{
+      float: left;
+    }
+    .r{
+      float: right;
     }
   }
 }

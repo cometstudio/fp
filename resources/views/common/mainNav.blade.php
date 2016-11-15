@@ -1,7 +1,7 @@
 <div class="main-nav section">
     <div class="wrapper clearfix">
         <div class="l">
-            <a href="/">#sometag</a>
+            <a href="/">#спортивнаясемья</a>
         </div>
         <!--
         <div class="social-links l">
@@ -10,9 +10,7 @@
         -->
         <div class="r">
             <nav>
-                <a href="">point</a>
-                <a href="">point</a>
-                <a href="/videos">point</a>
+                <a href="/videos">Видеоотчёты</a>
                 <span><i class="fa fa-unlock"></i><a href="/login">point</a></span>
             </nav>
         </div>

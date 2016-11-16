@@ -20,11 +20,11 @@
                         @for($j=0;$j<2;$j++)
                             <div class="column">
                                 <div class="image">
-                                    @if(!$i && !$j)
+                                    @if($i == 1 && $j == 1)
                                         <div class="label">Запланировано</div>
                                     @endif
                                 </div>
-                                @if(!$i && !$j)
+                                 @if($i == 1 && $j == 1)
                                     <div class="info clearfix">
                                         <div class="stat clearfix">
                                             <div class="l">15 ноября 2016</div>

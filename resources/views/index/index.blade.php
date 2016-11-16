@@ -33,18 +33,6 @@
                 <div class="x2 row clearfix">
                     <div class="column">
                         <div class="image">
-                            <div class="label">Запланировано</div>
-                        </div>
-                        <div class="info clearfix">
-                            <div class="stat clearfix">
-                                <div class="l">15 ноября 2016</div>
-                            </div>
-                            <h3>SMS, as used on modern handsets</h3>
-                            SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols. These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards.
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="image">
 
                         </div>
                         <div class="info clearfix">
@@ -53,6 +41,18 @@
                                 <div class="r"><i class="fa fa-eye"></i> {{ rand(0, 200) }} <i class="fa fa-comment-o"></i> {{ rand(0, 20) }}</div>
                             </div>
                             <h3><a href="{{ route('videos:item', ['id'=>1], false) }}">SMS, as used on modern handsets</a></h3>
+                            SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols. These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards.
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="image">
+                            <div class="label">Запланировано</div>
+                        </div>
+                        <div class="info clearfix">
+                            <div class="stat clearfix">
+                                <div class="l">15 ноября 2016</div>
+                            </div>
+                            <h3>SMS, as used on modern handsets</h3>
                             SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols. These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards.
                         </div>
                     </div>

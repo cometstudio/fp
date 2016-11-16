@@ -12,4 +12,5 @@
             </div>
         </div>
     </div>
+    <div class="fade"></div>
 </div>

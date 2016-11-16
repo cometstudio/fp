@@ -1,5 +1,80 @@
 @import "common";
 
+.timeline{
+  .row{
+    @include gridRow(5, 0, 0);
+  }
+  .column {
+    @extend .box;
+
+    display: inline-block;
+    float: left;
+    text-align: center;
+    background: url("../img/timeline.png") 50% 0 repeat-x;
+    > .wrapper{
+      padding: 30px 15px;
+      border-top: 1px solid #fff;
+      > div{
+        margin-bottom: 10px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+      .button{
+        margin-top: 10px;
+      }
+    }
+    &.current{
+      background-color: $accent;
+    }
+  }
+  .date{
+    @extend .b;
+  }
+  .week{
+    @extend .small.font.size;
+  }
+  .info{
+    @extend .medium.font.size;
+  }
+}
+
+.s0{
+  .names{
+    $imagesWidth: 140px;
+
+    @extend h2;
+
+    margin-bottom: $contentPadding / 2;
+    text-align: center;
+    i{
+      @include round($imagesWidth);
+
+      display: inline-block;
+      width: $imagesWidth;
+      height: $imagesWidth;
+      background: $accent;
+    }
+    > div{
+      @extend .flex;
+
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 2px;
+    }
+    .images{
+      @include round($imagesWidth);
+
+      height: $imagesWidth;
+    }
+  }
+  .column{
+    &:first-child{
+      text-align: right;
+    }
+  }
+}
+
 .s2{
   @extend .inverted;
 }

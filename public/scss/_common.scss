@@ -152,11 +152,11 @@ h3{
   }
 }
 
-.fade, .wait{
+.body-fade, .body-wait {
   position: absolute;
   width: 100%;
 }
-.fade{
+.body-fade {
   display: none;
   z-index: 1000;
   height: 100%;
@@ -164,7 +164,7 @@ h3{
   transition: 0.2s;
   opacity: 0.95;
 }
-.wait{
+.body-wait {
   display: none;
   z-index: 1001;
   height: 100vh;
@@ -174,20 +174,35 @@ h3{
 .header{
   $bg: lighten($accent, 10%);
 
+  position: relative;
   background: $bg;
   color: #fff;
+  .fade{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $accent;
+    opacity: 0.5;
+  }
+  .wrapper{
+    position: relative;
+    z-index: 2;
+  }
   &.full{
+      background: url("https://c5.staticflickr.com/8/7269/7691906956_cf9bd0ef74_k.jpg") 100% 50% no-repeat $bg;
+      background-size: cover;
     > .wrapper {
       padding: 120px 0;
-      background: url("../images/1.png") 100% 100% no-repeat $bg;
-      background-size: contain;
     }
   }
   &.short{
-  > .wrapper{
-    padding-top: $contentPadding;
-    padding-bottom: $contentPadding;
-  }
+    > .wrapper{
+      padding-top: $contentPadding;
+      padding-bottom: $contentPadding;
+    }
   }
 }
 

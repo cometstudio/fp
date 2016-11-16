@@ -116,10 +116,12 @@ button, .button {
     border-color: #f28559;
     color: #fff; }
   button.empty, .button.empty {
-    background: none; }
+    background: none;
+    border-color: #fff; }
     button.empty:hover, .button.empty:hover {
-      background: #f28559;
-      border-color: #f28559; }
+      background: #fff;
+      border-color: #fff;
+      color: #4a447e; }
 
 .form .label {
   margin-bottom: 0.1em; }
@@ -237,11 +239,11 @@ h3 {
     padding-top: 72px;
     padding-bottom: 72px; }
 
-.fade, .wait {
+.body-fade, .body-wait {
   position: absolute;
   width: 100%; }
 
-.fade {
+.body-fade {
   display: none;
   z-index: 1000;
   height: 100%;
@@ -249,19 +251,33 @@ h3 {
   transition: 0.2s;
   opacity: 0.95; }
 
-.wait {
+.body-wait {
   display: none;
   z-index: 1001;
   height: 100vh;
   background: url("../img/preloader.gif") 50% 50% no-repeat; }
 
 .header {
+  position: relative;
   background: #5d569f;
   color: #fff; }
-  .header.full > .wrapper {
-    padding: 120px 0;
-    background: url("../images/1.png") 100% 100% no-repeat #5d569f;
-    background-size: contain; }
+  .header .fade {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #4a447e;
+    opacity: 0.5; }
+  .header .wrapper {
+    position: relative;
+    z-index: 2; }
+  .header.full {
+    background: url("https://c5.staticflickr.com/8/7269/7691906956_cf9bd0ef74_k.jpg") 100% 50% no-repeat #5d569f;
+    background-size: cover; }
+    .header.full > .wrapper {
+      padding: 120px 0; }
   .header.short > .wrapper {
     padding-top: 36px;
     padding-bottom: 36px; }

@@ -11,7 +11,7 @@
         <div class="r">
             <nav>
                 <a href="/videos">Видеоотчёты</a>
-                <span><i class="fa fa-unlock"></i><a href="/login">point</a></span>
+                <span><i class="fa fa-unlock"></i><a href="/login">Login</a></span>
             </nav>
         </div>
     </div>

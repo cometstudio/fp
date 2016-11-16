@@ -72,9 +72,11 @@ button, .button{
   }
   &.empty{
     background: none;
+    border-color: #fff;
     &:hover{
-      background: $hoverColor;
-      border-color: $hoverColor;
+      background: #fff;
+      border-color: #fff;
+      color: $accent;
     }
   }
 }

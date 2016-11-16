@@ -22,14 +22,14 @@
 
 <body>
 
-<div class="wait"></div>
-<div class="fade"></div>
+<div class="body-wait"></div>
+<div class="body-fade"></div>
 
 @yield('content')
 
 <div class="footer section">
     <div class="wrapper">
-        footer
+        <a href="/">#спортивнаясемья</a>
     </div>
 </div>
 

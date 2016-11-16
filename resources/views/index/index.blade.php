@@ -7,13 +7,20 @@
 
     <div class="s0 section">
         <div class="wrapper">
+            <div class="names">
+                <div>
+                    Name
+                </div>
+                <div><img src="/img/two.png" /></div>
+                <div>Name</div>
+            </div>
             <div class="grid">
                 <div class="x2 row clearfix">
                     <div class="column">
-                        SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols. These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards. The protocols allowed users to send and receive messages of up to 160 alpha-numeric characters to and from GSM mobile handsets. Though most SMS messages are mobile-to-mobile text messages, support for the service has expanded to include other mobile technologies, such as ANSI CDMA networks and Digital AMPS, as well as satellite and landline networks.
+                        These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards.
                     </div>
                     <div class="column">
-                        SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols. These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards. The protocols allowed users to send and receive messages of up to 160 alpha-numeric characters to and from GSM mobile handsets. Though most SMS messages are mobile-to-mobile text messages, support for the service has expanded to include other mobile technologies, such as ANSI CDMA networks and Digital AMPS, as well as satellite and landline networks.
+                        SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols.
                     </div>
                 </div>
             </div>
@@ -56,8 +63,25 @@
 
     <div class="s2 section">
         <div class="wrapper">
-            <h2>Global System for Mobile Communications</h2>
-            SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols. These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards. The protocols allowed users to send and receive messages of up to 160 alpha-numeric characters to and from GSM mobile handsets. Though most SMS messages are mobile-to-mobile text messages, support for the service has expanded to include other mobile technologies, such as ANSI CDMA networks and Digital AMPS, as well as satellite and landline networks.
+            <h2 class="centered">2017 Timeline</h2>
+            <div class="timeline">
+                <div class="row clearfix">
+                    @for($i=1;$i<=5;$i++)
+                        <div class="{{ $i == 3 ? 'current ' : '' }}column">
+                            <div class="wrapper">
+                                <div class="week">{{ $i }}-я неделя</div>
+                                <div class="date">25 января</div>
+                                <div class="info">
+                                    SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols.
+                                </div>
+                                @if($i < 4)
+                                    <a href="" class="empty button">Watch</a>
+                                @endif
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+            </div>
         </div>
     </div>
 @endsection

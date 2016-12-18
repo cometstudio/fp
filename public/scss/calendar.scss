@@ -1,0 +1,95 @@
+@import "common";
+
+.s0{
+  h1{
+    font-size: 30px;
+    margin-bottom: 0;
+  }
+}
+
+.s1{
+  h2{
+    font-size: 75px;
+    line-height: 1.3em;
+    margin-bottom: 0;
+  }
+}
+
+.exercises-grid{
+  border: 1px solid $accent;
+  .row{
+    border-top: 1px solid $accent;
+    > .column{
+      margin: 0;
+      .wrapper{
+        padding: $contentPadding;
+      }
+      &:first-child{
+        width: 60%;
+      }
+      &:last-child{
+        padding-top: 2em * 1.5;
+        width: 40%;
+      }
+    }
+    &.x1{
+      border: none;
+      > .column{
+        margin: 0;
+        padding: 0;
+        &:first-child, &:last-child{
+          width: 100%;
+        }
+      }
+    }
+    &.title{
+      background: $accent;
+      color: #fff;
+    }
+    &:first-child{
+      border-top: none;
+    }
+  }
+  .gallery{
+    .image{
+      display: inline-block;
+      float: left;
+      width: 23%;
+      height: 95px;
+      margin: 2.66% 2.66% 0 0;
+      background: $accent;
+      text-align: center;
+      img{
+        display: inline-block;
+      }
+      &:nth-child(4n){
+        margin-right: 0;
+      }
+    }
+    &.nomargin{
+      .image{
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.food-grid{
+  @extend  .exercises-grid;
+
+  .row{
+    > .column{
+      &:first-child{
+        width: 40%;
+        ul{
+          list-style-type: disc;
+          list-style-position: outside;
+          padding-left: 1.5em;
+        }
+      }
+      &:last-child{
+        width: 60%;
+      }
+    }
+  }
+}

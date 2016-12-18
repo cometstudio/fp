@@ -226,9 +226,9 @@ h3 {
   margin-bottom: 18px; }
 
 .section > .wrapper {
-  min-width: 1192px;
-  max-width: 1192px;
-  padding: 36px;
+  min-width: 1156px;
+  max-width: 1156px;
+  padding: 54px 0 0;
   margin: 0 auto; }
 .section.inverted {
   margin-top: 36px;
@@ -257,36 +257,14 @@ h3 {
   height: 100vh;
   background: url("../img/preloader.gif") 50% 50% no-repeat; }
 
-.header {
-  position: relative;
-  background: #5d569f;
-  color: #fff; }
-  .header .fade {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #4a447e;
-    opacity: 0.5; }
-  .header .wrapper {
-    position: relative;
-    z-index: 2; }
-  .header.full {
-    background: url("https://c5.staticflickr.com/8/7269/7691906956_cf9bd0ef74_k.jpg") 100% 50% no-repeat #5d569f;
-    background-size: cover; }
-    .header.full > .wrapper {
-      padding: 120px 0; }
-  .header.short > .wrapper {
-    padding-top: 36px;
-    padding-bottom: 36px; }
-
 .footer > .wrapper {
   padding-bottom: 72px; }
 
 .main-nav {
-  margin-bottom: 36px;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  top: 0;
   background: #4a447e;
   color: #fff; }
   .main-nav nav > span, .main-nav nav > a {
@@ -309,14 +287,20 @@ h3 {
     margin-left: 36px;
     color: #aaa6cf; }
     .main-nav .social-links a {
-      margin-left: 0.5em;
+      margin-left: 14px;
       text-decoration: none; }
       .main-nav .social-links a:hover {
         color: #fff; }
 
+.content-wrapper {
+  position: relative;
+  z-index: 0;
+  display: none; }
+
 .videos-grid .column {
   margin-bottom: 36px; }
 .videos-grid .image {
+  display: block;
   position: relative;
   height: 365px;
   background: #4a447e; }
@@ -338,6 +322,10 @@ h3 {
   .videos-grid .stat .r {
     float: right; }
 
+.video-player {
+  height: 670px;
+  background: #4a447e url("../img/preloader_accent.gif") 50% 50% no-repeat; }
+
 .comments-grid .item {
   border-bottom: 1px solid #ddd; }
   .comments-grid .item .column {
@@ -358,5 +346,10 @@ h3 {
   .comments-grid .item:last-child {
     margin-bottom: 0;
     border-bottom: none; }
+
+.gallery-grid .image {
+  height: 180px;
+  margin-bottom: 11%;
+  background: #4a447e; }
 
 /*# sourceMappingURL=videos.css.map */

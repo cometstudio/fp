@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.10 on 2016-10-14.
+ * Generated for Laravel 5.3.28 on 2016-12-18.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1014,6 +1014,7 @@ namespace {
          *
          * @param string $abstract
          * @return string 
+         * @throws \LogicException
          * @static 
          */
         public static function getAlias($abstract){
@@ -1240,6 +1241,18 @@ namespace {
         public static function bootstrap(){
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
             \App\Console\Kernel::bootstrap();
+        }
+        
+        /**
+         * Set the Artisan application instance.
+         *
+         * @param \Illuminate\Console\Application $artisan
+         * @return void 
+         * @static 
+         */
+        public static function setArtisan($artisan){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            \App\Console\Kernel::setArtisan($artisan);
         }
         
     }
@@ -2831,6 +2844,18 @@ namespace {
         }
         
         /**
+         * Bind values to their parameters in the given statement.
+         *
+         * @param \PDOStatement $statement
+         * @param array $bindings
+         * @return void 
+         * @static 
+         */
+        public static function bindValues($statement, $bindings){
+            \Illuminate\Database\MySqlConnection::bindValues($statement, $bindings);
+        }
+        
+        /**
          * Set the query grammar to the default implementation.
          *
          * @return void 
@@ -2903,12 +2928,13 @@ namespace {
          *
          * @param string $query
          * @param array $bindings
+         * @param bool $useReadPdo
          * @return mixed 
          * @static 
          */
-        public static function selectOne($query, $bindings = array()){
+        public static function selectOne($query, $bindings = array(), $useReadPdo = true){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -2939,26 +2965,17 @@ namespace {
         }
         
         /**
-         * 
+         * Run a select statement against the database and returns a generator.
          *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return \Generator 
          * @static 
          */
         public static function cursor($query, $bindings = array(), $useReadPdo = true){
             //Method inherited from \Illuminate\Database\Connection            
             return \Illuminate\Database\MySqlConnection::cursor($query, $bindings, $useReadPdo);
-        }
-        
-        /**
-         * Bind values to their parameters in the given statement.
-         *
-         * @param \PDOStatement $statement
-         * @param array $bindings
-         * @return void 
-         * @static 
-         */
-        public static function bindValues($statement, $bindings){
-            //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::bindValues($statement, $bindings);
         }
         
         /**
@@ -3220,7 +3237,6 @@ namespace {
          *
          * @param \PDO|null $pdo
          * @return $this 
-         * @throws \RuntimeException
          * @static 
          */
         public static function setPdo($pdo){
@@ -3864,7 +3880,7 @@ namespace {
         /**
          * Add a basic where clause to the query.
          *
-         * @param string $column
+         * @param string|\Closure $column
          * @param string $operator
          * @param mixed $value
          * @param string $boolean
@@ -3878,7 +3894,7 @@ namespace {
         /**
          * Add an "or where" clause to the query.
          *
-         * @param string $column
+         * @param string|\Closure $column
          * @param string $operator
          * @param mixed $value
          * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -5511,6 +5527,18 @@ namespace {
         }
         
         /**
+         * Get or set UNIX mode of a file or directory.
+         *
+         * @param string $path
+         * @param int $mode
+         * @return mixed 
+         * @static 
+         */
+        public static function chmod($path, $mode = null){
+            return \Illuminate\Filesystem\Filesystem::chmod($path, $mode);
+        }
+        
+        /**
          * Delete the file at a given path.
          *
          * @param string|array $paths
@@ -6068,6 +6096,19 @@ namespace {
         }
         
         /**
+         * Add translation lines to the given locale.
+         *
+         * @param array $lines
+         * @param string $locale
+         * @param string $namespace
+         * @return void 
+         * @static 
+         */
+        public static function addLines($lines, $locale, $namespace = '*'){
+            \Illuminate\Translation\Translator::addLines($lines, $locale, $namespace);
+        }
+        
+        /**
          * Get a translation according to an integer value.
          *
          * @param string $key
@@ -6502,6 +6543,18 @@ namespace {
         }
         
         /**
+         * Set the global reply-to address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */
+        public static function alwaysReplyTo($address, $name = null){
+            \Illuminate\Mail\Mailer::alwaysReplyTo($address, $name);
+        }
+        
+        /**
          * Set the global to address and name.
          *
          * @param string $address
@@ -6735,8 +6788,8 @@ namespace {
          * @return void 
          * @static 
          */
-        public static function sendNow($notifiables, $notification){
-            \Illuminate\Notifications\ChannelManager::sendNow($notifiables, $notification);
+        public static function sendNow($notifiables, $notification, $channels = null){
+            \Illuminate\Notifications\ChannelManager::sendNow($notifiables, $notification, $channels);
         }
         
         /**
@@ -7021,7 +7074,7 @@ namespace {
          * @static 
          */
         public static function size($queue = null){
-            return \Illuminate\Queue\DatabaseQueue::size($queue);
+            return \Illuminate\Queue\SyncQueue::size($queue);
         }
         
         /**
@@ -7031,10 +7084,11 @@ namespace {
          * @param mixed $data
          * @param string $queue
          * @return mixed 
+         * @throws \Exception|\Throwable
          * @static 
          */
         public static function push($job, $data = '', $queue = null){
-            return \Illuminate\Queue\DatabaseQueue::push($job, $data, $queue);
+            return \Illuminate\Queue\SyncQueue::push($job, $data, $queue);
         }
         
         /**
@@ -7047,7 +7101,7 @@ namespace {
          * @static 
          */
         public static function pushRaw($payload, $queue = null, $options = array()){
-            return \Illuminate\Queue\DatabaseQueue::pushRaw($payload, $queue, $options);
+            return \Illuminate\Queue\SyncQueue::pushRaw($payload, $queue, $options);
         }
         
         /**
@@ -7057,37 +7111,11 @@ namespace {
          * @param string $job
          * @param mixed $data
          * @param string $queue
-         * @return void 
+         * @return mixed 
          * @static 
          */
         public static function later($delay, $job, $data = '', $queue = null){
-            \Illuminate\Queue\DatabaseQueue::later($delay, $job, $data, $queue);
-        }
-        
-        /**
-         * Push an array of jobs onto the queue.
-         *
-         * @param array $jobs
-         * @param mixed $data
-         * @param string $queue
-         * @return mixed 
-         * @static 
-         */
-        public static function bulk($jobs, $data = '', $queue = null){
-            return \Illuminate\Queue\DatabaseQueue::bulk($jobs, $data, $queue);
-        }
-        
-        /**
-         * Release a reserved job back onto the queue.
-         *
-         * @param string $queue
-         * @param \StdClass $job
-         * @param int $delay
-         * @return mixed 
-         * @static 
-         */
-        public static function release($queue, $job, $delay){
-            return \Illuminate\Queue\DatabaseQueue::release($queue, $job, $delay);
+            return \Illuminate\Queue\SyncQueue::later($delay, $job, $data, $queue);
         }
         
         /**
@@ -7098,29 +7126,7 @@ namespace {
          * @static 
          */
         public static function pop($queue = null){
-            return \Illuminate\Queue\DatabaseQueue::pop($queue);
-        }
-        
-        /**
-         * Delete a reserved job from the queue.
-         *
-         * @param string $queue
-         * @param string $id
-         * @return void 
-         * @static 
-         */
-        public static function deleteReserved($queue, $id){
-            \Illuminate\Queue\DatabaseQueue::deleteReserved($queue, $id);
-        }
-        
-        /**
-         * Get the underlying database instance.
-         *
-         * @return \Illuminate\Database\Connection 
-         * @static 
-         */
-        public static function getDatabase(){
-            return \Illuminate\Queue\DatabaseQueue::getDatabase();
+            return \Illuminate\Queue\SyncQueue::pop($queue);
         }
         
         /**
@@ -7134,7 +7140,7 @@ namespace {
          */
         public static function pushOn($queue, $job, $data = ''){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\DatabaseQueue::pushOn($queue, $job, $data);
+            return \Illuminate\Queue\SyncQueue::pushOn($queue, $job, $data);
         }
         
         /**
@@ -7149,7 +7155,21 @@ namespace {
          */
         public static function laterOn($queue, $delay, $job, $data = ''){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\DatabaseQueue::laterOn($queue, $delay, $job, $data);
+            return \Illuminate\Queue\SyncQueue::laterOn($queue, $delay, $job, $data);
+        }
+        
+        /**
+         * Push an array of jobs onto the queue.
+         *
+         * @param array $jobs
+         * @param mixed $data
+         * @param string $queue
+         * @return mixed 
+         * @static 
+         */
+        public static function bulk($jobs, $data = '', $queue = null){
+            //Method inherited from \Illuminate\Queue\Queue            
+            return \Illuminate\Queue\SyncQueue::bulk($jobs, $data, $queue);
         }
         
         /**
@@ -7161,7 +7181,7 @@ namespace {
          */
         public static function setContainer($container){
             //Method inherited from \Illuminate\Queue\Queue            
-            \Illuminate\Queue\DatabaseQueue::setContainer($container);
+            \Illuminate\Queue\SyncQueue::setContainer($container);
         }
         
     }
@@ -7185,11 +7205,12 @@ namespace {
          *
          * @param int $status
          * @param array $headers
+         * @param string $fallback
          * @return \Illuminate\Http\RedirectResponse 
          * @static 
          */
-        public static function back($status = 302, $headers = array()){
-            return \Illuminate\Routing\Redirector::back($status, $headers);
+        public static function back($status = 302, $headers = array(), $fallback = false){
+            return \Illuminate\Routing\Redirector::back($status, $headers, $fallback);
         }
         
         /**
@@ -8825,12 +8846,26 @@ namespace {
         /**
          * Checks whether the method is safe or not.
          *
+         * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+         * @param bool $andCacheable Adds the additional condition that the method should be cacheable. True by default.
          * @return bool 
          * @static 
          */
         public static function isMethodSafe(){
             //Method inherited from \Symfony\Component\HttpFoundation\Request            
             return \Illuminate\Http\Request::isMethodSafe();
+        }
+        
+        /**
+         * Checks whether the method is cacheable or not.
+         *
+         * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
+         * @return bool 
+         * @static 
+         */
+        public static function isMethodCacheable(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isMethodCacheable();
         }
         
         /**
@@ -8930,7 +8965,7 @@ namespace {
          * It works if your JavaScript library sets an X-Requested-With HTTP header.
          * It is known to work with common JavaScript frameworks:
          *
-         * @link http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
+         * @see http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
          * @return bool true if the request is an XMLHttpRequest, false otherwise
          * @static 
          */
@@ -9291,6 +9326,17 @@ namespace {
          */
         public static function resourceParameters($parameters = array()){
             \Illuminate\Routing\Router::resourceParameters($parameters);
+        }
+        
+        /**
+         * Get or set the verbs used in the resource URIs.
+         *
+         * @param array $verbs
+         * @return array|null 
+         * @static 
+         */
+        public static function resourceVerbs($verbs = array()){
+            return \Illuminate\Routing\Router::resourceVerbs($verbs);
         }
         
         /**
@@ -9843,12 +9889,12 @@ namespace {
          *
          * @param string $table
          * @param \Closure $callback
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function table($table, $callback){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::table($table, $callback);
+            \Illuminate\Database\Schema\MySqlBuilder::table($table, $callback);
         }
         
         /**
@@ -9856,36 +9902,36 @@ namespace {
          *
          * @param string $table
          * @param \Closure $callback
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function create($table, $callback){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::create($table, $callback);
+            \Illuminate\Database\Schema\MySqlBuilder::create($table, $callback);
         }
         
         /**
          * Drop a table from the schema.
          *
          * @param string $table
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function drop($table){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::drop($table);
+            \Illuminate\Database\Schema\MySqlBuilder::drop($table);
         }
         
         /**
          * Drop a table from the schema if it exists.
          *
          * @param string $table
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function dropIfExists($table){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::dropIfExists($table);
+            \Illuminate\Database\Schema\MySqlBuilder::dropIfExists($table);
         }
         
         /**
@@ -9893,12 +9939,12 @@ namespace {
          *
          * @param string $from
          * @param string $to
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function rename($from, $to){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::rename($from, $to);
+            \Illuminate\Database\Schema\MySqlBuilder::rename($from, $to);
         }
         
         /**
@@ -10252,6 +10298,18 @@ namespace {
         }
         
         /**
+         * Get an item from the session, or store the default value.
+         *
+         * @param string $key
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function remember($key, $callback){
+            return \Illuminate\Session\Store::remember($key, $callback);
+        }
+        
+        /**
          * Push a value onto a session array.
          *
          * @param string $key
@@ -10300,8 +10358,7 @@ namespace {
         }
         
         /**
-         * Flash a key / value pair to the session
-         * for immediate use.
+         * Flash a key / value pair to the session for immediate use.
          *
          * @param string $key
          * @param mixed $value
@@ -12503,229 +12560,6 @@ namespace {
     }
 
 
-    class Avito extends \App\Providers\Avito\Facade{
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function getBaseURL(){
-            return \App\Providers\Avito\Avito::getBaseURL();
-        }
-        
-        /**
-         * 
-         *
-         * @param $remoteLocation
-         * @param null $localCopyLocation
-         * @param string $baseURL
-         * @return mixed|null 
-         * @static 
-         */
-        public static function getContent($remoteLocation, $localCopyLocation = null, $baseURL = ''){
-            return \App\Providers\Avito\Avito::getContent($remoteLocation, $localCopyLocation, $baseURL);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function transliterate($string = ''){
-            return \App\Providers\Avito\Avito::transliterate($string);
-        }
-        
-    }
-
-
-    class Excel extends \Maatwebsite\Excel\Facades\Excel{
-        
-        /**
-         * Create a new file
-         *
-         * @param $filename
-         * @param callable|null $callback
-         * @return \Maatwebsite\Excel\LaravelExcelWriter 
-         * @static 
-         */
-        public static function create($filename, $callback = null){
-            return \Maatwebsite\Excel\Excel::create($filename, $callback);
-        }
-        
-        /**
-         * Load an existing file
-         *
-         * @param string $file The file we want to load
-         * @param callback|null $callback
-         * @param string|null $encoding
-         * @param bool $noBasePath
-         * @return \Maatwebsite\Excel\LaravelExcelReader 
-         * @static 
-         */
-        public static function load($file, $callback = null, $encoding = null, $noBasePath = false, $callbackConfigReader = null){
-            return \Maatwebsite\Excel\Excel::load($file, $callback, $encoding, $noBasePath, $callbackConfigReader);
-        }
-        
-        /**
-         * Set select sheets
-         *
-         * @param $sheets
-         * @return \Maatwebsite\Excel\LaravelExcelReader 
-         * @static 
-         */
-        public static function selectSheets($sheets = array()){
-            return \Maatwebsite\Excel\Excel::selectSheets($sheets);
-        }
-        
-        /**
-         * Select sheets by index
-         *
-         * @param array $sheets
-         * @return $this 
-         * @static 
-         */
-        public static function selectSheetsByIndex($sheets = array()){
-            return \Maatwebsite\Excel\Excel::selectSheetsByIndex($sheets);
-        }
-        
-        /**
-         * Batch import
-         *
-         * @param $files
-         * @param callback $callback
-         * @return \PHPExcel 
-         * @static 
-         */
-        public static function batch($files, $callback){
-            return \Maatwebsite\Excel\Excel::batch($files, $callback);
-        }
-        
-        /**
-         * Create a new file and share a view
-         *
-         * @param string $view
-         * @param array $data
-         * @param array $mergeData
-         * @return \Maatwebsite\Excel\LaravelExcelWriter 
-         * @static 
-         */
-        public static function shareView($view, $data = array(), $mergeData = array()){
-            return \Maatwebsite\Excel\Excel::shareView($view, $data, $mergeData);
-        }
-        
-        /**
-         * Create a new file and load a view
-         *
-         * @param string $view
-         * @param array $data
-         * @param array $mergeData
-         * @return \Maatwebsite\Excel\LaravelExcelWriter 
-         * @static 
-         */
-        public static function loadView($view, $data = array(), $mergeData = array()){
-            return \Maatwebsite\Excel\Excel::loadView($view, $data, $mergeData);
-        }
-        
-        /**
-         * Set filters
-         *
-         * @param array $filters
-         * @return \Excel 
-         * @static 
-         */
-        public static function registerFilters($filters = array()){
-            return \Maatwebsite\Excel\Excel::registerFilters($filters);
-        }
-        
-        /**
-         * Enable certain filters
-         *
-         * @param string|array $filter
-         * @param bool|false|string $class
-         * @return \Excel 
-         * @static 
-         */
-        public static function filter($filter, $class = false){
-            return \Maatwebsite\Excel\Excel::filter($filter, $class);
-        }
-        
-        /**
-         * Get register, enabled (or both) filters
-         *
-         * @param string|boolean $key [description]
-         * @return array 
-         * @static 
-         */
-        public static function getFilters($key = false){
-            return \Maatwebsite\Excel\Excel::getFilters($key);
-        }
-        
-    }
-
-
-    class Pmanager extends \App\Providers\Pmanager\Facade{
-        
-        /**
-         * Run a command
-         *
-         * @param string $command
-         * @param bool $outputToFiles
-         * @return $this 
-         * @static 
-         */
-        public static function run($command = '', $outputToFiles = false){
-            return \App\Providers\Pmanager\Pmanager::run($command, $outputToFiles);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function stop($pid){
-            return \App\Providers\Pmanager\Pmanager::stop($pid);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function setPid($pid = 0){
-            return \App\Providers\Pmanager\Pmanager::setPid($pid);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function getPid(){
-            return \App\Providers\Pmanager\Pmanager::getPid();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function test(){
-            return \App\Providers\Pmanager\Pmanager::test();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function status($pid){
-            return \App\Providers\Pmanager\Pmanager::status($pid);
-        }
-        
-    }
-
-
     class Date extends \App\Providers\Date\Facade{
         
         /**
@@ -12788,47 +12622,6 @@ namespace {
     }
 
 
-    class Decryptor extends \App\Providers\Decryptor\Facade{
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function set($url, $id, $key){
-            return \App\Providers\Decryptor\Decryptor::set($url, $id, $key);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function getPhoneImageUrl(){
-            return \App\Providers\Decryptor\Decryptor::getPhoneImageUrl();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function getPhoneImage(){
-            return \App\Providers\Decryptor\Decryptor::getPhoneImage();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function decode($url, $id, $key){
-            return \App\Providers\Decryptor\Decryptor::decode($url, $id, $key);
-        }
-        
-    }
-
-
     class Dictionary extends \App\Providers\Dictionary\Facade{
         
         /**
@@ -12844,4 +12637,6 @@ namespace {
 
 
 }
+
+
 

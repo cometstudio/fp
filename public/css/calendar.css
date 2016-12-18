@@ -152,7 +152,7 @@ button, .button {
   .font.classic.size, body {
     font-size: 17px;
     line-height: 1.5em; }
-.font.medium.size, .form label, .form .label, .s0 .stat {
+.font.medium.size, .form label, .form .label {
   font-size: 15px;
   line-height: 1.5em; }
 .font.small.size, .videos-grid .stat, .comments-grid .item .info {
@@ -352,7 +352,62 @@ h3 {
   margin-bottom: 11%;
   background: #4a447e; }
 
-.s0 .stat {
-  margin-top: 18px; }
+.s0 h1 {
+  font-size: 30px;
+  margin-bottom: 0; }
 
-/*# sourceMappingURL=video.css.map */
+.s1 h2 {
+  font-size: 75px;
+  line-height: 1.3em;
+  margin-bottom: 0; }
+
+.exercises-grid, .food-grid {
+  border: 1px solid #4a447e; }
+  .exercises-grid .row, .food-grid .row {
+    border-top: 1px solid #4a447e; }
+    .exercises-grid .row > .column, .food-grid .row > .column {
+      margin: 0; }
+      .exercises-grid .row > .column .wrapper, .food-grid .row > .column .wrapper {
+        padding: 36px; }
+      .exercises-grid .row > .column:first-child, .food-grid .row > .column:first-child {
+        width: 60%; }
+      .exercises-grid .row > .column:last-child, .food-grid .row > .column:last-child {
+        padding-top: 3em;
+        width: 40%; }
+    .exercises-grid .row.x1, .food-grid .row.x1 {
+      border: none; }
+      .exercises-grid .row.x1 > .column, .food-grid .row.x1 > .column {
+        margin: 0;
+        padding: 0; }
+        .exercises-grid .row.x1 > .column:first-child, .food-grid .row.x1 > .column:first-child, .exercises-grid .row.x1 > .column:last-child, .food-grid .row.x1 > .column:last-child {
+          width: 100%; }
+    .exercises-grid .row.title, .food-grid .row.title {
+      background: #4a447e;
+      color: #fff; }
+    .exercises-grid .row:first-child, .food-grid .row:first-child {
+      border-top: none; }
+  .exercises-grid .gallery .image, .food-grid .gallery .image {
+    display: inline-block;
+    float: left;
+    width: 23%;
+    height: 95px;
+    margin: 2.66% 2.66% 0 0;
+    background: #4a447e;
+    text-align: center; }
+    .exercises-grid .gallery .image img, .food-grid .gallery .image img {
+      display: inline-block; }
+    .exercises-grid .gallery .image:nth-child(4n), .food-grid .gallery .image:nth-child(4n) {
+      margin-right: 0; }
+  .exercises-grid .gallery.nomargin .image, .food-grid .gallery.nomargin .image {
+    margin-top: 0; }
+
+.food-grid .row > .column:first-child {
+  width: 40%; }
+  .food-grid .row > .column:first-child ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 1.5em; }
+.food-grid .row > .column:last-child {
+  width: 60%; }
+
+/*# sourceMappingURL=calendar.css.map */

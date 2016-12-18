@@ -152,7 +152,7 @@ button, .button {
   .font.classic.size, body {
     font-size: 17px;
     line-height: 1.5em; }
-.font.medium.size, .form label, .form .label, .s0 .stat {
+.font.medium.size, .form label, .form .label {
   font-size: 15px;
   line-height: 1.5em; }
 .font.small.size, .videos-grid .stat, .comments-grid .item .info {
@@ -352,7 +352,4 @@ h3 {
   margin-bottom: 11%;
   background: #4a447e; }
 
-.s0 .stat {
-  margin-top: 18px; }
-
-/*# sourceMappingURL=video.css.map */
+/*# sourceMappingURL=gallery.css.map */

@@ -25,13 +25,13 @@
 <div class="body-wait"></div>
 <div class="body-fade"></div>
 
-@yield('content')
+@include('common.mainNav')
 
-<div class="footer section">
-    <div class="wrapper">
-        <a href="/">#спортивнаясемья</a>
-    </div>
+<div class="content-wrapper clearfix">
+    @yield('content')
 </div>
+
+@include('common.footer')
 
 <script src="/bower_components/jquery-form/jquery.form.js"></script>
 <script src="/bower_components/cookie/cookie.min.js"></script>

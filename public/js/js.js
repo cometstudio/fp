@@ -1,4 +1,16 @@
 $(document).ready(function() {
+
+    fixContentWrapperPosition();
+
+});
+
+function fixContentWrapperPosition()
+{
+    $('.content-wrapper').css('padding-top', $('.main-nav').outerHeight()).show();
+}
+
+function intFullPage()
+{
     $('#fullpage').fullpage({
         autoScrolling: false,
         fitToSection: false,
@@ -13,4 +25,4 @@ $(document).ready(function() {
         navigationTooltips: ['firstSlide', 'secondSlide'],
         showActiveTooltip: false
     });
-});
+}

@@ -1,8 +1,29 @@
-$(document).ready(function() {
+$(document).ready(function()
+{
+    hideMainNavOnScroll();
 
     fixContentWrapperPosition();
-
 });
+
+function hideMainNavOnScroll()
+{
+    var lastTop = 0;
+    var top = 0;
+    var mainNavHeight = $('.main-nav').outerHeight();
+
+    $(window).on('scroll', function(){
+
+        top = $(window).scrollTop();
+
+        if((top > mainNavHeight) && (lastTop < top)){
+            $('.main-nav').css('top', -1 * mainNavHeight);
+        }else{
+            $('.main-nav').css('top', 0);
+        }
+
+        lastTop = top;
+    });
+}
 
 function fixContentWrapperPosition()
 {

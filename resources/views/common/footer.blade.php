@@ -1,5 +1,5 @@
 <div class="footer section">
     <div class="wrapper">
-        <a href="/">#фитнеспрактика</a>
+        <a href="/">#tag</a>
     </div>
 </div>

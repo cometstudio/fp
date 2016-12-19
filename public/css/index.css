@@ -266,12 +266,13 @@ h3 {
   width: 100%;
   top: 0;
   background: #4a447e;
-  color: #fff; }
+  color: #fff;
+  transition: 0.3s; }
   .main-nav nav > span, .main-nav nav > a {
     margin: 0 0 0 2.5em;
     float: left; }
   .main-nav nav i {
-    margin-right: 0.3em; }
+    margin-right: 0.2em; }
   .main-nav span, .main-nav a {
     height: 72px;
     color: inherit; }

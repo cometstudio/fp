@@ -13,12 +13,28 @@
 
     <div class="s1 section">
         <div class="wrapper">
-            <h2>День 20</h2>
+            <div class="grid">
+                <div class="x2 row clearfix">
+                    <div class="column">
+                        <h2>День 20</h2>
+                    </div>
+                    <div class="date-selector column">
+                        <form action="">
+                            &larr; <a href="">назад</a>
+                            <span>
+                                <i class="fa fa-calendar"></i>
+                                <input name="" value="{{ Date::getDateFromTime(time(), 1) }}" type="text" />
+                            </span>
+                            <a href="">вперёд</a> &rarr;
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     @if(true)
-        <div class="s1 section">
+        <div class="s2 section">
             <div class="wrapper">
                 <h3>Упражнения</h3>
                 <div class="exercises-grid grid">
@@ -52,7 +68,7 @@
     @endif
 
     @if(!empty($meals) && $meals->count())
-        <div class="s2 section">
+        <div class="s3 section">
             <div class="wrapper">
                 <h3>Рацион питания</h3>
                 <div class="food-grid grid">
@@ -107,20 +123,20 @@
     @endif
 
 
-    <div class="s3 section">
+    <div class="s4 section">
         <div class="wrapper">
             SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols. These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards. The protocols allowed users to send and receive messages of up to 160 alpha-numeric characters to and from GSM mobile handsets. Though most SMS messages are mobile-to-mobile text messages, support for the service has expanded to include other mobile technologies, such as ANSI CDMA networks and Digital AMPS, as well as satellite and landline networks.
         </div>
     </div>
 
 
-    <div class="s4 section">
+    <div class="s55 section">
         <div class="wrapper">
             <div class="video-player"></div>
         </div>
     </div>
 
-    <div class="s5 section">
+    <div class="s6 section">
         <div class="wrapper">
             <div class="gallery-grid grid">
                 <div class="x4 row clearfix">

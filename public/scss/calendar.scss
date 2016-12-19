@@ -13,6 +13,26 @@
     line-height: 1.3em;
     margin-bottom: 0;
   }
+  .date-selector{
+    text-align: right;
+    form{
+      margin-top: 31px;
+    }
+    span{
+      position: relative;
+      display: inline-block;
+      margin: 0 0.8em;
+    }
+    i{
+      position: absolute;
+      right: 0.5em;
+      top: 50%;
+      margin-top:  -0.5em;
+    }
+    input{
+      width: 200px;
+    }
+  }
 }
 
 .exercises-grid{

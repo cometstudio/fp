@@ -1,7 +1,7 @@
 <div class="main-nav section">
     <div class="wrapper clearfix">
         <div class="l">
-            <a href="/">#tag</a>
+            <a href="/">#фитнеспрактика</a>
         </div>
 
         <div class="social-links l">
@@ -17,11 +17,9 @@
 
         <div class="r">
             <nav>
-                <!--
                 <a href="/calendar">Календарь</a>
                 <a href="/gallery">Фотоотчёты</a>
                 <a href="/videos">Видеоотчёты</a>
-                -->
                 <span><i class="fa fa-unlock"></i><a href="/login">Login</a></span>
             </nav>
         </div>

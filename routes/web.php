@@ -21,4 +21,8 @@ Route::group(['as' => 'gallery:', 'prefix'=>'gallery'], function () {
     Route::get('/{id}', 'GalleryController@item')->name('item')->where('id', '[0-9]+');
 });
 
+Route::group(['as' => 'webhook:', 'prefix'=>'webhook'], function () {
+    Route::post('/{type}', 'WebhookController@type')->name('type')->where('type', '[a-z_]+');
+});
+
 Route::get('/{id}', 'UsersController@login');

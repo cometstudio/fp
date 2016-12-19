@@ -139,6 +139,8 @@ button, .button {
 
 .flex, .main-nav span, .main-nav a, .main-nav .l, .main-nav .r {
   display: flex;
+  display: -webkit-flex;
+  /* Safari */
   align-items: center;
   -ms-flex-align: center;
   -webkit-align-items: center; }

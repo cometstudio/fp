@@ -23,7 +23,7 @@
                             &larr; <a href="">назад</a>
                             <span>
                                 <i class="fa fa-calendar"></i>
-                                <input name="" value="{{ Date::getDateFromTime(time(), 1) }}" type="text" />
+                                <input name="" class="datepicker" value="{{ Date::getDateFromTime(time(), 1) }}" type="text" />
                             </span>
                             <a href="">вперёд</a> &rarr;
                         </form>
@@ -33,35 +33,30 @@
         </div>
     </div>
 
-    @if(true)
+    @if(!empty($exercises) && $exercises->count())
         <div class="s2 section">
             <div class="wrapper">
                 <h3>Упражнения</h3>
                 <div class="exercises-grid grid">
-                    @for($i=0;$i<3;$i++)
+                    @foreach($exercises as $exercise)
                     <div class="x2 row clearfix">
                         <div class="column">
                             <div class="wrapper">
-                                <p><b>Приседания Плие</b></p>
+                                <p><b>{{ $exercise->name }}</b></p>
                                 <p>&nbsp;</p>
                                 <div class="i">
-                                    <p>В тренажере Смитта, в глубокий присед, с контролем скорости по всей траектории движения, в верхней точки ноги остаются чуть согнутыми в коленях.</p>
+                                    {!! $exercise->text !!}
                                 </div>
                             </div>
                         </div>
                         <div class="column">
                             <div class="wrapper">
-                                <ul>
-                                    <li>12 повторений, легкий вес</li>
-                                    <li>10 повторений, средний вес</li>
-                                    <li>6 повторений, средне-тяжелый вес</li>
-                                    <li>15 повторений, средне-легкий вес</li>
-                                    <li>25 повторений, легкий вес</li>
-                                </ul>
+                                <p><b>Количество повторений:</b></p>
+                                {!! $exercise->notice !!}
                             </div>
                         </div>
                     </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -88,7 +83,7 @@
                                         <div class="wrapper">
                                             <p><b>{{ $recipe->name }}</b></p>
                                             <p>&nbsp;</p>
-                                            {!! $recipe->ingridients !!}
+                                            {!! $recipe->notice !!}
                                         </div>
                                     </div>
                                     <div class="column">
@@ -122,32 +117,38 @@
         </div>
     @endif
 
-
-    <div class="s4 section">
-        <div class="wrapper">
-            SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized phone protocols. These were defined in 1985 as part of the Global System for Mobile Communications (GSM) series of standards. The protocols allowed users to send and receive messages of up to 160 alpha-numeric characters to and from GSM mobile handsets. Though most SMS messages are mobile-to-mobile text messages, support for the service has expanded to include other mobile technologies, such as ANSI CDMA networks and Digital AMPS, as well as satellite and landline networks.
+    @if(!empty($calendar->text))
+        <div class="s4 section">
+            <div class="wrapper">
+                {!! $calendar->text !!}}
+            </div>
         </div>
-    </div>
+    @endif
 
-
-    <div class="s55 section">
-        <div class="wrapper">
-            <div class="video-player"></div>
-        </div>
-    </div>
-
-    <div class="s6 section">
-        <div class="wrapper">
-            <div class="gallery-grid grid">
-                <div class="x4 row clearfix">
-                    @for($i=0;$i<12;$i++)
-                        <div class="column">
-                            <div class="image"></div>
-                        </div>
-                    @endfor
+    @if(!empty($calendar->video))
+        <div class="s55 section">
+            <div class="wrapper">
+                <div class="video-player">
+                    {!! $calendar->video !!}
                 </div>
             </div>
         </div>
-    </div>
+    @endif
+
+    @if(!empty($calendar->gallery))
+        <div class="s6 section">
+            <div class="wrapper">
+                <div class="gallery-grid grid">
+                    <div class="x4 row clearfix">
+                        @foreach($calendar->getGallery() as $picture)
+                            <div class="column">
+                                <div class="image"></div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
 @endsection

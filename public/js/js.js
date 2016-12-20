@@ -3,6 +3,8 @@ $(document).ready(function()
     hideMainNavOnScroll();
 
     fixContentWrapperPosition();
+
+    initDatepicker();
 });
 
 function hideMainNavOnScroll()
@@ -30,20 +32,12 @@ function fixContentWrapperPosition()
     $('.content-wrapper').css('padding-top', $('.main-nav').outerHeight()).show();
 }
 
-function intFullPage()
+function initDatepicker()
 {
-    $('#fullpage').fullpage({
-        autoScrolling: false,
-        fitToSection: false,
-        fitToSectionDelay: 500,
-        scrollBar: true,
-        //sectionsColor: ['#4BBFC3', '#f2f2f2', '#7BAABE', 'whitesmoke', '#4BBFC3'],
-        //Navigation
-        lockAnchors: false,
-        anchors:['p1', 'p2', 'p3', 'p4'],
-        navigation: false,
-        navigationPosition: 'right',
-        navigationTooltips: ['firstSlide', 'secondSlide'],
-        showActiveTooltip: false
+    $( ".datepicker" ).datepicker({
+        dateFormat: "dd.mm.yy",
+        beforeShow: function ( input, inst ) {
+            //console.log(this);
+        }
     });
 }

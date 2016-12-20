@@ -34,6 +34,7 @@ class CalendarController extends Controller
             'calendar.index', [
                 'css'=>$this->css,
                 'calendar'=>$calendar,
+                'exercises'=>$exercises,
                 'meals'=>$meals,
                 'recipes'=>$recipes,
             ]

@@ -4,6 +4,8 @@
 @include('panelRoutes.php');
 
 // Frontend
+Route::get('/instagram/auth', 'IndexController@index');
+
 Route::get('/', 'IndexController@index');
 
 Route::group(['as' => 'calendar:', 'prefix'=>'calendar'], function () {

@@ -10,7 +10,7 @@
                 <a href="https://www.instagram.com/fitnespraktika" title="Instagram" class="fa fa-instagram" target="_blank"></a>
                 <a href="https://www.youtube.com/channel/UCZIsiLeWkbynnERIgYIrYBg" title="YouTube" class="fa fa-youtube" target="_blank"></a>
                 <a href="https://www.facebook.com/fitnespraktika" title="Facebook" class="fa fa-facebook-square" target="_blank"></a>
-                <a href="tg://resolve?domain=fitnespraktika_bot" title="Telegram (бот)" class="fa fa-telegram" target="_blank"></a>
+                <a href="https://telegram.me/fitnespraktika_bot" title="Telegram (бот)" class="fa fa-telegram" target="_blank"></a>
                 <a href="http://chats.viber.com/fitnespraktika" title="Viber" class="fa fa-v" target="_blank"></a>
             </span>
         </div>

@@ -16,6 +16,8 @@ class CalendarController extends Controller
     {
         $calendar = Calendar::first();
 
+        $exercises = $calendar->exercises()->get();
+
         $recipes = $calendar->recipes()
             ->join('meals', 'recipes_calendar.meal_id', '=', 'meals.id')
             ->select([

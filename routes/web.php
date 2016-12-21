@@ -4,7 +4,7 @@
 @include('panelRoutes.php');
 
 // Frontend
-Route::get('/instagram/auth', 'IndexController@index');
+Route::get('/instagram/auth', 'InstagramController@auth');
 
 Route::get('/', 'IndexController@index');
 

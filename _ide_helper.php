@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.28 on 2016-12-18.
+ * Generated for Laravel 5.3.28 on 2016-12-21.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12631,6 +12631,56 @@ namespace {
          */
         public static function get($pointer = '', $value = 0){
             return \App\Providers\Dictionary\Dictionary::get($pointer, $value);
+        }
+        
+    }
+
+
+    class Instagram extends \Mbarwick83\Instagram\Facades\Instagram{
+        
+        /**
+         * Get authorization url for oauth
+         *
+         * @return String 
+         * @static 
+         */
+        public static function getLoginUrl(){
+            return \Mbarwick83\Instagram\Instagram::getLoginUrl();
+        }
+        
+        /**
+         * Get user's access token and basic info
+         *
+         * @param string $code
+         * @static 
+         */
+        public static function getAccessToken($code){
+            return \Mbarwick83\Instagram\Instagram::getAccessToken($code);
+        }
+        
+        /**
+         * Make POST calls to the API
+         *
+         * @param string $path
+         * @param boolean $authorization [Use access token query params]
+         * @param array $parameters [Optional query parameters]
+         * @return Array 
+         * @static 
+         */
+        public static function post($path, $authorization, $parameters){
+            return \Mbarwick83\Instagram\Instagram::post($path, $authorization, $parameters);
+        }
+        
+        /**
+         * Make GET calls to the API
+         *
+         * @param string $path
+         * @param array $parameters [Query parameters]
+         * @return Array 
+         * @static 
+         */
+        public static function get($path, $parameters){
+            return \Mbarwick83\Instagram\Instagram::get($path, $parameters);
         }
         
     }

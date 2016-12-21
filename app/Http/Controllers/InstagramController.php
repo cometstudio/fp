@@ -21,7 +21,7 @@ class InstagramController extends Controller
         }else{
             $authURL = Curl::to('https://api.instagram.com/oauth/access_token')->withData([
                 'client_id'=>'6c5d95c2eb7447d19c0cc1000a7965de',
-                'client_secret'=>'e84eac61bb5a4f93991b39eb6dbcf25e',
+                'client_secret'=>'',
                 'grant_type'=>'authorization_code',
                 'redirect_uri'=>'http://fitnespraktika.ru/instagram/auth',
                 'code'=>$request->get('code'),

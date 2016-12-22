@@ -71,7 +71,7 @@ for ($i = 0; $i < $min_chars; $i++) $config['LicenseKey'] .= array_key_exists($i
  Uncomment lines below to enable PHP error reporting and displaying PHP errors.
  Do not do this on a production server. Might be helpful when debugging why CKFinder does not work as expected.
 */
-// error_reporting(E_ALL);
+//error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 
 /*
@@ -326,7 +326,7 @@ If possible, it is recommended to set more restrictive permissions, like 0755.
 Set to 0 to disable this feature.
 Note: not needed on Windows-based servers.
 */
-$config['ChmodFiles'] = 0777 ;
+$config['ChmodFiles'] = 0644 ;
 
 /*
 See comments above.

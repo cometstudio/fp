@@ -181,7 +181,7 @@ input[type="checkbox"] {
 .font.medium, .aside li, .content > .controls {
   font-size: 14px;
   line-height: 1.4em; }
-.font.small, .per-page, .progress-bar .info, .panel-model-name, .edit .date-info, .form .row dl, .common-grid .items .col.grab, .common-grid .items .col.id, .gallery .items .el {
+.font.small, .per-page, .progress-bar .info, .panel-model-name, .edit .date-info, .form .row dl, .common-grid .items .col.grab, .common-grid .items .col.id, .gallery .items .edit input {
   font-size: 12px;
   line-height: 1.4em; }
 
@@ -410,11 +410,10 @@ ul.pagination {
   display: inline-block;
   float: left;
   margin: 10px 10px 0 0; }
-  .gallery .items .control, .gallery .items .bg {
+  .gallery .items .control, .gallery .items .bg, .gallery .items .edit {
     position: absolute;
     width: 100%; }
   .gallery .items .control:hover .bg {
-    background: #ff7700;
     opacity: 1; }
   .gallery .items .bg {
     top: 0;
@@ -423,10 +422,26 @@ ul.pagination {
     background: #723bae;
     opacity: 0.8;
     transition: 0.2s; }
+  .gallery .items .edit {
+    display: none;
+    z-index: 10;
+    background: #723bae;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    width: 300px; }
+    .gallery .items .edit input {
+      padding: 5px 10px;
+      line-height: 1.5em;
+      width: 90%;
+      height: auto; }
+    .gallery .items .edit a {
+      color: #fff;
+      text-decoration: none; }
   .gallery .items .el {
-    display: block;
+    display: inline-block;
     position: relative;
-    padding: 10px 0;
+    padding: 10px 0 10px 15px;
     text-align: center;
     text-decoration: none;
     color: inherit; }

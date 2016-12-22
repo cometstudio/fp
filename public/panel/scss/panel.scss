@@ -527,14 +527,14 @@ ul.pagination{
     display: inline-block;
     float: left;
     margin: $gutter / 6 $gutter / 6 0 0;
-    .control, .bg{
+    .control, .bg, .edit{
       position: absolute;
       width: 100%;
     }
     .control{
       &:hover{
         .bg{
-          background: $orange;
+          //background: $orange;
           opacity: 1;
         }
       }
@@ -547,12 +547,33 @@ ul.pagination{
       opacity: 0.8;
       transition: 0.2s;
     }
-    .el{
-      @extend .small.font;
+    .edit{
+      display: none;
+      z-index: 10;
+      background: $accent;
+      padding: 10px;
+      top: 0;
+      left: 0;
+      width: 300px;
+      input{
+        @extend .small.font;
 
-      display: block;
+        padding: 5px 10px;
+        line-height: 1.5em;
+        width: 90%;
+        height: auto;
+      }
+      a{
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+    .el{
+      //@extend .small.font;
+
+      display: inline-block;
       position: relative;
-      padding: 10px 0;
+      padding: 10px 0 10px 15px;
       text-align: center;
       text-decoration: none;
       color: inherit;

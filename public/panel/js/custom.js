@@ -15,32 +15,29 @@ function exportAsExcel(el)
     return false;
 }
 
-function manageProcess(el, containerEl)
+function addBinding(el, id, container)
 {
-    var container = $(containerEl);
-    var controlsContainer = container.find('.controls');
     var control = $(el);
     var url = control.attr('href');
 
     ajax(url, function(response){
-
-        controlsContainer.html(response.chunk);
-
+        container.html(response.view)
+    }, null, {
+        id: id
     });
 
     return false;
 }
 
-function releaseProcess(id, checkTaskURL)
+function dropBinding(el, container)
 {
-    ajax(checkTaskURL, function(response){
-        if(response.running) {
-            timeout = window.setTimeout('releaseProcess('+id+', "'+checkTaskURL+'")', 3000);
-        }else{
-            var controls = $('#task'+response.id+' .controls');
-            controls.find('.on').hide();
-            controls.find('.off').show();
-        }
-    }, null, {}, 'POST', true);
 
+    var control = $(el);
+    var url = control.attr('href');
+
+    ajax(url, function(response){
+        container.html(response.view)
+    });
+
+    return false;
 }

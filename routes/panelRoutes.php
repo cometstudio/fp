@@ -33,36 +33,11 @@ Route::group(['as' => 'admin::', 'prefix' => 'admin', 'namespace'=>'Panel'], fun
             ->name('act');
 
         Route::post('/{action}/{modelName}/{id?}', 'ActionsController@act')
-            ->where('action', 'gallerysort|imageadd|imagedrop|save|drop|courseproductadd|courseproductdel')
+            ->where('action', 'save|drop|imageadd|imagedrop|gallerysort|imagetitles|bindexercise|unbindexercise|bindrecipe|unbindrecipe')
             ->where('modelName', '[a-z0-9_]+')
             ->where('id', '[0-9]+');
 
-        // App specific routes
-        // Manage
-        Route::group(['as' => 'manage::', 'prefix'=>'manage'], function () {
-            Route::get('/', 'ManageController@index')->name('manage');
-            // Get different info (categories, regions, etc)
-            Route::post('/get/{type}', 'ManageController@get')
-                ->name('get');
-            //Tasks
-            Route::group(['as' => 'task::', 'prefix'=>'task'], function () {
-                // Manage
-                Route::post('/{id}/{action}', 'AvitoPagesTaskController@manage')
-                    ->where('id', '[0-9]+')
-                    ->name('byId');
-                // Check status
-                Route::post('/check/{id}', 'TaskController@check')
-                    ->where('id', '[0-9]+')
-                    ->name('checkByid');
-            });
-
-        });
-
         // Export lists to a .csv file
         Route::post('/excel/export/{modelName}/{format}', 'ExcelController@export')->name('exportAsExcel');
-
-        Route::get('/proxy', 'ProxyController@stat');
-
-        Route::get('/test', 'TestController@index');
     });
 });

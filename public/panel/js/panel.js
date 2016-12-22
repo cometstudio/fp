@@ -45,16 +45,15 @@ $(document).ready(function(){
 
 function sortGallery(ui)
 {
-    var url = $('input[name=_gallerysort]').val();
-    var galleryInput = $('input[name=gallery]');
-    var gallery = $('input[name=gallery]').val();
+    var form = $('.edit form');
+    var action = form.find('input[name=_gallerysort]').val();
+    var galleryInput = form.find('input[name=gallery]');
 
-    ajax(url, function(response){
+    ajaxSubmit(form, function(response){
         galleryInput.val(response.gallery);
     }, null, {
-        'indexes': $('.gallery').sortable('toArray'),
-        'gallery': galleryInput.val()
-    });
+        'indexes': $('.gallery').sortable('toArray')
+    }, action);
 }
 
 function imageadd(el)
@@ -102,6 +101,37 @@ function imagedrop(el, index)
     }, null, {
         index: index
     }, action);
+
+    return false;
+}
+
+function showGalleryImageEditField(el, index)
+{
+    var edit = $('#i' + index + ' .edit');
+
+    $('.gallery .edit').hide();
+    edit.show();
+
+    return false;
+}
+
+function saveGalleryTitles()
+{
+    var form = $('.edit form');
+    var action = form.find('input[name=_imagetitles]').val();
+    var galleryInput = form.find('input[name=gallery]');
+    var galleryContainer = form.find('.gallery');
+
+    ajaxSubmit(form, function(response){
+        if(response.location){
+            document.location.assign(response.location);
+        }else {
+            galleryInput.val(response.gallery);
+            galleryContainer.html(response.part);
+
+            galleryContainer.find('.edit').hide();
+        }
+    }, null, {}, action);
 
     return false;
 }

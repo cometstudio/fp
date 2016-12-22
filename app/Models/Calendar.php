@@ -12,7 +12,7 @@ class Calendar extends Model
      */
     public function recipes()
     {
-        return $this->belongsToMany('App\Models\Recipe', 'recipes_calendar', 'calendar_id', 'recipe_id');
+        return $this->belongsToMany('App\Models\Recipe', 'calendar_recipes', 'calendar_id', 'recipe_id')->withPivot('id');
     }
 
     /**
@@ -20,6 +20,28 @@ class Calendar extends Model
      */
     public function exercises()
     {
-        return $this->belongsToMany('App\Models\Exercise', 'exercises_calendar', 'calendar_id', 'exercise_id')->withPivot('id');
+        return $this->belongsToMany('App\Models\Exercise', 'calendar_exercises', 'calendar_id', 'exercise_id')->withPivot('id');
+    }
+
+    public function getOptions()
+    {
+        $exercises = Exercise::orderBy('name', 'DESC')->get();
+
+        $calendarExercises = $this->exercises()->get();
+
+        $meals = Meal::orderBy('name', 'DESC')->get();
+
+        $recipes = Recipe::orderBy('name', 'DESC')->get();
+
+        $calendarRecipes = $this->recipes()->get();
+
+        return compact(
+            'exercises',
+            'meals',
+            'recipes',
+            'calendarExercises',
+            'calendarRecipes',
+            'calendarRecipes'
+        );
     }
 }

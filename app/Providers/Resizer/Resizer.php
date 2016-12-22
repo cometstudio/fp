@@ -105,6 +105,16 @@ class Resizer {
         return empty($gallery) ? '' : implode(' ', $gallery);
     }
 
+    public function galleryTitles($titlesString = '')
+    {
+        return explode(' #', $titlesString);
+    }
+
+    public function galleryTitlesString($titles = [])
+    {
+        return empty($titles) ? '' : implode(' #', $titles);
+    }
+
     public function load($file)
     {
         $this->image    = $this->openImage($file);
@@ -137,7 +147,12 @@ class Resizer {
     {
         array_set($this->config, 'settings.resize', empty($crop) ? 'auto' : 'crop');
 
-        list($width, $height) = $this->getDimensions($newWidth, $newHeight);
+        if(($this->width > $newWidth) || ($this->height > $newHeight)){
+            list($width, $height) = $this->getDimensions($newWidth, $newHeight);
+        }else{
+            $width = $this->width;
+            $height = $this->height;
+        }
 
         $this->imageResized = imagecreatetruecolor($width, $height);
 

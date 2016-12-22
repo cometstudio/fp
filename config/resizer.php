@@ -8,14 +8,14 @@ return [
     'dirs'=>[
         'default'=>[
             'thumbs'=>[130, 130, true],
-            'small'=>[300, 300, true],
+            //'small'=>[300, 300, true],
             //'big'=>[640, 640, true, null, true],
             //'bigGrayscale'=>[640, 640, true, IMG_FILTER_GRAYSCALE],
-            'source'=>[1920, 1200, false],
+            //'source'=>[1920, 1200, false],
         ],
     ],
     'settings'=>[
-        'quality'=>65,
+        'quality'=>70,
         'resize'=>'auto',
     ]
 ];

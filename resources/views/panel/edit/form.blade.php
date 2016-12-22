@@ -12,7 +12,7 @@
 
             @if(!empty($currentPanelModel->has_gallery))
                 <div class="row">
-                    @include('panel.edit.gallery')
+                    @include('panel.edit._gallery')
                 </div>
             @endif
 

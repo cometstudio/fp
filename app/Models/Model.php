@@ -11,11 +11,11 @@ use Illuminate\Http\Request;
 class Model extends BaseModel
 {
     protected $dateFormat = 'U';
-    protected $configSet = 'dirs.default';
+    protected $resizerConfigSet = 'dirs.default';
 
-    public function getConfigSet()
+    public function getResizerConfigSet()
     {
-        return $this->configSet;
+        return $this->resizerConfigSet;
     }
 
     public function getValidationRules()
@@ -47,12 +47,58 @@ class Model extends BaseModel
 
         return $this->gallery;
     }
+
+    public function getGalleryTitles()
+    {
+        return \Resizer::galleryTitles($this->gallery_titles);
+    }
     
     public function getThumbnail()
     {
         $gallery = $this->getGallery(true, false);
     
         return reset($gallery);
+    }
+
+    public function bodyP($query)
+    {
+        $l = $r = 150;
+
+        $string = strip_tags($this->body);
+
+        $pos = stripos($string, $query);
+
+        $l = $pos > $l ? $pos - $l : 0;
+
+        $r = (strlen($string) > $r * 2) ? $r * 2 : strlen($string);
+
+        $snippet = substr($string, $l, $r);
+
+        $snippetExploded = explode(' ', $snippet);
+
+        if($l){
+            array_shift($snippetExploded);
+            array_unshift($snippetExploded, '...');
+        }
+
+        if(($l + $r) < strlen($string)){
+            array_pop($snippetExploded);
+            array_push($snippetExploded, '...');
+        }
+
+        $snippet = implode(' ', $snippetExploded);
+
+        $snippet = str_replace($query, "<span>{$query}</span>", $snippet);
+
+        return $snippet;
+    }
+
+    public function bodyP_($query){
+        $p = strip_tags($this->body);
+        $p = explode("\n", $p);
+        $p = array_filter($p);
+
+        return reset($p);
     }
 
     public function setStartTime($attrubutes = [])

@@ -2,7 +2,7 @@
 
 @section('content')
     @if(!empty($canCreate))
-        <h4><a href="{{  route('admin::act', ['action'=>'create', 'modelName'=>$currentPanelModel->public_model_name], false) }}">Создать</a></h4>
+        <h4><a href="{{  route('admin::act', ['action'=>'create', 'modelName'=>$currentPanelModel->public_model_name], false) }}">Создать новую страницу</a></h4>
     @endif
     <h1>{{ $currentPanelModel->name }}</h1>
     @if(!empty($items))

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Panel;
 
-use App\Models\CourseProduct;
+use App\Models\CalendarExercise;
+use App\Models\CalendarRecipe;
 use Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -61,17 +62,26 @@ class ActionsController extends Controller
             case 'imagedrop':
                 return $this->dropImage();
             break;
+            case 'imagetitles':
+                return $this->modityImageTitles();
+            break;
             case 'save':
                 return $this->save();
             break;
             case 'drop':
                 return $this->drop();
             break;
-            case 'courseproductadd':
-                return $this->addCourseProduct();
+            case 'bindexercise':
+                return $this->modifyCalendarExercisesBinding();
             break;
-            case 'courseproductdel':
-                return $this->deleteCourseProduct();
+            case 'unbindexercise':
+                return $this->modifyCalendarExercisesBinding(true);
+            break;
+            case 'bindrecipe':
+                return $this->modifyCalendarRecipesBinding();
+            break;
+            case 'unbindrecipe':
+                return $this->modifyCalendarRecipesBinding(true);
             break;
         }
 
@@ -236,6 +246,7 @@ class ActionsController extends Controller
         $indexes = $this->request->input('indexes');
         $item->gallery = $this->request->input('gallery');
         $gallery = $item->getGallery();
+        $galleryTitles = $this->request->input('galleryTitles');
 
         $indexes = array_map(function($index){
             return str_replace('i', '', $index);
@@ -250,6 +261,7 @@ class ActionsController extends Controller
         }
 
         $item->setGallery($sortedGallery);
+        $item->setAttribute('gallery_titles', Resizer::galleryTitlesString($galleryTitles));
 
         if (!empty($this->id)){
             $item->touch();
@@ -282,7 +294,7 @@ class ActionsController extends Controller
 
             $name = Str::random(24);
 
-            Resizer::addImage($this->request->file('_image')->getPathname(), $name, empty($this->id), $model->getConfigSet());
+            Resizer::addImage($this->request->file('_image')->getPathname(), $name, empty($this->id), $model->getResizerConfigSet());
 
             $gallery = Resizer::gallery($this->request->input('gallery'));
 
@@ -308,7 +320,7 @@ class ActionsController extends Controller
             'canUpdate'=>Auth::user()->hasAccess($currentPanelModel, 'u'),
         ];
 
-        $part = view('panel.edit.galleryItems', $data)->render();
+        $part = view('panel.edit._galleryItems', $data)->render();
 
         return response()->json([
             'part'=>$part,
@@ -333,20 +345,24 @@ class ActionsController extends Controller
         $this->checkAccess($currentPanelModel, 'u');
 
         $gallery = Resizer::gallery($this->request->input('gallery'));
+        $titles = $this->request->input('galleryTitles');
 
         $index = $this->request->input('index', 0);
 
         // Unset element with given index in gallery images array
         if (!empty($gallery[$index])){
             // Delete image file(s) with given index
-            Resizer::deleteImages($gallery[$index], empty($this->id), $model->getConfigSet());
+            Resizer::deleteImages($gallery[$index], empty($this->id), $model->getResizerConfigSet());
 
             unset($gallery[$index]);
+
+            unset($titles[$index]);
         }
 
         $data = $this->request->all();
 
         $data['gallery'] = Resizer::galleryString($gallery);
+        $data['gallery_titles'] = Resizer::galleryTitlesString($titles);
 
         $item->fill($data);
 
@@ -363,7 +379,44 @@ class ActionsController extends Controller
             'canUpdate'=>Auth::user()->hasAccess($currentPanelModel, 'u'),
         ];
 
-        $part = view('panel.edit.galleryItems', $data)->render();
+        $part = view('panel.edit._galleryItems', $data)->render();
+
+        return response()->json([
+            'part'=>$part,
+            'gallery'=>$item->gallery
+        ]);
+    }
+
+    protected function modityImageTitles()
+    {
+        $model = $this->factoryModel($this->modelName);
+
+        $item = $model::findOrNew($this->id);
+
+        $currentPanelModel = $this->getPanelModel($model);
+
+        $this->checkAccess($currentPanelModel, 'u');
+
+        $titles = Resizer::gallery($this->request->input('galleryTitles'));
+
+        $data['gallery_titles'] = Resizer::galleryTitlesString($titles);
+
+        $item->fill($data);
+
+        if (!empty($this->id)){
+            $item->touch();
+
+            $item->update($data);
+        }
+
+        $data = [
+            'item'=>$item,
+            'imagesDir'=>Resizer::getImagesDir($this->id),
+            'currentPanelModel'=>$this->getPanelModel($model),
+            'canUpdate'=>Auth::user()->hasAccess($currentPanelModel, 'u'),
+        ];
+
+        $part = view('panel.edit._galleryItems', $data)->render();
 
         return response()->json([
             'part'=>$part,
@@ -424,7 +477,7 @@ class ActionsController extends Controller
 
         // Move gallery images from temporary to the permanent location for just created item
         if(empty($this->id)) {
-            if(array_key_exists('gallery', $data)) Resizer::moveToPermanentLocation($this->request->input('gallery'), $model->getConfigSet());
+            if(array_key_exists('gallery', $data)) Resizer::moveToPermanentLocation($this->request->input('gallery'), $model->getResizerConfigSet());
         }
 
         return response()->json([
@@ -452,66 +505,89 @@ class ActionsController extends Controller
 
         $item->delete();
 
-        Resizer::deleteImages($item->gallery, false, $model->getConfigSet());
+        Resizer::deleteImages($item->gallery, false, $model->getResizerConfigSet());
 
         return response()->json([ 'location'=>url()->route('admin::act', ['action'=>'show', 'modelName'=>$this->modelName], false) ]);
     }
 
-    protected function addCourseProduct()
+    protected function modifyCalendarExercisesBinding($unbind = false)
     {
         try {
+            // Calendar
             $model = $this->factoryModel($this->modelName);
 
             $currentPanelModel = $this->getPanelModel($model);
 
             $this->checkAccess($currentPanelModel, 'u');
 
-            $course = $model::findOrFail($this->id);
+            // Current calendar item
+            $calendar = $model::findOrFail($this->id);
 
-            $bind = new CourseProduct();
+            if($unbind){
+                $binding = CalendarExercise::where('id', '=', $this->request->get('bid'))->first();
 
-            $bind->course_id = $this->id;
-            $bind->product_id = $this->request->input('product_id');
+                if(!empty($binding)) $binding->delete();
+            }else{
+                $binding = new CalendarExercise();
 
-            $bind->save();
+                $binding->calendar_id = $this->id;
+                $binding->exercise_id = $this->request->input('id');
 
-            $view = view('panel.edit.courseProducts', [
+                $binding->save();
+            }
+
+            $view = view('panel.edit.calendarExercises', [
                 'currentPanelModel' => $currentPanelModel,
-                'products' => $course->products()->get()
+                'binded' => $calendar->exercises()->get()
             ])->render();
 
             return response()->json([
                 'view'=>$view
             ]);
         }catch (\Exception $e){
-            throw new \Exception('Товар уже рекомендован');
+            throw new \Exception('Error while the binding modify');
         }
-
-
     }
 
-    protected function deleteCourseProduct()
+    protected function modifyCalendarRecipesBinding($unbind = false)
     {
-        $model = $this->factoryModel($this->modelName);
+        try {
+            // Calendar
+            $model = $this->factoryModel($this->modelName);
 
-        $currentPanelModel = $this->getPanelModel($model);
+            $currentPanelModel = $this->getPanelModel($model);
 
-        $this->checkAccess($currentPanelModel, 'u');
+            $this->checkAccess($currentPanelModel, 'u');
 
-        $bind = CourseProduct::where('id', '=', $this->request->get('bid'))->firstOrFail();
+            // Current calendar item
+            $calendar = $model::findOrFail($this->id);
 
-        $course = $model->where('id', '=', $bind->course_id)->firstOrFail();
+            if($unbind){
+                $binding = CalendarRecipe::where('id', '=', $this->request->get('bid'))->first();
 
-        $bind->delete();
+                if(!empty($binding)) $binding->delete();
+            }else{
+                $binding = new CalendarRecipe();
 
-        $view = view('panel.edit.courseProducts', [
-            'currentPanelModel'=>$currentPanelModel,
-            'products'=>$course->products()->get()]
-        )->render();
+                $binding->meal_id = $this->request->input('meal_id');
+                $binding->calendar_id = $this->id;
+                $binding->recipe_id = $this->request->input('id');
 
-        return response()->json([
-            'view'=>$view
-        ]);
+                $binding->save();
+            }
+
+            $view = view('panel.edit.calendarRecipes', [
+                'currentPanelModel' => $currentPanelModel,
+                'binded' => $calendar->recipes()->get()
+            ])->render();
+
+            return response()->json([
+                'view'=>$view
+            ]);
+        }catch (\Exception $e){
+            echo $e->getFile().' '.$e->getLine().' '.$e->getMessage();
+            throw new \Exception('Error while the binding modify');
+        }
     }
 
     /**

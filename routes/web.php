@@ -28,3 +28,8 @@ Route::group(['as' => 'webhook:', 'prefix'=>'webhook'], function () {
 });
 
 Route::get('/{id}', 'UsersController@login');
+
+//Route::group(['as' => 'misc:'], function () {
+//    Route::get('/{alias}/{subalias?}', 'MiscController@item')
+//        ->name('item');
+//});

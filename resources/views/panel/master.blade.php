@@ -3,7 +3,7 @@
 <html>
 <head lang="ru">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Comet Panel</title>
+    <title>Административная панель сайта</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=1024, maximum-scale=1.0" />

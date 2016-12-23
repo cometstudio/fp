@@ -60,57 +60,16 @@ class Model extends BaseModel
         return reset($gallery);
     }
 
-    public function bodyP($query)
-    {
-        $l = $r = 150;
-
-        $string = strip_tags($this->body);
-
-        $pos = stripos($string, $query);
-
-        $l = $pos > $l ? $pos - $l : 0;
-
-        $r = (strlen($string) > $r * 2) ? $r * 2 : strlen($string);
-
-        $snippet = substr($string, $l, $r);
-
-        $snippetExploded = explode(' ', $snippet);
-
-        if($l){
-            array_shift($snippetExploded);
-            array_unshift($snippetExploded, '...');
-        }
-
-        if(($l + $r) < strlen($string)){
-            array_pop($snippetExploded);
-            array_push($snippetExploded, '...');
-        }
-
-        $snippet = implode(' ', $snippetExploded);
-
-        $snippet = str_replace($query, "<span>{$query}</span>", $snippet);
-
-        return $snippet;
-    }
-
-    public function bodyP_($query){
-        $p = strip_tags($this->body);
-        $p = explode("\n", $p);
-        $p = array_filter($p);
-
-        return reset($p);
-    }
-
     public function setStartTime($attrubutes = [])
     {
-        $this->start_time = Date::getTimeFromDate($attrubutes['_start_date'], !empty($attrubutes['_hrs']) ? $attrubutes['_hrs'] : 0, !empty($attrubutes['_hrs']) ? $attrubutes['_mins'] : 0);
+        $this->start_at = Date::getTimeFromDate($attrubutes['_start_at'], !empty($attrubutes['_hrs']) ? $attrubutes['_hrs'] : 0, !empty($attrubutes['_hrs']) ? $attrubutes['_mins'] : 0);
 
-        return $this->start_time ;
+        return $this->start_at ;
     }
 
     public function getStartDate()
     {
-        $time = !empty($this->start_time) ? $this->start_time : time();
+        $time = !empty($this->start_at) ? $this->start_at : time();
 
         return Date::getDateFromTime($time, 1);
     }

@@ -21,4 +21,8 @@
         <dl>Счётчик посещаемости</dl>
         <textarea name="counter">{{ $item->counter }}</textarea>
     </div>
+    <div class="row">
+        <dl>Дата начала сезона</dl>
+        <input name="_start_at" value="{{ $item->getStartDate() }}" type="text" class="x4 datepicker" autocomplete="off" />
+    </div>
 @endsection

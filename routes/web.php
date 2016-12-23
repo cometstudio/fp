@@ -10,7 +10,6 @@ Route::get('/', 'IndexController@index');
 
 Route::group(['as' => 'calendar:', 'prefix'=>'calendar'], function () {
     Route::get('/', 'CalendarController@index')->name('index');
-    Route::get('/{id}', 'CalendarController@item')->name('item')->where('id', '[0-9]+');
 });
 
 Route::group(['as' => 'videos:', 'prefix'=>'videos'], function () {

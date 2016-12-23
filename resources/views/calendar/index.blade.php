@@ -16,14 +16,14 @@
             <div class="grid">
                 <div class="x2 row clearfix">
                     <div class="column">
-                        <h2>День 20</h2>
+                        <h2>День {{ $seasonDaysLeft }}</h2>
                     </div>
                     <div class="date-selector column">
-                        <form action="">
+                        <form action="{{ route('calendar:index', [], false) }}" method="GET">
                             &larr; <a href="">назад</a>
                             <span>
                                 <i class="fa fa-calendar"></i>
-                                <input name="" class="datepicker" value="{{ Date::getDateFromTime(time(), 1) }}" type="text" />
+                                <input name="date" class="datepicker" value="{{ Date::getDateFromTime($startAt, 1) }}" onchange="this.form.submit();" type="text" />
                             </span>
                             <a href="">вперёд</a> &rarr;
                         </form>
@@ -44,9 +44,7 @@
                             <div class="wrapper">
                                 <p><b>{{ $exercise->name }}</b></p>
                                 <p>&nbsp;</p>
-                                <div class="i">
-                                    {!! $exercise->text !!}
-                                </div>
+                                {!! $exercise->text !!}
                             </div>
                         </div>
                         <div class="column">
@@ -77,7 +75,7 @@
                             </div>
                         </div>
                         @if(!empty($recipes) && $recipes->count())
-                            @foreach($recipes->filter(function($recipe) use($meal){ return $recipe->meal_id == $meal->id; }) as $recipe)
+                            @foreach($recipes->filter(function($recipe) use ($meal){ return $recipe->meal_id == $meal->id; }) as $recipe)
                                 <div class="x2 row clearfix">
                                     <div class="column">
                                         <div class="wrapper">
@@ -88,7 +86,7 @@
                                     </div>
                                     <div class="column">
                                         <div class="wrapper">
-                                            <div class="i">{!! $recipe->text !!}</div>
+                                            {!! $recipe->text !!}
 
                                             <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery clearfix">
                                                 @for($i=0;$i<4;$i++)
@@ -120,7 +118,7 @@
     @if(!empty($calendar->text))
         <div class="s4 section">
             <div class="wrapper">
-                {!! $calendar->text !!}}
+                {!! $calendar->text !!}
             </div>
         </div>
     @endif

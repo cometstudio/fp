@@ -2,8 +2,8 @@
 
 @section('input')
     <div class="row">
-        <dl>Название</dl>
-        <input name="name" value="{{ $item->name }}" type="text" />
+        <dl>Дата начала</dl>
+        <input name="_start_at" value="{{ $item->getStartDate() }}" type="text" class="x4 datepicker" autocomplete="off" />
     </div>
     @if(!empty($item->id))
         <div class="row" style="padding-bottom: 10px;">
@@ -40,13 +40,20 @@
                             <option value="{{ $recipe->id }}">{{ str_limit($recipe->name, 65) }}</option>
                         @endforeach
                     </select> <a onclick="return addBinding(this, $('.calendar-recipes'));" href="{{ route('admin::act', ['action'=>'bindrecipe', 'modelName'=>$currentPanelModel->public_model_name, 'id'=>$item->id], false) }}" class="empty button">Привязать</a>
+
                 </div>
             @endif
             <div class="calendar-recipes">
-                @include('panel.edit.calendarRecipes', [
-                    'binded'=>$options['calendarRecipes'
-                ]])
+                @include('panel.edit.calendarRecipes', ['binded'=>$options['calendarRecipes']])
             </div>
         </div>
     @endif
+    <div class="row">
+        <dl>text</dl>
+        <textarea name="text" class="ck">{{ $item->text }}</textarea>
+    </div>
+    <div class="row">
+        <dl>Название</dl>
+        <input name="video" value="{{ $item->video }}" type="text" />
+    </div>
 @endsection

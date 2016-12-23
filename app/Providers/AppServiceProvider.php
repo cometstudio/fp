@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Auth\Guard;
+use App\Models\Settings;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->share('imagesPath', '/'.config('resizer.dir', ''));
+
+        view()->share('settings', Settings::where('id', '=', 1)->first());
     }
 
     /**

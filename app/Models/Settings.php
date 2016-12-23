@@ -16,4 +16,11 @@ class Settings extends Model
         'name',
         'counter',
     ];
+
+    public function beforeSave($attrubutes = [])
+    {
+        $this->setStartTime($attrubutes);
+
+        return $this;
+    }
 }

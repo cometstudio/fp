@@ -12,19 +12,21 @@ class CalendarController extends Controller
 {
     protected $css = 'calendar';
 
-    public function index()
+    public function index(Request $request)
     {
-        $calendar = Calendar::first();
+        $startAt = $request->has('date') ? \Date::getTimeFromDate($request->get('date')) : time();
+
+        $seasonStartedAt = !empty(view()->shared('settings')->start_at) ? view()->shared('settings')->start_at : time();
+
+        $seasonDaysLeft = intval(($startAt - $seasonStartedAt) / 86400) + 1;
+
+        $calendar = Calendar::where('start_at', '>=', mktime(0,0,0, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
+            ->where('start_at', '<=', mktime(23,59,59, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
+            ->firstOrFail();
 
         $exercises = $calendar->exercises()->get();
 
-        $recipes = $calendar->recipes()
-            ->join('meals', 'calendar_recipes.meal_id', '=', 'meals.id')
-            ->select([
-                \DB::raw('meals.id AS meal_id'),
-                'recipes.*'
-            ])
-            ->get();
+        $recipes = $calendar->recipes()->get();
 
         $mealIds = $recipes->pluck('meal_id');
 
@@ -33,6 +35,8 @@ class CalendarController extends Controller
         return view(
             'calendar.index', [
                 'css'=>$this->css,
+                'startAt'=>$startAt,
+                'seasonDaysLeft'=>$seasonDaysLeft,
                 'calendar'=>$calendar,
                 'exercises'=>$exercises,
                 'meals'=>$meals,

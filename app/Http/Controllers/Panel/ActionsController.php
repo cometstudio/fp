@@ -531,7 +531,7 @@ class ActionsController extends Controller
                 $binding = new CalendarExercise();
 
                 $binding->calendar_id = $this->id;
-                $binding->exercise_id = $this->request->input('id');
+                $binding->exercise_id = $this->request->input('_exercise_id');
 
                 $binding->save();
             }
@@ -545,6 +545,7 @@ class ActionsController extends Controller
                 'view'=>$view
             ]);
         }catch (\Exception $e){
+            echo $e->getFile().' '.$e->getLine().' '.$e->getMessage();
             throw new \Exception('Error while the binding modify');
         }
     }
@@ -569,9 +570,9 @@ class ActionsController extends Controller
             }else{
                 $binding = new CalendarRecipe();
 
-                $binding->meal_id = $this->request->input('meal_id');
+                $binding->meal_id = $this->request->input('_meal_id');
                 $binding->calendar_id = $this->id;
-                $binding->recipe_id = $this->request->input('id');
+                $binding->recipe_id = $this->request->input('_recipe_id');
 
                 $binding->save();
             }

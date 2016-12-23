@@ -15,7 +15,7 @@
                         @foreach($options['exercises'] as $exercise))
                             <option value="{{ $exercise->id }}">{{ str_limit($exercise->name, 65) }}</option>
                         @endforeach
-                    </select> <a onclick="return addBinding(this, $('select[name=_exercise_id]').val(), $('.calendar-exercises'));" href="{{ route('admin::act', ['action'=>'bindexercise', 'modelName'=>$currentPanelModel->public_model_name, 'id'=>$item->id], false) }}" class="empty button">Привязать</a>
+                    </select> <a onclick="return addBinding(this, $('.calendar-exercises'));" href="{{ route('admin::act', ['action'=>'bindexercise', 'modelName'=>$currentPanelModel->public_model_name, 'id'=>$item->id], false) }}" class="empty button">Привязать</a>
                 </div>
             @endif
             <div class="calendar-exercises">
@@ -39,11 +39,13 @@
                         @foreach($options['recipes'] as $recipe))
                             <option value="{{ $recipe->id }}">{{ str_limit($recipe->name, 65) }}</option>
                         @endforeach
-                    </select> <a onclick="return addBinding(this, $('select[name=_recipe_id]').val(), $('.calendar-recipes'));" href="{{ route('admin::act', ['action'=>'bindrecipe', 'modelName'=>$currentPanelModel->public_model_name, 'id'=>$item->id], false) }}" class="empty button">Привязать</a>
+                    </select> <a onclick="return addBinding(this, $('.calendar-recipes'));" href="{{ route('admin::act', ['action'=>'bindrecipe', 'modelName'=>$currentPanelModel->public_model_name, 'id'=>$item->id], false) }}" class="empty button">Привязать</a>
                 </div>
             @endif
             <div class="calendar-recipes">
-                @include('panel.edit.calendarRecipes', ['binded'=>$options['calendarRecipes']])
+                @include('panel.edit.calendarRecipes', [
+                    'binded'=>$options['calendarRecipes'
+                ]])
             </div>
         </div>
     @endif

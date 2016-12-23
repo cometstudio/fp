@@ -15,16 +15,15 @@ function exportAsExcel(el)
     return false;
 }
 
-function addBinding(el, id, container)
+function addBinding(el, container)
 {
     var control = $(el);
     var url = control.attr('href');
+    var form = $('.edit form');
 
-    ajax(url, function(response){
+    ajaxSubmit(form, function(response){
         container.html(response.view)
-    }, null, {
-        id: id
-    });
+    }, null, {}, url);
 
     return false;
 }

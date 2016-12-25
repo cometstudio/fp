@@ -1,7 +1,7 @@
 <div class="main-nav section">
     <div class="wrapper clearfix">
         <div class="l">
-            <a href="/">#</a>
+            <a href="/">#фитнеспрактика</a>
         </div>
 
         <div class="social-links l">
@@ -20,7 +20,7 @@
                 <a href="/calendar">Календарь</a>
                 <a href="/gallery">Фотоотчёты</a>
                 <a href="/videos">Видеоотчёты</a>
-                <span><i class="fa fa-unlock"></i><a href="/login">Login</a></span>
+                <span><i class="fa fa-unlock"></i><a href="/login">Войти</a></span>
             </nav>
         </div>
     </div>

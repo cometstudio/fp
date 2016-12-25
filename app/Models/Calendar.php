@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 class Calendar extends Model
 {
     protected $table = 'calendar';
+    protected $resizerConfigSet = 'dirs.calendar';
 
     protected $fillable = [
         'text',
         'gallery',
+        'gallery_titles',
+        'collect_gallery',
         'video',
+        'collect_video',
     ];
 
     /**
@@ -27,6 +31,7 @@ class Calendar extends Model
                 \DB::raw('meals.id AS meal_id'),
             ])
             ->orderBy('meals.ord', 'DESC')
+            ->orderBy('recipes.ord', 'DESC')
             ->withPivot('id');
     }
 
@@ -35,7 +40,9 @@ class Calendar extends Model
      */
     public function exercises()
     {
-        return $this->belongsToMany('App\Models\Exercise', 'calendar_exercises', 'calendar_id', 'exercise_id')->withPivot('id');
+        return $this->belongsToMany('App\Models\Exercise', 'calendar_exercises', 'calendar_id', 'exercise_id')
+            ->orderBy('calendar_exercises.id', 'ASC')
+            ->withPivot('id');
     }
 
     public function getOptions()

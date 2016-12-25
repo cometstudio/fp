@@ -20,12 +20,12 @@
                     </div>
                     <div class="date-selector column">
                         <form action="{{ route('calendar:index', [], false) }}" method="GET">
-                            &larr; <a href="">назад</a>
+                            &larr; <a href="{{ route('calendar:index', ['date'=>\Date::getDateFromTime($startAt - 86400, 1)], false) }}">назад</a>
                             <span>
                                 <i class="fa fa-calendar"></i>
                                 <input name="date" class="datepicker" value="{{ Date::getDateFromTime($startAt, 1) }}" onchange="this.form.submit();" type="text" />
                             </span>
-                            <a href="">вперёд</a> &rarr;
+                            <a href="{{ route('calendar:index', ['date'=>\Date::getDateFromTime($startAt + 86400, 1)], false) }}">вперёд</a> &rarr;
                         </form>
                     </div>
                 </div>
@@ -89,9 +89,11 @@
                                             {!! $recipe->text !!}
 
                                             <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery clearfix">
-                                                @for($i=0;$i<4;$i++)
-                                                    <div class="image"></div>
-                                                @endfor
+                                                @foreach($recipe->getGallery() as $image)
+                                                    <div class="image">
+                                                        <img src="/images/small/{{ $image }}.jpg" />
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +101,7 @@
 
                             @endforeach
                         @endif
-                        @if(!$j)
+                        @if(false && !$j)
                             <div class="x1 row clearfix">
                                 <div class="column">
                                     <div class="wrapper">
@@ -140,7 +142,9 @@
                     <div class="x4 row clearfix">
                         @foreach($calendar->getGallery() as $picture)
                             <div class="column">
-                                <div class="image"></div>
+                                <div class="image">
+                                    <img src="/images/small/{{ $picture }}.jpg" />
+                                </div>
                             </div>
                         @endforeach
                     </div>

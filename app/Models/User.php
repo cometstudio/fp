@@ -27,6 +27,7 @@ class User extends PanelUser implements
         'name',
         'email',
         'password',
+        'gallery',
     ];
 
     /**

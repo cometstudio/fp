@@ -137,4 +137,11 @@ class Date
             return 0;
         }
     }
+
+    public function seasonDaysLeft($startAt = 0)
+    {
+        $seasonStartedAt = !empty(view()->shared('settings')->start_at) ? view()->shared('settings')->start_at : time();
+
+        return intval(($startAt - $seasonStartedAt) / 86400) + 1;
+    }
 }

@@ -7,13 +7,26 @@
     <div class="s0 section">
         <div class="wrapper">
             <h1>{{ $title }}</h1>
-            <div class="video-player">
-                {!! $item->video !!}
-            </div>
+
+            @if(!empty($item) && $item->count())
+                <div class="s1 section">
+                    <div class="media-grid grid">
+                        <div class="x2 row clearfix">
+                            @foreach($item->getGallery() as $picture)
+                                <div class="column">
+                                    <a href="" class="image">
+                                        <img src="/images/medium/{{ $picture }}.jpg" />
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             <div class="stat clearfix">
                 <div class="l">{{ \Date::getDateFromTime($item->start_at) }}</div>
-                <div class="r"><i class="fa fa-eye"></i> {{ $item->video_views }} {{ \Dictionary::get('views', $item->video_views) }} <i class="fa fa-comment-o"></i>
+                <div class="r"><i class="fa fa-eye"></i> {{ $item->gallery_views }} {{ \Dictionary::get('views', $item->gallery_views) }} <i class="fa fa-comment-o"></i>
                     @if($item->comments_total)
                         <a href="#comments">{{ $item->comments_total }} {{ \Dictionary::get('comments', $item->comments_total) }}</a>
                     @else

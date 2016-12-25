@@ -6,6 +6,9 @@
 // Frontend
 Route::get('/instagram/auth', 'InstagramController@auth');
 
+Route::get('/login', 'UsersController@login')->name('login');
+Route::post('/login', 'UserController@postLogin')->name('postLogin');
+
 Route::get('/', 'IndexController@index');
 
 Route::group(['as' => 'calendar:', 'prefix'=>'calendar'], function () {
@@ -22,11 +25,16 @@ Route::group(['as' => 'gallery:', 'prefix'=>'gallery'], function () {
     Route::get('/{id}', 'GalleryController@item')->name('item')->where('id', '[0-9]+');
 });
 
+Route::group(['as' => 'comments:', 'prefix'=>'comments'], function () {
+    Route::post('/thread/{hash}', 'CommentsController@thread')->name('thread');
+    Route::post('/submit/{hash}', 'CommentsController@submit')->name('submit');
+});
+
 Route::group(['as' => 'webhook:', 'prefix'=>'webhook'], function () {
     Route::post('/{type}', 'WebhookController@type')->name('type')->where('type', '[a-z_]+');
 });
 
-Route::get('/{id}', 'UsersController@login');
+//Route::get('/{id}', 'UsersController@login');
 
 //Route::group(['as' => 'misc:'], function () {
 //    Route::get('/{alias}/{subalias?}', 'MiscController@item')

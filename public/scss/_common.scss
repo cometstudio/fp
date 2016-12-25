@@ -155,22 +155,22 @@ h3{
 }
 
 .body-fade, .body-wait {
-  position: absolute;
+  display: none;
+  position: fixed;
+  top: 0;
   width: 100%;
 }
 .body-fade {
-  display: none;
   z-index: 1000;
   height: 100%;
-  background: $black;
+  background: $accent;
   transition: 0.2s;
   opacity: 0.95;
 }
 .body-wait {
-  display: none;
   z-index: 1001;
   height: 100vh;
-  background: url("../img/preloader.gif") 50% 50% no-repeat;
+  background: url("../img/preloader_accent.gif") 50% 50% no-repeat;
 }
 
 .footer{
@@ -240,9 +240,9 @@ h3{
   display: none;
 }
 
-.videos-grid{
+.media-grid{
   .column{
-    margin-bottom: $contentPadding;
+    margin-bottom: $contentPadding / 1.5;
   }
   .image{
     display: block;
@@ -294,13 +294,13 @@ h3{
         padding: $contentPadding 0 $contentPadding $contentPadding;
       }
       &.c1{
-        width: 12%;
+        width: 8%;
         img{
           max-width: 100%;
         }
       }
       &.c2{
-        width: 88%;
+        width: 92%;
       }
       &:last-child{
         > .wrapper{
@@ -312,7 +312,7 @@ h3{
       @extend .small.font.size;
       @extend .b;
 
-      margin-bottom: $contentPadding / 2;
+      margin-bottom: $contentPadding / 3;
     }
     &:last-child{
       margin-bottom: 0;
@@ -326,5 +326,8 @@ h3{
     height: 180px;
     margin-bottom: 11%;
     background: $accent;
+    img{
+      max-width: 100%;
+    }
   }
 }

@@ -6,35 +6,36 @@
 
     <div class="s0 section">
         <div class="wrapper">
-            <h1>Login or signup</h1>
-            <div class="form grid">
-                <div class="x2 row clearfix">
-                    <div class="column">
-                        <div class="row">
-                           <label><input name="" type="checkbox" value="1" onclick="$('#name').toggle(); $('#forgotten').toggle();" /> it is my first time here, sign me up</label>
+            <h1>Войти на сайт</h1>
+            <div class="login form grid">
+                <form action="{{ route('login', [], false) }}">
+                    <div class="x2 row clearfix">
+                        <div class="column">
+                            <div class="row">
+                               <label><input name="" type="checkbox" value="1" onclick="$('#name').toggle(); $('#forgotten').toggle();" /> я здесь впервые, зарегистрируйте меня</label>
+                            </div>
+                            <div id="name" class="hidden row">
+                               <div class="label">Имя</div>
+                                <input name="name" type="text" />
+                            </div>
+                            <div class="row">
+                               <div class="label clearfix">
+                                   E-mail
+                               </div>
+                                <input name="email" type="text" />
+                            </div>
+                            <div class="row">
+                               <div class="label">Пароль <a href="" id="forgotten" style="float: right;">Не помню пароль</a></div>
+                                <i class="fa fa-eye-slash" onclick="$(this).parent().find('input').prop('type', 'text');$(this).removeClass('fa-eye-slash').addClass('fa-eye');"></i>
+                                <input name="password" type="password" />
+                            </div>
+                            <div class="row">
+                               <button onclick="return login();">Войти</button>
+                            </div>
                         </div>
-                        <div id="name" class="hidden row">
-                           <div class="label">Name</div>
-                            <input name="" type="text" />
-                        </div>
-                        <div class="row">
-                           <div class="label clearfix">
-                               E-mail
-                           </div>
-                            <input name="" type="text" />
-                        </div>
-                        <div class="row">
-                           <div class="label">Password <a href="" id="forgotten" style="float: right;">I have forgotten</a></div>
-                            <input name="" type="text" />
-                        </div>
-                        <div class="row">
-                           <button onclick="return false;">Submit</button>
-                        </div>
+                        <div class="column" style="padding-top: 61px;"></div>
                     </div>
-                    <div class="column" style="padding-top: 61px;">
-                        Российская рок-группа. Основателями группы являются Шура Би-2 и Лёва Би-2. Группа была основана в городе Бобруйске в 1988 году, но активную деятельность возобновила только после переезда в 1999 году в Россию.
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

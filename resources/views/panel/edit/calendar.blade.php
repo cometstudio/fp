@@ -56,4 +56,14 @@
         <dl>Название</dl>
         <input name="video" value="{{ $item->video }}" type="text" />
     </div>
+    <div style="margin: 2em 0;">
+        <div class="row">
+            <input name="collect_video" value="0" type="hidden" />
+            <input name="collect_video" value="1" type="checkbox"{{ !empty($item->collect_video) ? ' checked' : '' }} /> <label>коллекционировать видео</label>
+        </div>
+        <div class="row">
+            <input name="collect_gallery" value="0" type="hidden" />
+            <input name="collect_gallery" value="1" type="checkbox"{{ !empty($item->collect_gallery) ? ' checked' : '' }} /> <label>коллекционировать галерею</label>
+        </div>
+    </div>
 @endsection

@@ -89,7 +89,15 @@ button, .button{
     margin-bottom: 0.1em;
   }
   .row{
+    position: relative;
     margin-bottom: $contentPadding / 2;
+    > i.fa{
+      display: inline-block;
+      position: absolute;
+      top: 53%;
+      right: 1em;
+      cursor: pointer;
+    }
     &.hidden{
       display: none;
     }

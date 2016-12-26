@@ -10,6 +10,10 @@ class Recipe extends Model
         'name',
         'notice',
         'text',
+        'protein',
+        'fat',
+        'carbohydrates',
+        'calories',
         'gallery',
         'gallery_titles',
     ];

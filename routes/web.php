@@ -4,10 +4,13 @@
 @include('panelRoutes.php');
 
 // Frontend
+Route::get('/test', 'TestController@index');
+
 Route::get('/instagram/auth', 'InstagramController@auth');
 
 Route::get('/login', 'UsersController@login')->name('login');
-Route::post('/login', 'UserController@postLogin')->name('postLogin');
+Route::post('/login', 'UsersController@postLogin')->name('postLogin');
+Route::get('/logout', 'UsersController@logout')->name('logout');
 
 Route::get('/', 'IndexController@index');
 

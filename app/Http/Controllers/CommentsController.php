@@ -32,11 +32,14 @@ class CommentsController extends Controller
     public function submit(Request $request, $hash = '')
     {
         if(!empty($hash)){
-            Comment::create([
+            $data = [
                 'hash'=>$hash,
-                'user_id'=>(Auth::check() ? Auth::user()->id : null),
                 'text'=>$request->input('text')
-            ]);
+            ];
+
+            if(Auth::check()) $data['user_id'] = Auth::user()->id;
+
+            Comment::create($data);
         }
 
         $comments = Comment::where('hash', '=', $hash)

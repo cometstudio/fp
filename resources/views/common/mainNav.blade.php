@@ -20,7 +20,12 @@
                 <a href="/calendar">Календарь</a>
                 <a href="/gallery">Фотоотчёты</a>
                 <a href="/videos">Видеоотчёты</a>
-                <span><i class="fa fa-unlock"></i><a href="/login">Войти</a></span>
+                @if(!empty($currentUser))
+                    <span><i class="fa fa-unlock"></i><a href="{{ route('logout', [], false) }}">Выйти</a></span>
+                @else
+                   <span><i class="fa fa-unlock"></i><a href="{{ route('login', [], false) }}">Войти</a></span>
+                @endif
+
             </nav>
         </div>
     </div>

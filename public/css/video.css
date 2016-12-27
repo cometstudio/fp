@@ -160,7 +160,7 @@ button, .button {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
 
-.flex, .main-nav span, .main-nav a, .main-nav .l, .main-nav .r {
+.flex, .main-nav span, .main-nav .l, .main-nav .r {
   display: flex;
   display: -webkit-flex;
   /* Safari */
@@ -289,13 +289,14 @@ h3 {
   background: #4a447e;
   color: #fff;
   transition: 0.3s; }
-  .main-nav nav > span, .main-nav nav > a {
+  .main-nav nav > span {
     margin: 0 0 0 2.5em;
     float: left; }
   .main-nav nav i {
     margin-right: 0.2em; }
-  .main-nav span, .main-nav a {
-    height: 72px;
+  .main-nav span {
+    height: 72px; }
+  .main-nav a {
     color: inherit; }
   .main-nav > .wrapper {
     padding-top: 0;

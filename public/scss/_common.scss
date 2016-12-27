@@ -188,7 +188,7 @@ h3{
   color: #fff;
   transition: 0.3s;
   nav{
-    > span, > a{
+    > span{
       margin: 0 0 0 2.5em;
       float: left;
     }
@@ -196,10 +196,12 @@ h3{
       margin-right: 0.2em;
     }
   }
-  span, a{
+  span{
     @extend .flex;
 
     height: $contentPadding * 2;
+  }
+  a{
     color: inherit;
   }
   > .wrapper{

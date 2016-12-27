@@ -27,9 +27,7 @@
 
 @include('common.mainNav')
 
-<div class="content-wrapper clearfix">
-    @yield('content')
-</div>
+@yield('content')
 
 @include('common.footer')
 

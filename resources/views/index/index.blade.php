@@ -2,7 +2,6 @@
 
 @section('content')
 
-<!--
     <div class="s0 section">
         <div class="wrapper">
 
@@ -18,7 +17,6 @@
 
         </div>
     </div>
- -->
 
     @if(!empty($videos) && $videos->count())
         <div class="s1 section">
@@ -26,10 +24,10 @@
                 <div class="grid">
                     <div class="x2 row clearfix">
                         <div class="column">
-                            <h2>H2 header</h2>
+                            <h2>Недавние видеоотчёты</h2>
                         </div>
                         <div class="column" style="text-align: right;">
-                            <a href="{{ route('videos:index', [], false) }}" class="empty pair button">View all</a>
+                            <a href="{{ route('videos:index', [], false) }}" class="empty pair button">Смотреть все видео</a>
                         </div>
                     </div>
                 </div>
@@ -45,10 +43,10 @@
                 <div class="grid">
                     <div class="x2 row clearfix">
                         <div class="column">
-                            <h2>H2 header</h2>
+                            <h2>Случайные фотогалереи</h2>
                         </div>
                         <div class="column" style="text-align: right;">
-                            <a href="#" class="modal empty pair button">View all</a>
+                            <a href="{{ route('gallery:index', [], false) }}" class="modal empty pair button">Смотреть все фото</a>
                         </div>
                     </div>
                 </div>

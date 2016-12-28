@@ -31,7 +31,7 @@
                                     <input name="password" type="password" />
                                 </div>
                                 <div class="row">
-                                   <button onclick="return login();">Войти</button>
+                                   <button onclick="return login();" class="button">Войти</button>
                                 </div>
                             </div>
                             <div class="column" style="padding-top: 61px;"></div>

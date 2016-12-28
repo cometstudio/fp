@@ -50,7 +50,7 @@
                                         <textarea name="text"></textarea>
                                     </div>
                                     <div class="row">
-                                        <button onclick="return submitComment();">Отправить</button>
+                                        <button onclick="return submitComment();" class="button">Отправить</button>
                                     </div>
                                 </form>
                             </div>

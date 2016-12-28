@@ -12,10 +12,10 @@
                 @if(!empty($item) && $item->count())
                     <div class="s1 section">
                         <div class="media-grid grid">
-                            <div class="x2 row clearfix popup-gallery">
+                            <div class="x2 row popup-gallery clearfix">
                                 @foreach($item->getGallery() as $picture)
                                     <div class="column">
-                                        <a href="/images/medium/{{ $picture }}.jpg" class="image">
+                                        <a href="/images/big/{{ $picture }}.jpg" class="image">
                                             <img src="/images/medium/{{ $picture }}.jpg" />
                                         </a>
                                     </div>
@@ -63,7 +63,7 @@
                                         <textarea name="text"></textarea>
                                     </div>
                                     <div class="row">
-                                        <button onclick="return submitComment();">Отправить</button>
+                                        <button onclick="return submitComment();" class="button">Отправить</button>
                                     </div>
                                 </form>
                             </div>

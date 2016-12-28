@@ -6,7 +6,7 @@ input, select, textarea, button, .button, select{
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
 }
-input[type="text"], input[type="email"], input[type="password"], select, textarea, input[type="submit"], button, .button{
+input[type="text"], input[type="email"], input[type="password"], select, textarea, input[type="submit"], .button{
   border: 1px solid #ddd;
   padding: $inputsPadding $inputsPadding * 2;
   background: #f9f9f9;
@@ -15,7 +15,7 @@ input[type="text"], input[type="email"], input[type="password"], select, textare
     background: lighten(red, 45%);
   }
 }
-input[type="text"], input[type="email"], input[type="password"], select, input[type="submit"], button, .button{
+input[type="text"], input[type="email"], input[type="password"], select, input[type="submit"], .button{
   height: $inputsHeight;
   line-height: $inputsHeight;
 }
@@ -42,7 +42,7 @@ input[type="checkbox"]{
   margin: 0;
   vertical-align: middle;
 }
-button, .button{
+.button{
   $hoverColor: $pair;
 
   display: inline-block;

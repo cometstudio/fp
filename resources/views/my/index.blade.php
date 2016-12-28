@@ -7,7 +7,7 @@
     <div class="content-wrapper">
         <div class="s0 section">
             <div class="wrapper">
-                <h1>My</h1>
+                <h1>Персональные данные</h1>
                 <div class="login form grid">
                     <form action="">
                         <div class="x2 row clearfix">
@@ -28,12 +28,12 @@
                                     <input name="password" type="password" />
                                 </div>
                                 <div class="row">
-                                   <div class="label">Profile photo</div>
+                                   <div class="label">Фото</div>
                                     <input name="_picture" onchange="uploadProfilePicture();" type="file" />
-                                    <a onclick="$('input[name=_picture]').click();" href="javascript:void(0);" class="empty pair button" style="float: left; margin-right: 3px;">Choose a file...</a> <img id="profile-picture" src="/images/thumbs/{{ $currentUser->getThumbnail() }}.jpg" style="height: 46px;" />
+                                    <a onclick="$('input[name=_picture]').click();" href="javascript:void(0);" class="empty pair button" style="float: left; margin-right: 3px;">Выберите файл изображения...</a> <img id="profile-picture" src="/images/thumbs/{{ $currentUser->getThumbnail() }}.jpg" style="height: 46px;" />
                                 </div>
                                 <div class="row">
-                                   <button onclick="return false;">Save</button>
+                                   <button onclick="return false;" class="button">Сохранить</button>
                                 </div>
                             </div>
                             <div class="column" style="padding-top: 61px;"></div>

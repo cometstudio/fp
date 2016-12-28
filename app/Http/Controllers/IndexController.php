@@ -34,7 +34,7 @@ class IndexController extends Controller
             ->groupBy([
                 'calendar.id'
             ])
-            ->orderBy('calendar.start_at', 'DESC')
+            ->orderBy(\DB::raw('RAND()'))
             ->limit(2)
             ->get();
 

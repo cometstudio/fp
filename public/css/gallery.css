@@ -57,15 +57,15 @@ input, select, textarea, button, .button, select {
   font-family: 'Rubik', sans-serif;
   font-weight: 300; }
 
-input[type="text"], input[type="email"], input[type="password"], select, textarea, input[type="submit"], button, .button {
+input[type="text"], input[type="email"], input[type="password"], select, textarea, input[type="submit"], .button {
   border: 1px solid #ddd;
   padding: 10px 20px;
   background: #f9f9f9; }
-  input[type="text"].error, input[type="email"].error, input[type="password"].error, select.error, textarea.error, input[type="submit"].error, button.error, .button.error {
+  input[type="text"].error, input[type="email"].error, input[type="password"].error, select.error, textarea.error, input[type="submit"].error, .button.error {
     border-color: red;
     background: #ffe6e6; }
 
-input[type="text"], input[type="email"], input[type="password"], select, input[type="submit"], button, .button {
+input[type="text"], input[type="email"], input[type="password"], select, input[type="submit"], .button {
   height: 46px;
   line-height: 46px; }
 
@@ -92,7 +92,7 @@ input[type="checkbox"] {
   margin: 0;
   vertical-align: middle; }
 
-button, .button {
+.button {
   display: inline-block;
   padding: 0 50px;
   vertical-align: middle;
@@ -107,25 +107,25 @@ button, .button {
   font-weight: 400;
   line-height: 46px;
   cursor: pointer; }
-  button::-moz-focus-inner, .button::-moz-focus-inner {
+  .button::-moz-focus-inner {
     border: 0; }
-  button:focus, .button:focus {
+  .button:focus {
     outline: 0; }
-  button:hover, .button:hover {
+  .button:hover {
     background: #f28559;
     border-color: #f28559;
     color: #fff; }
-  button.empty, .button.empty {
+  .button.empty {
     background: none;
     border-color: #fff; }
-    button.empty:hover, .button.empty:hover {
+    .button.empty:hover {
       background: #fff;
       border-color: #fff;
       color: #4a447e; }
-    button.empty.pair, .button.empty.pair {
+    .button.empty.pair {
       border-color: #f28559;
       color: #f28559; }
-      button.empty.pair:hover, .button.empty.pair:hover {
+      .button.empty.pair:hover {
         background: #f28559;
         color: #fff; }
 

@@ -22,8 +22,9 @@ $(document).ready(function()
 function initMagnificPopup()
 {
     $('.popup-gallery').magnificPopup({
-        delegate: 'a',
-        type:'image'
+        delegate: 'a', // child items selector, by clicking on it popup will open
+        type: 'image'
+        // other options
     });
 }
 

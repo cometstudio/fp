@@ -8,9 +8,12 @@ class MyController extends Controller
 
     public function index()
     {
+        $title = 'Персональные данные';
+
         return view(
             'my.index', [
                 'css'=>$this->css,
+                'title'=>$title,
             ]
         );
     }

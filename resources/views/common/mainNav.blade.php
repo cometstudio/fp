@@ -1,9 +1,7 @@
 <div class="main-nav section">
     <div class="wrapper clearfix">
         <div class="l">
-            <!--
             <span><a href="/">#фитнеспрактика</a></span>
-            -->
         </div>
 
         <div class="social-links l">

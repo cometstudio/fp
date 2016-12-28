@@ -90,11 +90,11 @@
                                             <div class="wrapper">
                                                 {!! $recipe->text !!}
 
-                                                <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery clearfix">
-                                                    @foreach($recipe->getGallery() as $image)
-                                                        <div class="image">
-                                                            <img src="/images/small/{{ $image }}.jpg" />
-                                                        </div>
+                                                <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery popup-gallery clearfix">
+                                                    @foreach($recipe->getGallery() as $picture)
+                                                        <a href="/images/big/{{ $picture }}.jpg" class="image">
+                                                            <img src="/images/small/{{ $picture }}.jpg" />
+                                                        </a>
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -127,7 +127,7 @@
             </div>
         @endif
 
-        @if(!empty($calendar->video))
+        @if(!empty($calendar->video) && $calendar->collect_video)
             <div class="s55 section">
                 <div class="wrapper">
                     <div class="video-player">
@@ -137,15 +137,17 @@
             </div>
         @endif
 
-        @if(!empty($calendar->gallery))
+        @if(!empty($calendar->gallery) && $calendar->collect_gallery)
             <div class="s6 section">
                 <div class="wrapper">
                     <div class="gallery-grid grid">
-                        <div class="x4 row clearfix">
+                        <div class="x4 row popup-gallery clearfix">
                             @foreach($calendar->getGallery() as $picture)
                                 <div class="column">
                                     <div class="image">
-                                        <img src="/images/small/{{ $picture }}.jpg" />
+                                        <a href="/images/big/{{ $picture }}.jpg" class="image">
+                                            <img src="/images/small/{{ $picture }}.jpg" />
+                                        </a>
                                     </div>
                                 </div>
                             @endforeach

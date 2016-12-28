@@ -18,9 +18,12 @@ class UsersController extends Controller
 
     public function login()
     {
+        $title = 'Войти на сайт';
+
         return view(
             'users.login', [
                 'css'=>$this->css,
+                'title'=>$title,
             ]
         );
     }

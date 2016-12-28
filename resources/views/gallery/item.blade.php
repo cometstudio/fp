@@ -12,10 +12,10 @@
                 @if(!empty($item) && $item->count())
                     <div class="s1 section">
                         <div class="media-grid grid">
-                            <div class="x2 row clearfix">
+                            <div class="x2 row clearfix popup-gallery">
                                 @foreach($item->getGallery() as $picture)
                                     <div class="column">
-                                        <a href="" class="image">
+                                        <a href="/images/medium/{{ $picture }}.jpg" class="image">
                                             <img src="/images/medium/{{ $picture }}.jpg" />
                                         </a>
                                     </div>

@@ -122,6 +122,12 @@ button, .button {
       background: #fff;
       border-color: #fff;
       color: #4a447e; }
+    button.empty.pair, .button.empty.pair {
+      border-color: #f28559;
+      color: #f28559; }
+      button.empty.pair:hover, .button.empty.pair:hover {
+        background: #f28559;
+        color: #fff; }
 
 .form .label {
   margin-bottom: 0.1em; }
@@ -379,8 +385,9 @@ h3 {
 
 .s0 {
   height: 100vh;
-  background: #000 url("../images/index.jpg") no-repeat;
-  background-size: contain;
+  min-height: 768px;
+  background: #000 url("../images/index.jpg") 50% 50% no-repeat;
+  background-size: cover;
   color: #fff; }
   .s0 > .wrapper {
     position: relative;

@@ -78,6 +78,14 @@ button, .button{
       border-color: #fff;
       color: $accent;
     }
+    &.pair{
+      border-color: $pair;
+      color: $pair;
+      &:hover{
+        background: $pair;
+        color: #fff;
+      }
+    }
   }
 }
 

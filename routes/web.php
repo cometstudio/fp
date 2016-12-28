@@ -4,13 +4,20 @@
 @include('panelRoutes.php');
 
 // Frontend
-Route::get('/test', 'TestController@index');
+Route::group(['middleware' => ['redirectUnauthenticatedUser']], function () {
+    Route::group(['as' => 'my:', 'prefix'=>'my'], function () {
+        Route::get('/', 'MyController@index')->name('index');
+    });
 
-Route::get('/instagram/auth', 'InstagramController@auth');
+    Route::get('/logout', 'UsersController@logout')->name('logout');
 
-Route::get('/login', 'UsersController@login')->name('login');
-Route::post('/login', 'UsersController@postLogin')->name('postLogin');
-Route::get('/logout', 'UsersController@logout')->name('logout');
+    Route::get('/test', 'TestController@index');
+});
+
+Route::group(['middleware' => ['redirectAuthenticatedUser']], function () {
+    Route::get('/login', 'UsersController@login')->name('login');
+    Route::post('/login', 'UsersController@postLogin')->name('postLogin');
+});
 
 Route::get('/', 'IndexController@index');
 
@@ -33,13 +40,16 @@ Route::group(['as' => 'comments:', 'prefix'=>'comments'], function () {
     Route::post('/submit/{hash}', 'CommentsController@submit')->name('submit');
 });
 
+// External services interfaces
+Route::get('/instagram/auth', 'InstagramController@auth');
+
 Route::group(['as' => 'webhook:', 'prefix'=>'webhook'], function () {
     Route::post('/{type}', 'WebhookController@type')->name('type')->where('type', '[a-z_]+');
 });
 
-//Route::get('/{id}', 'UsersController@login');
-
+// Misc route
 //Route::group(['as' => 'misc:'], function () {
 //    Route::get('/{alias}/{subalias?}', 'MiscController@item')
 //        ->name('item');
 //});
+

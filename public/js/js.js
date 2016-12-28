@@ -15,7 +15,17 @@ $(document).ready(function()
     initDatepicker();
 
     getCommentsThread();
+
+    initMagnificPopup();
 });
+
+function initMagnificPopup()
+{
+    $('.popup-gallery').magnificPopup({
+        delegate: 'a',
+        type:'image'
+    });
+}
 
 function hideMainNavOnScroll()
 {

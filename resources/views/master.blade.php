@@ -6,11 +6,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=9">
     <meta content="width=1280,maximum-scale=1.0" name="viewport">
-    <title>{{ $title or 'Hello!' }}</title>
+    <title>{{ $title or '' }}{{ request()->is('/') ? '' : $settings->title }}</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="csrf-token" content="{!! csrf_token() !!}" />
     <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/bower_components/magnific-popup/dist/magnific-popup.css" />
     <link rel="stylesheet" type="text/css" href="/panel/js/jquery-ui-1.11.4.custom/jquery-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/{{ $css or 'index' }}.css" />
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -33,6 +34,7 @@
 
 <script src="/bower_components/jquery-form/jquery.form.js"></script>
 <script src="/bower_components/cookie/cookie.min.js"></script>
+<script src="/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
 <script src="/panel/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 <script src="/panel/js/ui.datepicker-ru.js"></script>
 <script src="/js/js.js"></script>

@@ -45,6 +45,23 @@ class Calendar extends Model
             ->withPivot('id');
     }
 
+    public function getByTime($startAt = 0)
+    {
+        try{
+            $builder = $this;
+
+            if(!empty($startAt)){
+                $builder
+                    ->where('start_at', '>=', mktime(0,0,0, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
+                    ->where('start_at', '<=', mktime(23,59,59, date('m', $startAt), date('j', $startAt), date('Y', $startAt)));
+            }
+
+            return $builder->first();
+        }catch (\Exception $e){
+            return null;
+        }
+    }
+
     public function getOptions()
     {
         $exercises = Exercise::orderBy('name', 'DESC')->get();

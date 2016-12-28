@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Calendar;
 use App\Models\Meal;
-use Curl;
+use Telegram;
 use Illuminate\Http\Request;
 
 class WebhookController extends Controller
@@ -27,10 +27,9 @@ class WebhookController extends Controller
         }
     }
     
-    protected function runTelegramBot()
+    private function runTelegramBot()
     {
         try {
-            $message = '';
             $messages = [];
 
             $input = $this->request->getContent();
@@ -39,7 +38,7 @@ class WebhookController extends Controller
 
             if (empty($envelope->message->chat->id)) throw new \Exception;
 
-                $this->sendTelegramChatAction($envelope->message->chat->id);
+                Telegram::sendChatAction($envelope->message->chat->id);
 
                 preg_match("/^\/([a-z]+)(\d+)?$/", $envelope->message->text, $matches);
 
@@ -70,6 +69,7 @@ class WebhookController extends Controller
                             $recipes = $calendar->recipes()->get();
                             if (empty($recipes) || !$recipes->count()) throw new \Exception;
 
+                            // The meal has been chosen, show recipes
                             if(!empty($matches[2]) && is_numeric($matches[2])){
                                 $meal = Meal::where('id', '=', $matches[2])->firstOrFail();
 
@@ -80,12 +80,16 @@ class WebhookController extends Controller
                                     $messages[] = '';
                                     $messages[] = '*'.$i . ') ' . $recipe->name.'*';
                                     if($text = trim(strip_tags(html_entity_decode($recipe->notice)))) $messages[] = $text;
-                                    if($text = trim(strip_tags(html_entity_decode($recipe->text)))) $messages[] = PHP_EOL . $text;
+                                    if($text = trim(strip_tags(html_entity_decode($recipe->text)))){
+                                        $messages[] = '';
+                                        $messages[] = $text;
+                                    }
                                     $i++;
                                 }
 
                                 $messages[] = '';
                                 $messages[] = '/meal - весь рацион на сегодня';
+                            // All meals
                             }else{
                                 $mealIds = $recipes->pluck('meal_id');
 
@@ -112,7 +116,7 @@ class WebhookController extends Controller
                 'parse_mode' => 'Markdown'
             );
 
-            $this->touchTelegramAPI('sendMessage', $data);
+            Telegram::touchAPI('sendMessage', $data);
         }catch (\Exception $e){
             echo $e->getLine();
         }
@@ -121,19 +125,14 @@ class WebhookController extends Controller
     private function getTelegramExercises(&$messages, $startAt = 0)
     {
         try {
-            $builder = new Calendar();
+            $calendarModel = new Calendar();
 
-            if(!empty($startAt)){
-                $builder
-                    ->where('start_at', '>=', mktime(0,0,0, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
-                    ->where('start_at', '<=', mktime(23,59,59, date('m', $startAt), date('j', $startAt), date('Y', $startAt)));
-            }
-
-            $calendar = $builder->first();
+            $calendar = $calendarModel->getByTime($startAt);
 
             if (empty($calendar)) throw new \Exception;
 
             $exercises = $calendar->exercises()->get();
+
             if (empty($exercises) || !$exercises->count()) throw new \Exception;
 
             $messages[] = '*Программа на сегодня:*';
@@ -143,7 +142,10 @@ class WebhookController extends Controller
                 $messages[] = PHP_EOL;
                 $messages[] = '*'.$i . ') ' . $exercise->name.'*';
                 if($text = trim(strip_tags(html_entity_decode($exercise->notice)))) $messages[] = $text;
-                if($text = trim(strip_tags(html_entity_decode($exercise->text)))) $messages[] = PHP_EOL . $text;
+                if($text = trim(strip_tags(html_entity_decode($exercise->text)))){
+                    $messages[] = '';
+                    $messages[] = $text;
+                }
                 $i++;
             }
             $messages[] = $this->getTelegramMenuLink();
@@ -155,33 +157,6 @@ class WebhookController extends Controller
     private function getTelegramMenuLink()
     {
         return PHP_EOL.'Меню команд: /menu';
-    }
-
-    private function sendTelegramChatAction($chatId = 0, $action = 'typing')
-    {
-        $this->log($chatId);
-
-        $this->touchTelegramAPI('sendChatAction', [
-           'chat_id'=>$chatId,
-           'action'=>$action,
-        ]);
-    }
-
-    private function touchTelegramAPI($method = '', $data = [])
-    {
-        try{
-            if(empty($method)) throw new \Exception;
-
-            $data = array_merge([], $data);
-
-            Curl::to('https://api.telegram.org/bot' . env('TELEGRAM_TOKEN') . '/'.$method)
-                ->withData($data)
-                ->post();
-
-            return true;
-        }catch (\Exception $e){
-            return false;
-        }
     }
 
     private function log($row = '')

@@ -13,7 +13,7 @@ class VideosController extends Controller
 
     public function index(Request $request)
     {
-        $set = Calendar::where('collect_video', '=', 1)
+        $videos = Calendar::where('collect_video', '=', 1)
             ->join('comments', 'comments.hash', '=', \DB::raw('MD5(CONCAT("'.$request->segments()[0].'_", calendar.id))'), 'LEFT')
             ->select([
                 'calendar.*',
@@ -31,7 +31,7 @@ class VideosController extends Controller
             'videos.index', [
                 'css'=>$this->css,
                 'title'=>$title,
-                'set'=>$set,
+                'videos'=>$videos,
             ]
         );
     }

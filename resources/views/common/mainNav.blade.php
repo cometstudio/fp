@@ -1,7 +1,9 @@
 <div class="main-nav section">
     <div class="wrapper clearfix">
         <div class="l">
+            <!--
             <span><a href="/">#фитнеспрактика</a></span>
+            -->
         </div>
 
         <div class="social-links l">
@@ -18,10 +20,10 @@
         <div class="r">
             <nav>
                 <span><a href="/calendar">Календарь</a></span>
-                <span><a href="/gallery">Фотоотчёты</a></span>
                 <span><a href="/videos">Видеоотчёты</a></span>
+                <span><a href="/gallery">Фотоотчёты</a></span>
                 @if(!empty($currentUser))
-                    <span><i class="fa fa-lock"></i><a href="{{ route('logout', [], false) }}">Выйти</a> <a href=""><img src="/images/thumbs/{{ $currentUser->getThumbnail() }}.jpg" style="height: 30px; margin-left: 5px;border-radius: 15px;" /></a></span>
+                    <span><i class="fa fa-lock"></i><a href="{{ route('logout', [], false) }}">Выйти</a> <a href="{{ route('my:index', [], false) }}"><img src="/images/thumbs/{{ $currentUser->getThumbnail() }}.jpg" style="height: 30px; margin-left: 5px;border-radius: 15px;" /></a></span>
                 @else
                    <span><i class="fa fa-unlock"></i><a href="{{ route('login', [], false) }}">Войти</a></span>
                 @endif

@@ -12,27 +12,10 @@
             </div>
         </div>
 
-        @if(!empty($set) && $set->count())
+        @if(!empty($gallery) && $gallery->count())
             <div class="s1 section">
                 <div class="wrapper">
-                    <div class="media-grid grid">
-                        <div class="x2 row clearfix">
-                            @foreach($set as $item)
-                                <div class="column">
-                                    <a href="{{ route('gallery:item', ['id'=>$item->id], false) }}" class="image">
-                                        <div class="label">{{ count($item->getGallery()) }} фото</div>
-                                        <img src="/images/medium/{{ $item->getThumbnail() }}.jpg" />
-                                    </a>
-                                    <div class="info clearfix">
-                                        <div class="stat clearfix">
-                                            <div class="l">{{ \Date::getDateFromTime($item->start_at) }}</div>
-                                            <div class="r"><i class="fa fa-eye"></i> {{ $item->gallery_views }} <i class="fa fa-comment-o"></i> {{ $item->comments_total }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
+                    @include('gallery.grid')
                 </div>
             </div>
         @endif

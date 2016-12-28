@@ -52,6 +52,9 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectAuthenticatedUser::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        // Frontend
+        'redirectUnauthenticatedUser'=>\App\Http\Middleware\RedirectUnauthenticatedUser::class,
+        'redirectAuthenticatedUser'=>\App\Http\Middleware\RedirectAuthenticatedUser::class,
         // Panel
         'redirectUnauthenticatedPanelUser'=>\App\Http\Middleware\Panel\RedirectUnauthenticatedUser::class,
         'redirectAuthenticatedPanelUser'=>\App\Http\Middleware\Panel\RedirectAuthenticatedUser::class

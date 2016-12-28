@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectAuthenticatedUser
+class RedirectUnauthenticatedUser
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,15 @@ class RedirectAuthenticatedUser
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $url = url()->route('my:index', [], false);
+        if (!Auth::guard($guard)->check()) {
 
-        if (Auth::guard($guard)->check()) {
-            return redirect($url);
+            $url = url()->route('login', [], false);
+
+            if ($request->ajax()) {
+                return response()->json(['location'=>$url]);
+            } else {
+                return redirect()->guest($url);
+            }
         }
 
         return $next($request);

@@ -192,6 +192,8 @@ return [
         App\Providers\Dictionary\ServiceProvider::class,
         // Date
         App\Providers\Date\ServiceProvider::class,
+        // Telegram
+        App\Providers\Telegram\ServiceProvider::class,
     ],
 
     /*
@@ -245,6 +247,7 @@ return [
         'Resizer' => App\Providers\Resizer\Facade::class,
         'Date'=> App\Providers\Date\Facade::class,
         'Dictionary' => App\Providers\Dictionary\Facade::class,
+        'Telegram' => App\Providers\Telegram\Facade::class,
     ],
 
 ];

@@ -17,7 +17,6 @@ class InstagramController extends Controller
 //            ])->get();
             $r = Curl::to('https://api.instagram.com/oauth/access_token/?client_id=6c5d95c2eb7447d19c0cc1000a7965de&redirect_uri=http://fitnespraktika.ru/instagram/auth&response_type=code')->get();
             var_dump($r);die;
-            die;
         }else{
             $authURL = Curl::to('https://api.instagram.com/oauth/access_token')->withData([
                 'client_id'=>'6c5d95c2eb7447d19c0cc1000a7965de',

@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Auth\Guard;
 use App\Models\Settings;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,10 +12,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Guard $auth)
+    public function boot()
     {
-        view()->composer('master', function($view) use ($auth){
-            $view->with('currentUser', $auth->user());
+        \View::composer('*', function($view){
+            $view->with('currentUser', \Auth::user());
         });
 
         view()->share('imagesPath', '/'.config('resizer.dir', ''));

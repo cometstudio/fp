@@ -102,13 +102,31 @@ function login()
     return false;
 }
 
-function uploadProfilePicture()
+function saveProfile()
 {
-    var form = $('.login form');
+    var form = $('.profile form');
 
     ajaxSubmit(form, function(response){
-        console.log(response);
+        if(response.picture){
+            $('.profile-picture-img').attr('src', response.picture);
+            form.find('#profile-picture').show('fast');
+        }
     });
+
+    return false;
+}
+
+function unlinkProfilePicture(el)
+{
+    var form = $('.profile form');
+    var url = $(el).attr('href');
+
+    ajax(url, function(response){
+        $('.profile-picture-img').attr('src', response.picture);
+        form.find('#profile-picture').hide('fast');
+    });
+
+    return false;
 }
 
 function ajaxSubmit(form, callback, errorCallback, data, url)

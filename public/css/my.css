@@ -383,4 +383,7 @@ h3 {
   .gallery-grid .image img {
     max-width: 100%; }
 
+.s0 #profile-picture.hidden {
+  display: none; }
+
 /*# sourceMappingURL=my.css.map */

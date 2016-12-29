@@ -8,6 +8,7 @@ Route::group(['middleware' => ['redirectUnauthenticatedUser']], function () {
     Route::group(['as' => 'my:', 'prefix'=>'my'], function () {
         Route::get('/', 'MyController@index')->name('index');
         Route::post('/save', 'MyController@save')->name('save');
+        Route::post('/picture/unlink', 'MyController@unlinkPicture')->name('unlinkPicture');
     });
 
     Route::get('/logout', 'UsersController@logout')->name('logout');

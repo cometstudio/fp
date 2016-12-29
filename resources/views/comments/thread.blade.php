@@ -4,7 +4,7 @@
             <div class="item clearfix">
                 <div class="c1 column">
                     <div class="wrapper">
-                        <img src="http://c1.staticflickr.com/8/7581/15971467312_14e315296c_m.jpg" />
+                        <img src="/images/thumbs/{{ $comment->getThumbnail() }}.jpg" />
                     </div>
                 </div>
                 <div class="c2 column">

@@ -15,7 +15,7 @@ class CommentsController extends Controller
             ->select([
                 'comments.*',
                 \DB::raw('users.name AS user_name'),
-                \DB::raw('users.gallery AS user_gallery'),
+                \DB::raw('users.gallery'),
             ])
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -47,7 +47,7 @@ class CommentsController extends Controller
             ->select([
                 'comments.*',
                 \DB::raw('users.name AS user_name'),
-                \DB::raw('users.gallery AS user_gallery'),
+                \DB::raw('users.gallery'),
             ])
             ->orderBy('created_at', 'DESC')
             ->get();

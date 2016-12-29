@@ -9,7 +9,7 @@
             <div class="wrapper">
                 <h1>Персональные данные</h1>
                 <div class="login form grid">
-                    <form action="">
+                    <form action="{{ route('my:save', [], false) }}" method="post" enctype="multipart/form-data">
                         <div class="x2 row clearfix">
                             <div class="column">
                                 <div id="name" class="hidden row">
@@ -25,7 +25,7 @@
                                 <div class="row">
                                    <div class="label">Пароль</div>
                                     <i class="fa fa-eye-slash" onclick="$(this).parent().find('input').prop('type', 'text');$(this).removeClass('fa-eye-slash').addClass('fa-eye');"></i>
-                                    <input name="password" type="password" />
+                                    <input name="_password" type="password" />
                                 </div>
                                 <div class="row">
                                    <div class="label">Фото</div>

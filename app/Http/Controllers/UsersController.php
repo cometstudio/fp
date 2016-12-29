@@ -48,7 +48,7 @@ class UsersController extends Controller
         $user = new User();
 
         // Validate input
-        $this->validate($request, $user->getValidationRules($user), $user->getValidationMessages());
+        $this->validate($request, $user->getValidationRules(), $user->getValidationMessages());
 
         // Create a new user
         $user = $user->create($request->all());

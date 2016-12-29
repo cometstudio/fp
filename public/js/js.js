@@ -102,6 +102,15 @@ function login()
     return false;
 }
 
+function uploadProfilePicture()
+{
+    var form = $('.login form');
+
+    ajaxSubmit(form, function(response){
+        console.log(response);
+    });
+}
+
 function ajaxSubmit(form, callback, errorCallback, data, url)
 {
     if(form.length) {

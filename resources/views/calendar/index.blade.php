@@ -77,8 +77,9 @@
                     <div class="grid">
                         <div class="x2 row clearfix">
                             <div class="column"><h2>Суточный рацион питания*</h2></div>
-                            <div class="small font size column" style="padding-top: 1.5em; text-align: right;">
-                                * из расчёта на вес тела 100 кг (мужчины) и 60 кг (женщины)
+                            <div class="small font size column" style="text-align: right;">
+                                <p>* Рецепты блюд составлены для мужчины весом 100 кг</p>
+                                <p>Размер порции для женщин меньше на 40%</p>
                             </div>
                         </div>
                     </div>

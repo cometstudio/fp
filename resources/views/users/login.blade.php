@@ -2,8 +2,6 @@
 
 @section('content')
 
-    @include('common.mainNav')
-
     <div class="content-wrapper">
         <div class="s0 section">
             <div class="wrapper">
@@ -13,22 +11,29 @@
                         <div class="x2 row clearfix">
                             <div class="column">
                                 <div class="row">
-                                   <label><input name="" type="checkbox" value="1" onclick="$('#name').toggle(); $('#forgotten').toggle();" /> я здесь впервые, зарегистрируйте меня</label>
+                                    <input name="_new" type="hidden" value="0" />
+                                    <label><input name="_new" type="checkbox" value="1" onclick="$('.hidden').toggle(); $('#forgotten').toggle();" /> я здесь впервые, зарегистрируйте меня</label>
                                 </div>
-                                <div id="name" class="hidden row">
+                                <div class="hidden row">
                                    <div class="label">Имя</div>
-                                    <input name="name" type="text" />
+                                    <input id="name" name="name" type="text" />
                                 </div>
                                 <div class="row">
                                    <div class="label clearfix">
                                        E-mail
                                    </div>
-                                    <input name="email" type="text" />
+                                    <input id="email" name="email" type="text" />
                                 </div>
                                 <div class="row">
                                    <div class="label">Пароль <a href="" id="forgotten" style="float: right;">Не помню пароль</a></div>
                                     <i class="fa fa-eye-slash" onclick="$(this).parent().find('input').prop('type', 'text');$(this).removeClass('fa-eye-slash').addClass('fa-eye');"></i>
-                                    <input name="password" type="password" />
+                                    <input id="password" name="password" type="password" />
+                                </div>
+                                <div class="hidden row">
+                                    <div class="label clearfix">
+                                        Повторите символы
+                                    </div>
+                                    <img id="captcha-img" src="{!! captcha_src() !!}" style="float: left; margin-right: 5px;" /><input id="captcha" name="captcha" type="text" style="width: 50%;" maxlength="4" />
                                 </div>
                                 <div class="row">
                                    <button onclick="return login();" class="button">Войти</button>

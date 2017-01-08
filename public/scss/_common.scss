@@ -88,6 +88,9 @@ i, .i{
   .x2 {
     @include gridRow(2, $gridGutter / 2, $gridGutter / 2);
   }
+  .x3 {
+    @include gridRow(3, $gridGutter / 2, $gridGutter / 2);
+  }
   .x4 {
     @include gridRow(4, $gridGutter / 4, $gridGutter / 4);
   }
@@ -312,7 +315,6 @@ h3{
     }
     .info{
       @extend .small.font.size;
-      @extend .b;
 
       margin-bottom: $contentPadding / 3;
     }

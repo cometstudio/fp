@@ -78,6 +78,14 @@ input[type="checkbox"]{
       border-color: #fff;
       color: $accent;
     }
+    &.accent{
+      border-color: $accent;
+      color: $accent;
+      &:hover{
+        background: $accent;
+        color: #fff;
+      }
+    }
     &.pair{
       border-color: $pair;
       color: $pair;

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400&subset=latin,cyrillic);
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,500,500i,700,700i,900&subset=cyrillic');
 
 @import "reset";
 @import "clearfix";
@@ -24,7 +24,7 @@ body{
   @extend .normal.font;
 
   max-height: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-weight: 300;
   color: $bg;
 
@@ -70,7 +70,7 @@ input, select, textarea, .button, select{
 
   font-size: 16px;
   line-height: 1.2em;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-weight: 300;
 }
 input[type="text"], input[type="email"], input[type="password"], select, textarea, input[type="submit"], .button{
@@ -169,16 +169,16 @@ input[type="checkbox"]{
 
 .font{
   &.normal{
-    font-size: 16px;
-    line-height: 1.3em;
+    font-size: 17px;
+    line-height: 1.4em;
   }
   &.medium{
-    font-size: 14px;
-    line-height: 1.4em;
+    font-size: 15px;
+    line-height: 1.5em;
   }
   &.small{
-    font-size: 12px;
-    line-height: 1.4em;
+    font-size: 13px;
+    line-height: 1.5em;
   }
 }
 

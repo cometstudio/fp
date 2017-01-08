@@ -35,6 +35,47 @@ class Calendar extends Model
             ->withPivot('id');
     }
 
+    public function totalMacros(&$recipes = null)
+    {
+        $totalMacros = [
+            'protein'=>0,
+            'fat'=>0,
+            'carbohydrates'=>0,
+            'energy'=>0,
+            'protein_f'=>0,
+            'fat_f'=>0,
+            'carbohydrates_f'=>0,
+            'energy_f'=>0,
+        ];
+
+        if(empty($recipes)) $recipes = $this->recipes();
+
+        if(!empty($recipes) && $recipes->count()){
+            foreach($recipes as $recipe){
+                if($macros = $recipe->macros()){
+                    $recipe->macros = $macros;
+                    foreach($macros as $key=>$value){
+                        $totalMacros[$key] += $value;
+                    }
+                }
+            }
+        }
+
+        $dailyValues = [
+            'protein'=>250,
+            'fat'=>100,
+            'carbohydrates'=>300,
+            'energy'=>2500,
+        ];
+
+        foreach($dailyValues as $ingridient=>$value){
+            $totalMacros[$ingridient.'_daily']['value'] = intval($totalMacros[$ingridient] * 100 / $value);
+            $totalMacros[$ingridient.'_daily']['active'] = ($totalMacros[$ingridient.'_daily']['value'] < 90) || ($totalMacros[$ingridient.'_daily']['value'] > 110) ? true : false;
+        }
+
+        return $totalMacros;
+    }
+
     /**
      * @return $this
      */
@@ -79,7 +120,6 @@ class Calendar extends Model
             'meals',
             'recipes',
             'calendarExercises',
-            'calendarRecipes',
             'calendarRecipes'
         );
     }

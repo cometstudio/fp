@@ -27,22 +27,26 @@ class MyController extends Controller
     {
         $user = Auth::user();
 
+        $resizerConfig = $user->getResizerConfigSet();
+
         $picture = $request->file('_picture');
 
         // If a profile picture has been sent
         if(!empty($picture)){
-            if($resizerConfig = Resizer::getConfig()) {
 
-                $name = Str::random(24);
+            if(!empty($user->gallery)) Resizer::deleteImages($user->gallery, false, $resizerConfig);
 
-                Resizer::addImage($picture->getPathname(), $name, false, $user->getResizerConfigSet());
 
-                $user->gallery = Resizer::galleryString([$name]);
+            $name = Str::random(24);
 
-                $user->touch();
+            Resizer::addImage($picture->getPathname(), $name, false, $resizerConfig);
 
-                $user->update();
-            }
+            $user->gallery = Resizer::galleryString([$name]);
+
+            $user->touch();
+
+            $user->update();
+
         // Store other data
         }else{
             // Validate input
@@ -67,8 +71,10 @@ class MyController extends Controller
     {
         $user = Auth::user();
 
+        $resizerConfig = $user->getResizerConfigSet();
+
         if(!empty($user->gallery)){
-            Resizer::deleteImages($user->gallery, false, $user->getResizerConfigSet());
+            Resizer::deleteImages($user->gallery, false, $resizerConfig);
         }
 
         $user->gallery = '';
@@ -78,5 +84,14 @@ class MyController extends Controller
         return response()->json([
             'picture'=>'/images/thumbs/'.$user->getThumbnail().'.jpg'
         ]);
+    }
+
+    public function delete()
+    {
+        $user = Auth::user();
+
+        $redirectURL = $user->deleteProfile() ? '/' : '/my';
+
+        return redirect($redirectURL);
     }
 }

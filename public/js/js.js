@@ -93,11 +93,21 @@ function getCommentsThread()
     }
 }
 
+function touchCaptcha()
+{
+    ajax('/captcha/touch', function (response) {
+        $('#captcha-img').attr('src', response[0]);
+        $('input[name=captcha]').val('');
+    });
+}
+
 function login()
 {
     var form = $('.login form');
 
-    ajaxSubmit(form);
+    ajaxSubmit(form, null, function(response){
+        touchCaptcha();
+    });
 
     return false;
 }

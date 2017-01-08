@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Resizer;
 
 class User extends PanelUser implements
     AuthenticatableContract,
@@ -28,6 +29,7 @@ class User extends PanelUser implements
         'email',
         'password',
         'gallery',
+        'gallery_titles',
     ];
 
     /**
@@ -50,7 +52,7 @@ class User extends PanelUser implements
             /**
              * @var $model $this
              */
-            if($model->getAttribute('_password')) $model->setAttribute('password', self::encryptPassword($model->getAttribute('_password')));
+            $model->setAttribute('password', self::encryptPassword($model->getAttribute('password')));
         });
     }
 
@@ -95,6 +97,7 @@ class User extends PanelUser implements
             'name' => 'required',
             'email' => 'required|email|unique:'. $this->getTable() . ',email',
             'password' => 'required',
+            'captcha' => 'required|captcha',
         ];
     }
 
@@ -106,6 +109,8 @@ class User extends PanelUser implements
             'email.email' => 'Укажите реальный e-mail',
             'email.unique' => 'Пользователь с указанным e-mail уже зарегистрирован',
             'password.required' => 'Укажите пароль',
+            'captcha.required' => 'Повторите символы',
+            'captcha.captcha' => 'Повторите символы верно',
         ];
     }
 
@@ -123,6 +128,7 @@ class User extends PanelUser implements
             'email.required'=>'Укажите e-mail',
             'email.email'=>'Укажите реальный e-mail',
             'password.required'=>'Укажите пароль',
+            'password.min'=>'Укажите пароль',
         ];
     }
 
@@ -137,7 +143,6 @@ class User extends PanelUser implements
 
     public function beforeSave($attrubutes = [])
     {
-
         $this->setPanelModelIds(!empty($attrubutes['_panel_model_ids']) ? $attrubutes['_panel_model_ids'] : [], !empty($attrubutes['_panel_model_crud']) ? $attrubutes['_panel_model_crud'] : [] );
 
         if(!empty($attrubutes['_password'])) $this->setAttribute('password', self::encryptPassword($attrubutes['_password']));
@@ -145,4 +150,23 @@ class User extends PanelUser implements
         return $this;
     }
 
+    public function deleteProfile($id = 0)
+    {
+        try{
+            $user = !empty($id) ? $this->where('id', '=', intval($id))->first() : Auth::user();
+
+            if(empty($user)) throw new \Exception;
+
+            if(!empty($user->gallery)) Resizer::deleteImages($user->gallery, false, $this->getResizerConfigSet());
+
+            $user->destroy($user->id);
+
+            if(Auth::check()) Auth::logout();
+
+            return true;
+        }catch (\Exception $e){
+            return false;
+        }
+
+    }
 }

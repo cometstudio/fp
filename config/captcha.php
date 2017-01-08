@@ -2,13 +2,15 @@
 
 return [
 
-    'characters' => '2346789abcdefghjmnpqrtuxyzABCDEFGHJMNPQRTUXYZ',
+    'characters' => '2346789abcdefghjmnpqrtuxyz',
 
     'default'   => [
-        'length'    => 5,
+        'length'    => 4,
         'width'     => 120,
-        'height'    => 36,
+        'height'    => 46,
         'quality'   => 90,
+        'bgImage'   => false,
+        'bgColor'   => '#fff'
     ],
 
     'flat'   => [

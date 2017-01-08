@@ -33,7 +33,7 @@ Route::group(['as' => 'admin::', 'prefix' => 'admin', 'namespace'=>'Panel'], fun
             ->name('act');
 
         Route::post('/{action}/{modelName}/{id?}', 'ActionsController@act')
-            ->where('action', 'save|drop|imageadd|imagedrop|gallerysort|imagetitles|bindexercise|unbindexercise|bindrecipe|unbindrecipe')
+            ->where('action', 'save|drop|imageadd|imagedrop|gallerysort|imagetitles|bindexercise|unbindexercise|bindrecipe|unbindrecipe|bindsupplement|unbindsupplement')
             ->where('modelName', '[a-z0-9_]+')
             ->where('id', '[0-9]+');
 

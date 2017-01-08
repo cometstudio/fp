@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
-use Log;
 use App\Models\User;
 use App\Jobs\SubmitVerificationEmail;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Str;
-use Resizer;
 
 class UsersController extends Controller
 {
@@ -28,14 +26,26 @@ class UsersController extends Controller
         );
     }
 
-       /**
-     * Refresh Captcha instance & get captcha image url
-     * @param string $config
+    /**
+     * Login & Signup router
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function touchCaptcha($config = 'flat')
+    public function postLogin(Request $request)
     {
-        return response()->json([captcha_src($config)]);
+        $user = new User();
+
+        // If signup
+        if($request->input('_new')){
+            return $this->postSignup($request);
+        }else{
+            $this->validate($request, $user->getLoginValidationRules(), $user->getLoginValidationMessages());
+
+            $email = $request->input('email');
+            $password = $request->input('password');
+
+            return $this->forceLogin($email, $password);
+        }
     }
 
     /**
@@ -45,10 +55,14 @@ class UsersController extends Controller
      */
     public function postSignup(Request $request)
     {
+
         $user = new User();
 
         // Validate input
-        $this->validate($request, $user->getValidationRules(), $user->getValidationMessages());
+        $this->validate($request, $user->getSignupValidationRules(), $user->getSignupValidationMessages());
+
+        $email = $request->input('email');
+        $password = $request->input('password');
 
         // Create a new user
         $user = $user->create($request->all());
@@ -56,35 +70,29 @@ class UsersController extends Controller
         $this->submitVerificationEmail($user);
 
         // Force login for the created user
-        Auth::login($user, true);
-
-        // Show confirmation form
-        return response()->json(['location'=>'/verify']);
+        return $this->forceLogin($email, $password);
     }
 
     /**
-     * Login
-     * @param Request $request
+     * Refresh Captcha instance & get captcha image url
+     * @param string $config
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postLogin(Request $request)
+    public function touchCaptcha($config = 'default')
     {
-        $user = new User();
+        return response()->json([captcha_src($config)]);
+    }
 
-        $this->validate($request, $user->getLoginValidationRules(), $user->getLoginValidationMessages());
-
-        $email = $request->input('email');
-        $password = $request->input('password');
-
+    private function forceLogin($email, $password, $id = 0)
+    {
         if (Auth::attempt(['email' => $email, 'password' => $password], true)) {
-
-            return response()->json(['location'=>'/']);
+            return response()->json(['location'=>url()->route('index', [], false)]);
         }else{
             return response()->json(['message'=>'Ошибочный пароль или пользователь не зарегистрирован']);
         }
     }
 
-    public function postVerify(Request $request)
+    public function _postVerify(Request $request)
     {
         /**
          * @var $user User
@@ -103,109 +111,13 @@ class UsersController extends Controller
             if($user->email != $request->input('email')) $user->update($request->all());
         }
 
-
         try {
             $this->submitVerificationEmail($user);
 
             return response()->json(['location'=>'/verify/sent']);
         }catch (\Exception $e){
-            Log::error($e->getMessage(), [__FILE__, __LINE__]);
             return response()->json(['message'=>'Ошибка при отправке e-mail']);
         }
-    }
-
-    public function logout()
-    {
-        if(Auth::check()){
-
-            Auth::logout();
-
-            return redirect('/');
-        }
-    }
-
-    public function profile()
-    {
-        $data = [];
-
-        /**
-         * @var $user User
-         */
-        $user = Auth::user();
-
-        $data['owner'] = $user;
-        $data['itemsTotal'] = $user->getItemsTotal();
-        $data['reviewsTotal'] = $user->getShopReviewsTotal();
-        $data['avatarEditable'] = true;
-
-        return view('user.profile', $data);
-    }
-
-    public function modifyProfile(Request $request)
-    {
-        /**
-         * Get current user
-         * @var $user User
-         */
-        $user = Auth::user();
-
-        // Validate input
-        $this->validate($request, $user->getValidationRules($user), $user->getValidationMessages());
-
-        // Set unverified if different email
-        $user->verified = ($user->email != $request->input('email')) ? 0 : 1;
-
-        // Submit confirmation email in a production environment if different email
-        if(!$user->verified) {
-            $this->submitVerificationEmail($user);
-        }
-
-        // Password change
-        if($request->has('_password')){
-            $user->password = bcrypt($request->input('_password'));
-        }
-
-        // Resize & store avatar image
-        $avatar = $request->file('_avatar');
-
-        if(!empty($avatar) && !$avatar->getError()){
-            Resizer::load($request->file('_avatar')->getPathname())
-                ->resize(130, 130, true)
-                ->save(public_path().'/images/avatars/'.$user->id.'.jpg');
-
-            $user->touch();
-        }else throw new \ErrorException;
-
-        $user->update($request->all());
-
-        return response()->json(['location'=>'/profile']);
-    }
-
-    public function deleteAvatar(Request $request){
-        /**
-         * @var $user User
-         */
-        $user = Auth::user();
-
-        $path = public_path().'/images/avatars/'.$user->id.'.jpg';
-
-        if(file_exists($path)) unlink($path);
-
-        return response()->json(['location'=>'/profile']);
-    }
-
-    public function deleteProfile(Request $request)
-    {
-        /**
-         * @var $user User
-         */
-        $user = Auth::user();
-
-        $user->destroy($user->id);
-
-        $this->logout();
-
-        return response()->json(['location'=>'/']);
     }
 
     public function doVerify(Request $request, $token)
@@ -215,16 +127,14 @@ class UsersController extends Controller
         /**
          * @var $user User
          */
-        $user = User::where(DB::raw('CONCAT(token, id)'), $token)->first();
-
-        if(empty($user)) throw new NotFoundHttpException;
+        $user = User::where('token', $token)->firstOrFail();
 
         $user->verified = 1;
         $user->token = NULL;
 
         $user->update();
 
-        return redirect('/verified');
+        return redirect(url()->route('index', [], false));
     }
 
     /**
@@ -242,5 +152,17 @@ class UsersController extends Controller
 
             $this->dispatch(new SubmitVerificationEmail($user));
         }
+    }
+
+    public function logout()
+    {
+        if(Auth::check()){
+
+            Auth::logout();
+
+            return redirect(url()->route('index', [], false));
+        }
+
+        return false;
     }
 }

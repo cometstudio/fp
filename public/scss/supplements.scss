@@ -1,0 +1,60 @@
+@import "common";
+
+.suppliments-grid{
+  width: 100%;
+  .row{
+    &:first-child{
+      @extend .b;
+
+      background: $accent;
+      color: #fff;
+      a{
+        color: inherit;
+      }
+      .column{
+        padding-top: 1%;
+        padding-bottom: 1%;
+        &.active{
+          background: $pair;
+        }
+      }
+    }
+    &:nth-child(2n){
+      background: #eee;
+      .column {
+        border-right: 1px solid #fff;
+      }
+    }
+  }
+  .column{
+    @extend .box;
+
+    display: inline-block;
+    float: left;
+    width: (100% / 6);
+    padding: 0.7% 1.5%;
+    border-right: 1px solid #eee;
+    text-align: center;
+    &:first-child{
+      text-align: left;
+      width: (100% / 3);
+    }
+    &:last-child{
+      border-right: none;
+    }
+  }
+}
+
+.s0{
+  .grid{
+    .column{
+      margin-right: 3px;
+    }
+  }
+}
+
+.s1{
+  > .wrapper{
+    padding-top: 0;
+  }
+}

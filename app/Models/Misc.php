@@ -11,14 +11,12 @@ class Misc extends Model
 
     protected $fillable = [
         'parent_id',
-        'a',
-        'inmenu',
         'name',
-        'short_name',
-        'body',
-        'raw_body',
+        'text',
         'gallery',
+        'gallery_titles',
         'template',
+        'title',
     ];
 
     public function modifyQueryBuilder(Request $request, &$builder, array $selectColumns = ['*'])
@@ -51,6 +49,11 @@ class Misc extends Model
     public function parent()
     {
         return $this->hasOne('App\Models\Misc', 'id', 'parent_id');
+    }
+
+    public function kids()
+    {
+        return $this->hasMany('App\Models\Misc', 'parent_id', 'id')->orderBy('ord', 'DESC');
     }
 
     public function getOptions()

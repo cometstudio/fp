@@ -7,7 +7,7 @@
     </div>
     @if(!empty($item->id))
         <div class="row" style="padding-bottom: 10px;">
-            <dl>Binded</dl>
+            <dl>Упражнения</dl>
             @if(!empty($options['exercises']))
                 <div style="margin-bottom: 10px;">
                     <select name="_exercise_id">
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row" style="padding-bottom: 10px;">
-            <dl>Binded</dl>
+            <dl>Питание</dl>
             @if(!empty($options['recipes']))
                 <div style="margin-bottom: 10px;">
                     @if(!empty($options['meals']))
@@ -49,21 +49,19 @@
         </div>
     @endif
     <div class="row">
-        <dl>text</dl>
+        <dl>Текст</dl>
         <textarea name="text" class="ck">{{ $item->text }}</textarea>
     </div>
     <div class="row">
-        <dl>Название</dl>
+        <dl>Видео</dl>
         <input name="video" value="{{ $item->video }}" type="text" />
     </div>
     <div style="margin: 2em 0;">
         <div class="row">
             <input name="collect_video" value="0" type="hidden" />
-            <input name="collect_video" value="1" type="checkbox"{{ !empty($item->collect_video) ? ' checked' : '' }} /> <label>коллекционировать видео</label>
-        </div>
-        <div class="row">
+            Коллекционировать: <input name="collect_video" value="1" type="checkbox"{{ !empty($item->collect_video) ? ' checked' : '' }} /> <label> видео</label>
             <input name="collect_gallery" value="0" type="hidden" />
-            <input name="collect_gallery" value="1" type="checkbox"{{ !empty($item->collect_gallery) ? ' checked' : '' }} /> <label>коллекционировать галерею</label>
+            <input name="collect_gallery" value="1" type="checkbox"{{ !empty($item->collect_gallery) ? ' checked' : '' }} /> <label>галерею</label>
         </div>
     </div>
 @endsection

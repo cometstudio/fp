@@ -31,7 +31,9 @@ class CommentsController extends Controller
 
     public function submit(Request $request, $hash = '')
     {
-        if(!empty($hash)){
+        $text = $request->input('text');
+
+        if(!empty($hash) && !empty($text)){
             $data = [
                 'hash'=>$hash,
                 'text'=>$request->input('text')

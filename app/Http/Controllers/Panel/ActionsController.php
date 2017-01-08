@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Models\CalendarExercise;
 use App\Models\CalendarRecipe;
+use App\Models\RecipeSupplement;
 use Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -82,6 +83,12 @@ class ActionsController extends Controller
             break;
             case 'unbindrecipe':
                 return $this->modifyCalendarRecipesBinding(true);
+            break;
+            case 'bindsupplement':
+                return $this->modifyRecipeSupplementsBinding();
+            break;
+            case 'unbindsupplement':
+                return $this->modifyRecipeSupplementsBinding(true);
             break;
         }
 
@@ -545,7 +552,6 @@ class ActionsController extends Controller
                 'view'=>$view
             ]);
         }catch (\Exception $e){
-            echo $e->getFile().' '.$e->getLine().' '.$e->getMessage();
             throw new \Exception('Error while the binding modify');
         }
     }
@@ -580,6 +586,46 @@ class ActionsController extends Controller
             $view = view('panel.edit.calendarRecipes', [
                 'currentPanelModel' => $currentPanelModel,
                 'binded' => $calendar->recipes()->get()
+            ])->render();
+
+            return response()->json([
+                'view'=>$view
+            ]);
+        }catch (\Exception $e){
+            throw new \Exception('Error while the binding modify');
+        }
+    }
+
+    protected function modifyRecipeSupplementsBinding($unbind = false)
+    {
+        try {
+            // Recipe model
+            $model = $this->factoryModel($this->modelName);
+
+            $currentPanelModel = $this->getPanelModel($model);
+
+            $this->checkAccess($currentPanelModel, 'u');
+
+            // Current recipe item
+            $recipe = $model::findOrFail($this->id);
+
+            if($unbind){
+                $binding = RecipeSupplement::where('id', '=', $this->request->get('bid'))->first();
+
+                if(!empty($binding)) $binding->delete();
+            }else{
+                $binding = new RecipeSupplement();
+
+                $binding->recipe_id = $this->id;
+                $binding->supplement_id = $this->request->input('_supplement_id');
+                $binding->weight = $this->request->input('_weight');
+
+                $binding->save();
+            }
+
+            $view = view('panel.edit.recipeSupplements', [
+                'currentPanelModel' => $currentPanelModel,
+                'binded' => $recipe->supplements()->get()
             ])->render();
 
             return response()->json([

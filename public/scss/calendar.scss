@@ -2,7 +2,8 @@
 
 .s0{
   h1{
-    font-size: 30px;
+    @extend h2;
+
     margin-bottom: 0;
   }
 }
@@ -76,7 +77,7 @@
       float: left;
       width: 23%;
       height: 95px;
-      margin: 2.66% 2.66% 0 0;
+      margin: 25px 2.66% 0 0;
       background: $accent;
       text-align: center;
       img{
@@ -85,11 +86,6 @@
       }
       &:nth-child(4n){
         margin-right: 0;
-      }
-    }
-    &.nomargin{
-      .image{
-        margin-top: 0;
       }
     }
   }
@@ -112,5 +108,41 @@
         width: 60%;
       }
     }
+  }
+}
+
+.macros-table{
+  @extend .medium.font.size;
+
+  margin-top: 25px;
+  border-bottom: 1px solid #eee;
+  border-left: 1px solid #eee;
+  ._row{
+    &.daily{
+      .column{
+        color: green;
+        &.active{
+          color: red;
+        }
+        &:first-child{
+          color: $black;
+        }
+      }
+    }
+    &:first-child{
+      background: #eee;
+    }
+  }
+  .column{
+    @extend .box;
+
+    width: (100% / 5);
+    padding: 5px;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #eee;
+    text-align: center;
+  }
+  &.nomargin{
+      margin-top: 0;
   }
 }

@@ -10,10 +10,6 @@ class Recipe extends Model
         'name',
         'notice',
         'text',
-        'protein',
-        'fat',
-        'carbohydrates',
-        'calories',
         'gallery',
         'gallery_titles',
     ];
@@ -21,5 +17,62 @@ class Recipe extends Model
     public function meal()
     {
         return $this->hasOne('Models/Meal', 'id', 'meal_id');
+    }
+
+    /**
+     * @return $this
+     */
+    public function supplements()
+    {
+        return $this->belongsToMany('App\Models\Supplement', 'recipe_supplements', 'recipe_id', 'supplement_id')
+            ->select([
+                'supplements.*',
+                'recipe_supplements.weight',
+            ])
+            ->orderBy('supplements.name', 'ASC')
+            ->withPivot('id');
+    }
+
+    public function macros()
+    {
+        $macros = [
+            'protein'=>0,
+            'fat'=>0,
+            'carbohydrates'=>0,
+            'energy'=>0,
+            'protein_f'=>0,
+            'fat_f'=>0,
+            'carbohydrates_f'=>0,
+            'energy_f'=>0,
+        ];
+
+        $supplements = $this->supplements()->get();
+
+        if(!empty($supplements) && $supplements->count()){
+
+            foreach($supplements as $supplement){
+                foreach($macros as $key=>$value){
+                    if(!empty($supplement->$key)){
+                        $absMacros = intval($supplement->$key * $supplement->weight / 100);
+                        $macros[$key] += $absMacros;
+                        $macros[$key.'_f'] += intval($absMacros * 60/100);
+                    }
+                }
+            }
+        }
+
+        return $macros;
+    }
+
+    public function getOptions()
+    {
+        $supplements = Supplement::orderBy('name', 'DESC')->get();
+
+        $recipeSupplements = $this->supplements()->get();
+
+        return compact(
+            'supplements',
+            'recipeSupplements'
+        );
     }
 }

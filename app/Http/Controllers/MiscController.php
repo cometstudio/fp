@@ -11,32 +11,32 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MiscController extends Controller
 {
+    protected $css = 'misc';
+
     public function item($alias, $subalias = '')
     {
-        $item = Misc::where('alias', '=', (empty($subalias) ? $alias : $subalias))->first();
+        $misc = Misc::where('alias', '=', (empty($subalias) ? $alias : $subalias))->first();
 
-        if(empty($item) || (empty($item->parent_id) && empty($item->a))){
-            $sitemapModel = new Sitemap();
-            $sitemap = $sitemapModel->get();
+        $parent = (!empty($misc->parent_id)) ? Misc::where('id', '=', $misc->parent_id)->firstOrFail() : null;
 
-            return view('errors.e404', [
-                'sitemap'=>$sitemap,
-                'title'=>404
-            ]);
+        if(empty($misc)
+            || (!empty($misc->parent_id)
+                    && (empty($subalias) || ($parent->alias != $alias))
+                )
+        ){
+            return abort(404);
         }else{
-            $rootItem = (!empty($item->parent_id)) ? Misc::where('id', '=', $item->parent_id)->firstOrFail() : null;
+            $template = !empty($misc->template) ? $misc->template : 'misc.item';
 
-            $template = !empty($item->template) ? $item->template : 'item';
-
-            $gallery = $item->getGallery();
+            $gallery = $misc->getGallery();
 
             return view(
-                'misc.'.$template, [
-                    'rootItem'=>$rootItem,
-                    'item'=>$item,
+                $template, [
+                    'css'=>$this->css,
+                    'parent'=>$parent,
+                    'misc'=>$misc,
                     'gallery'=>$gallery,
-                    'title'=>(!empty($item->title) ? $item->title : $item->name),
-                    //'css'=>$this->css,
+                    'title'=>(!empty($misc->title) ? $misc->title : $misc->name),
                 ]
             );
         }

@@ -6,8 +6,7 @@ use App\Models\Calendar;
 use App\Models\Meal;
 use Illuminate\Http\Request;
 use Date;
-
-use App\Http\Requests;
+use App\Models\Comment;
 
 class CalendarController extends Controller
 {
@@ -19,17 +18,26 @@ class CalendarController extends Controller
 
         $calendar = Calendar::where('start_at', '>=', mktime(0,0,0, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
             ->where('start_at', '<=', mktime(23,59,59, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
-            ->firstOrFail();
+            ->first();
+
+        if(empty($calendar)) return view('errors.404', [
+            'css'=>'error',
+            'title'=>'Календарь'
+        ]);
 
         $exercises = $calendar->exercises()->get();
 
         $recipes = $calendar->recipes()->get();
+
+        $totalMacros = $calendar->totalMacros($recipes);
 
         $mealIds = $recipes->pluck('meal_id');
 
         $meals = Meal::whereIn('id', $mealIds)->orderBy('ord', 'DESC')->get();
 
         $seasonDaysLeft = Date::seasonDaysLeft($startAt);
+
+        $commentsHash = (new Comment)->hash($request->segments()[0].'_'.$startAt);
 
         $title = 'Календарь. День '.$seasonDaysLeft;
 
@@ -43,16 +51,8 @@ class CalendarController extends Controller
                 'exercises'=>$exercises,
                 'meals'=>$meals,
                 'recipes'=>$recipes,
-            ]
-        );
-    }
-    public function item()
-    {
-        $this->css = 'calendar';
-
-        return view(
-            'calendar.item', [
-                'css'=>$this->css,
+                'totalMacros'=>$totalMacros,
+                'commentsHash'=>$commentsHash,
             ]
         );
     }

@@ -9,7 +9,7 @@
                 </div>
                 <div class="c2 column">
                     <div class="wrapper">
-                        <div class="info">{{ $comment->user_name }} {{ \Date::getDateFromTime($comment->created_at->timestamp, 3) }}</div>
+                        <div class="b info">{{ $comment->user_name }} {{ \Date::getDateFromTime($comment->created_at->timestamp, 3) }}</div>
                         {{ $comment->text }}
                     </div>
                 </div>

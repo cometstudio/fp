@@ -6,6 +6,7 @@ use App\Models\Calendar;
 use Illuminate\Http\Request;
 use Date;
 use App\Models\Comment;
+use App\Models\Misc;
 
 class GalleryController extends Controller
 {
@@ -13,6 +14,9 @@ class GalleryController extends Controller
 
     public function index(Request $request)
     {
+        $misc = Misc::where('alias', '=', $request->segment(1))->first();
+        $title = !empty($misc) ? !empty($misc->title) ? $misc->title : $misc->name : '';
+
         $gallery = Calendar::where('collect_gallery', '=', 1)
             ->join('comments', 'comments.hash', '=', \DB::raw('MD5(CONCAT("'.$request->segments()[0].'_", calendar.id))'), 'LEFT')
             ->select([
@@ -25,12 +29,11 @@ class GalleryController extends Controller
             ->orderBy('calendar.start_at', 'DESC')
             ->get();
 
-        $title = 'Фотоотчёты';
-
         return view(
             'gallery.index', [
                 'css'=>$this->css,
                 'title'=>$title,
+                'misc'=>$misc,
                 'gallery'=>$gallery,
             ]
         );
@@ -54,7 +57,7 @@ class GalleryController extends Controller
 
         $seasonDaysLeft = Date::seasonDaysLeft($item->start_at);
 
-        $hash = (new Comment)->hash($request->segments()[0].'_'.$item->id);
+        $commentsHash = (new Comment)->hash($request->segments()[0].'_'.$item->id);
 
         $title = 'День '.$seasonDaysLeft.'. Фотоотчёт';
 
@@ -64,7 +67,7 @@ class GalleryController extends Controller
                 'title'=>$title,
                 'seasonDaysLeft'=>$seasonDaysLeft,
                 'item'=>$item,
-                'hash'=>$hash,
+                'commentsHash'=>$commentsHash,
             ]
         );
     }

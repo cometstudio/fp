@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Calendar;
 use Date;
 use App\Models\Comment;
+use App\Models\Misc;
 
 class VideosController extends Controller
 {
@@ -13,6 +14,9 @@ class VideosController extends Controller
 
     public function index(Request $request)
     {
+        $misc = Misc::where('alias', '=', $request->segment(1))->first();
+        $title = !empty($misc) ? !empty($misc->title) ? $misc->title : $misc->name : '';
+
         $videos = Calendar::where('collect_video', '=', 1)
             ->join('comments', 'comments.hash', '=', \DB::raw('MD5(CONCAT("'.$request->segments()[0].'_", calendar.id))'), 'LEFT')
             ->select([
@@ -25,12 +29,11 @@ class VideosController extends Controller
             ->orderBy('calendar.start_at', 'DESC')
             ->get();
 
-        $title = 'Видеоотчёты';
-
         return view(
             'videos.index', [
                 'css'=>$this->css,
                 'title'=>$title,
+                'misc'=>$misc,
                 'videos'=>$videos,
             ]
         );
@@ -54,7 +57,7 @@ class VideosController extends Controller
 
         $seasonDaysLeft = Date::seasonDaysLeft($item->start_at);
 
-        $hash = (new Comment)->hash($request->segments()[0].'_'.$item->id);
+        $commentsHash = (new Comment)->hash($request->segments()[0].'_'.$item->id);
 
         $title = 'День '.$seasonDaysLeft.'. Видеоотчёт';
 
@@ -64,7 +67,7 @@ class VideosController extends Controller
                 'title'=>$title,
                 'seasonDaysLeft'=>$seasonDaysLeft,
                 'item'=>$item,
-                'hash'=>$hash,
+                'commentsHash'=>$commentsHash,
             ]
         );
     }

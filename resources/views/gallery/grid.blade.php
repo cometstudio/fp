@@ -11,7 +11,7 @@
                         <div class="l">{{ \Date::getDateFromTime($day->start_at) }}, день {{ \Date::seasonDaysLeft($day->start_at) }}</div>
                         <div class="r"><i class="fa fa-eye"></i> {{ $day->gallery_views }} <i class="fa fa-comment-o"></i> {{ $day->comments_total }}</div>
                     </div>
-                    SMS, as used on modern handsets, originated from radio telegraphy in radio memo pagers that used standardized.
+                    {{ str_limit(strip_tags($day->text), 120) }}
                 </div>
             </div>
         @endforeach

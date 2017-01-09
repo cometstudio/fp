@@ -19,6 +19,7 @@
     <script src="/bower_components/lt-ie-9/lt-ie-9.min.js"></script>
     <![endif]-->
     <link rel="icon" type="image/ico" href="favicon.ico" />
+    <link rel="shortcut icon" href="shortcut.ico" />
 </head>
 
 <body>

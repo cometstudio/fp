@@ -48,7 +48,7 @@ class Calendar extends Model
             'energy_f'=>0,
         ];
 
-        if(empty($recipes)) $recipes = $this->recipes();
+        if(empty($recipes)) $recipes = $this->recipes()->get();
 
         if(!empty($recipes) && $recipes->count()){
             foreach($recipes as $recipe){
@@ -61,12 +61,7 @@ class Calendar extends Model
             }
         }
 
-        $dailyValues = [
-            'protein'=>250,
-            'fat'=>100,
-            'carbohydrates'=>300,
-            'energy'=>2500,
-        ];
+        $dailyValues = config()->has('macros.'.date('n')) ? config()->get('macros.'.date('n')) : config()->get('macros.0');
 
         foreach($dailyValues as $ingridient=>$value){
             $totalMacros[$ingridient.'_daily']['value'] = intval($totalMacros[$ingridient] * 100 / $value);

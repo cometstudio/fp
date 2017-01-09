@@ -44,7 +44,7 @@
                 </div>
             @endif
             <div class="calendar-recipes">
-                @include('panel.edit.calendarRecipes', ['binded'=>$options['calendarRecipes']])
+                @include('panel.edit.calendarRecipes', ['item'=>$item, 'binded'=>$options['calendarRecipes']])
             </div>
         </div>
     @endif

@@ -7,4 +7,6 @@
             @endforeach
         @endforeach
     </ul>
+    <?php $totalMacros = $item->totalMacros($binded); ?>
+    Белок: <b{{ !$totalMacros['protein_daily']['active'] ? ' style="color: green;"' : '' }}>{{ $totalMacros['protein_daily']['value'] }}%</b>, жиры: <b{{ !$totalMacros['fat_daily']['active'] ? ' style="color: green;"' : '' }}>{{ $totalMacros['fat_daily']['value'] }}%</b>, углеводы: <b{{ !$totalMacros['carbohydrates_daily']['active'] ? ' style="color: green;"' : '' }}>{{ $totalMacros['carbohydrates_daily']['value'] }}%</b>, энергия: <b{{ !$totalMacros['energy_daily']['active'] ? ' style="color: green;"' : '' }}>{{ $totalMacros['energy_daily']['value'] }}%</b> от дневной нормы
 @endif

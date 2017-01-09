@@ -585,6 +585,7 @@ class ActionsController extends Controller
 
             $view = view('panel.edit.calendarRecipes', [
                 'currentPanelModel' => $currentPanelModel,
+                'item' => $calendar,
                 'binded' => $calendar->recipes()->get()
             ])->render();
 

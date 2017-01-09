@@ -65,8 +65,9 @@ class Calendar extends Model
         $dailyCorrections = config()->has('macros.weekdays.'.date('N', $this->start_at)) ? config()->get('macros.weekdays.'.date('N', $this->start_at)) : config()->get('macros.weekdays.0');
 
         foreach($dailyValues as $ingridient=>$value){
-            $totalMacros[$ingridient.'_daily']['value'] = intval($totalMacros[$ingridient] * 100 / ($value * (!empty($dailyCorrections[$ingridient]) ? $dailyCorrections[$ingridient] : 1)));
-            $totalMacros[$ingridient.'_daily']['active'] = ($totalMacros[$ingridient.'_daily']['value'] < 90) || ($totalMacros[$ingridient.'_daily']['value'] > 110) ? true : false;
+            $totalMacros[$ingridient.'_daily']['value'] = intval($value * (!empty($dailyCorrections[$ingridient]) ? $dailyCorrections[$ingridient] : 1));
+            $totalMacros[$ingridient.'_daily']['total'] = intval($totalMacros[$ingridient] * 100 / $totalMacros[$ingridient.'_daily']['value']);
+            $totalMacros[$ingridient.'_daily']['active'] = ($totalMacros[$ingridient.'_daily']['total'] < 85) || ($totalMacros[$ingridient.'_daily']['total'] > 115) ? true : false;
         }
 
         return $totalMacros;

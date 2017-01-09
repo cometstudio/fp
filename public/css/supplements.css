@@ -167,7 +167,7 @@ input[type="checkbox"] {
   background: #f28559;
   border-color: #f28559; }
 
-.box, input, select, textarea, button, .button, .grid .column, .suppliments-grid .column {
+.box, input, select, textarea, button, .button, .grid .column, .suppliments-grid .column, .supplements-graph .column .marker {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
@@ -192,7 +192,7 @@ input[type="checkbox"] {
 .font.medium.size, .form label, .form .label {
   font-size: 15px;
   line-height: 1.5em; }
-.font.small.size, .media-grid .stat, .comments-grid .item .info {
+.font.small.size, .media-grid .stat, .comments-grid .item .info, .supplements-graph {
   font-size: 13px;
   line-height: 1.5em; }
 
@@ -428,5 +428,29 @@ h3 {
 
 .s1 > .wrapper {
   padding-top: 0; }
+
+.supplements-graph .graph {
+  margin: 0.5em 0;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc; }
+.supplements-graph .row:first-child .column {
+  height: 200px; }
+.supplements-graph .column {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 7.14286%; }
+  .supplements-graph .column .marker {
+    position: absolute;
+    bottom: 0;
+    z-index: 5;
+    width: 100%; }
+    .supplements-graph .column .marker.daily-value {
+      background: #f9f9f9;
+      border-top: 1px solid #ddd; }
+    .supplements-graph .column .marker.total {
+      border-top: 1px solid green; }
+      .supplements-graph .column .marker.total.active {
+        border-top: 1px solid red; }
 
 /*# sourceMappingURL=supplements.css.map */

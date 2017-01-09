@@ -183,10 +183,10 @@
                         </div>
                         <div class="daily _row clearfix">
                             <div class="column">% от нормы</div>
-                            <div class="{{ $totalMacros['protein_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['protein_daily']['value'] }}%</div>
-                            <div class="{{ $totalMacros['fat_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['fat_daily']['value'] }}%</div>
-                            <div class="{{ $totalMacros['carbohydrates_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['carbohydrates_daily']['value'] }}%</div>
-                            <div class="{{ $totalMacros['energy_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['energy_daily']['value'] }}%</div>
+                            <div class="{{ $totalMacros['protein_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['protein_daily']['total'] }}%</div>
+                            <div class="{{ $totalMacros['fat_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['fat_daily']['total'] }}%</div>
+                            <div class="{{ $totalMacros['carbohydrates_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['carbohydrates_daily']['total'] }}%</div>
+                            <div class="{{ $totalMacros['energy_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['energy_daily']['total'] }}%</div>
                         </div>
                     </div>
                 </div>

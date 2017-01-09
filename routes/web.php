@@ -45,6 +45,7 @@ Route::group(['as' => 'supplements:', 'prefix'=>'directory'], function () {
     Route::group(['prefix'=>'supplements'], function () {
         Route::get('/', 'SupplementsController@index')->name('index');
     });
+    Route::get('/graph', 'SupplementsController@graph')->name('graph');
 });
 
 Route::group(['as' => 'comments:', 'prefix'=>'comments'], function () {

@@ -58,3 +58,44 @@
     padding-top: 0;
   }
 }
+
+.supplements-graph{
+  @extend .small.font.size;
+
+  .graph{
+    margin: 0.5em 0;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  .row{
+    &:first-child{
+      .column{
+        height: 200px;
+      }
+    }
+  }
+  .column{
+    position: relative;
+    display: inline-block;
+    float: left;
+    width: (100% / 14);
+    .marker{
+      @extend .box;
+
+      position: absolute;
+      bottom: 0;
+      z-index: 5;
+      width: 100%;
+      &.daily-value{
+        background: #f9f9f9;
+        border-top: 1px solid #ddd;
+      }
+      &.total{
+         border-top: 1px solid green;
+        &.active{
+          border-top: 1px solid red;
+        }
+      }
+    }
+  }
+}

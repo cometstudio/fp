@@ -65,9 +65,16 @@ class Date
                     $date = implode(' ', $date);
                 break;
                 case 1:
-                    $date[] = date('j', $time);
+                    $date[] = date('d', $time);
                     $date[] = date('m', $time);
                     $date[] = date('Y', $time);
+
+                    $date = implode('.', $date);
+                break;
+                case 2:
+                    $date[] = date('d', $time);
+                    $date[] = date('m', $time);
+                    $date[] = date('y', $time);
 
                     $date = implode('.', $date);
                 break;

@@ -61,10 +61,11 @@ class Calendar extends Model
             }
         }
 
-        $dailyValues = config()->has('macros.'.date('n')) ? config()->get('macros.'.date('n')) : config()->get('macros.0');
+        $dailyValues = config()->has('macros.months.'.date('n')) ? config()->get('macros.months.'.date('n')) : config()->get('macros.months.0');
+        $dailyCorrections = config()->has('macros.weekdays.'.date('N')) ? config()->get('macros.weekdays.'.date('N')) : config()->get('macros.weekdays.0');
 
         foreach($dailyValues as $ingridient=>$value){
-            $totalMacros[$ingridient.'_daily']['value'] = intval($totalMacros[$ingridient] * 100 / $value);
+            $totalMacros[$ingridient.'_daily']['value'] = intval($totalMacros[$ingridient] * 100 / ($value * (!empty($dailyCorrections[$ingridient]) ? $dailyCorrections[$ingridient] : 1)));
             $totalMacros[$ingridient.'_daily']['active'] = ($totalMacros[$ingridient.'_daily']['value'] < 90) || ($totalMacros[$ingridient.'_daily']['value'] > 110) ? true : false;
         }
 

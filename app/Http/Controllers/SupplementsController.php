@@ -44,6 +44,7 @@ class SupplementsController extends Controller
 
         $segment= Calendar::where('start_at', '>', ($startAt-(86400*14)))
             ->where('start_at', '<=', $startAt)
+            ->orderBy('start_at', 'ASC')
             ->get();
 
         $maxValue = 0;

@@ -4,7 +4,10 @@ $accent: #4a447e;
 $lightAccent: lighten($accent, 35%);
 $pair: #f28559;
 
-$contentMinWidth: 1280px;
+$mobileMinWidth: 320px;
+$mobileMaxWidth: 768px;
+
+$contentMinWidth: $mobileMinWidth;
 $contentMaxWidth: 1280px;
 $contentPadding: 36px;
 $gridGutter: 10%;
@@ -155,6 +158,13 @@ h3{
       padding-bottom: $contentPadding * 2;
     }
   }
+  @media screen and (max-width: $mobileMaxWidth) {
+      > .wrapper{
+        $lrPadding: $contentPadding / 2;
+
+        padding: 0 $lrPadding;
+      }
+  }
 }
 
 .body-fade, .body-wait {
@@ -224,6 +234,9 @@ h3{
   .r{
     float: right;
   }
+  .responsive-menu-control{
+    display: none;
+  }
   .social-links{
     @extend .i;
 
@@ -234,6 +247,42 @@ h3{
       text-decoration: none;
       &:hover{
         color: #fff;
+      }
+    }
+  }
+  @media screen and (max-width: $mobileMaxWidth) {
+    span, .l, .r{
+        display: block;
+        float: none;
+        height: auto;
+    }
+    a{
+      text-decoration: none;
+    }
+    .index{
+      span{
+        padding: 1.5em 0;
+      }
+    }
+    .responsive-menu-control{
+      display: inline-block;
+      float: right;
+    }
+    .social-links{ display: none; }
+    .menu{
+        display: none;
+    }
+    nav{
+      text-align: center;
+      > span{
+        display: block;
+        float: none;
+        margin: 0;
+      }
+      a{
+        display: block;
+        padding: 0.5em 0;
+        border-top: 1px solid lighten($accent, 8%);
       }
     }
   }

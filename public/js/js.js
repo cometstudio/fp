@@ -36,13 +36,17 @@ function hideMainNavOnScroll()
 {
     var lastTop = 0;
     var top = 0;
-    var mainNavHeight = $('.main-nav').outerHeight();
+    var mainNavHeight;
+    var indexHeight;
 
     $(window).on('scroll', function(){
 
+        indexHeight = $('.main-nav .index').outerHeight();
+        mainNavHeight = $('.main-nav').outerHeight();
+
         top = $(window).scrollTop();
 
-        if((top > mainNavHeight) && (lastTop < top)){
+        if((top > indexHeight) && (lastTop < top)){
             $('.main-nav').css('top', -1 * mainNavHeight);
         }else{
             $('.main-nav').css('top', 0);

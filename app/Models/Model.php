@@ -12,6 +12,7 @@ class Model extends BaseModel
 {
     protected $dateFormat = 'U';
     protected $resizerConfigSet = 'dirs.default';
+    public $orderByDefault = ['id', 'DESC'];
 
     public function getResizerConfigSet()
     {

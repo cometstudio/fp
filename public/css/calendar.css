@@ -440,6 +440,8 @@ h3 {
     .exercises-grid .row.title, .food-grid .row.title {
       background: #4a447e;
       color: #fff; }
+      .exercises-grid .row.title .wrapper, .food-grid .row.title .wrapper {
+        padding: 24px 36px; }
     .exercises-grid .row:first-child, .food-grid .row:first-child {
       border-top: none; }
   .exercises-grid .gallery .image, .food-grid .gallery .image {

@@ -25,7 +25,7 @@
                                     <input id="email" name="email" type="text" />
                                 </div>
                                 <div class="row">
-                                   <div class="label">Пароль <a href="" id="forgotten" style="float: right;">Не помню пароль</a></div>
+                                   <div class="label">Пароль <a href="{{ route('forgot', [], false) }}" id="forgotten" style="float: right;">Не помню пароль</a></div>
                                     <i class="fa fa-eye-slash" onclick="$(this).parent().find('input').prop('type', 'text');$(this).removeClass('fa-eye-slash').addClass('fa-eye');"></i>
                                     <input id="password" name="password" type="password" />
                                 </div>

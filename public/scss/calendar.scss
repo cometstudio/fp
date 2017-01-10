@@ -66,6 +66,9 @@
     &.title{
       background: $accent;
       color: #fff;
+      .wrapper{
+        padding: $contentPadding / 1.5 $contentPadding;
+      }
     }
     &:first-child{
       border-top: none;

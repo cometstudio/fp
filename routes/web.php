@@ -46,12 +46,9 @@ Route::group(['as' => 'gallery:', 'prefix'=>'gallery'], function () {
 
 Route::group(['as' => 'supplements:', 'prefix'=>'directory'], function () {
 
-    Route::get('/{subalias?}', 'MiscController@item')->name('directory');
     Route::get('/graph', 'SupplementsController@graph')->name('graph');
-
-    Route::group(['prefix'=>'supplements'], function () {
-        Route::get('/', 'SupplementsController@index')->name('index');
-    });
+    Route::get('/supplements', 'SupplementsController@index')->name('index');
+    Route::get('/{subalias?}', 'MiscController@item')->name('directory');
 });
 
 Route::group(['as' => 'comments:', 'prefix'=>'comments'], function () {
@@ -63,11 +60,6 @@ Route::group(['as' => 'comments:', 'prefix'=>'comments'], function () {
 Route::post('/captcha/touch', 'UsersController@touchCaptcha');
 
 // External services interfaces
-// Captcha
-Route::get('/captcha/default', function(){
-    return captcha();
-});
-
 // Sitemap xml
 Route::get('/sitemap/get', 'SitemapController@get');
 

@@ -8,6 +8,7 @@ class Calendar extends Model
 {
     protected $table = 'calendar';
     protected $resizerConfigSet = 'dirs.calendar';
+    public $orderByDefault = ['start_at', 'DESC'];
 
     protected $fillable = [
         'text',

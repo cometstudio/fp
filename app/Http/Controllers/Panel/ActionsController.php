@@ -119,7 +119,7 @@ class ActionsController extends Controller
 
         $perPage = (int) $this->request->get('q', $this->perPageDefault);
 
-        $builder = !empty($currentPanelModel->sortable) ? $model::orderBy( 'ord', 'DESC') : $model::orderBy( 'id', 'DESC');
+        $builder = !empty($currentPanelModel->sortable) ? $model::orderBy( 'ord', 'DESC') : $model::orderBy( $model->orderByDefault[0], $model->orderByDefault[1]);
 
         $model->modifyQueryBuilder($this->request, $builder);
 

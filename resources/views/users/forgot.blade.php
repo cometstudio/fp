@@ -5,7 +5,7 @@
     <div class="content-wrapper">
         <div class="s0 section">
             <div class="wrapper">
-                <h1>-</h1>
+                <h1>Получить новый пароль</h1>
                 <div class="forgot form grid">
                     <form action="{{ route('postForgot', [], false) }}" method="post">
                         <div class="x2 row clearfix">

@@ -7,7 +7,7 @@
             <div class="wrapper">
                 <h1>Войти на сайт</h1>
                 <div class="login form grid">
-                    <form action="{{ route('login', [], false) }}">
+                    <form action="{{ route('login', [], false) }}" method="post">
                         <div class="x2 row clearfix">
                             <div class="column">
                                 <div class="row">

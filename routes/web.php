@@ -20,6 +20,9 @@ Route::group(['middleware' => ['redirectUnauthenticatedUser']], function () {
 
 // Unuthenticated only
 Route::group(['middleware' => ['redirectAuthenticatedUser']], function () {
+    Route::get('/forgot', 'UsersController@forgot')->name('forgot');
+    Route::post('/forgot', 'UsersController@postForgot')->name('postForgot');
+
     Route::get('/login', 'UsersController@login')->name('login');
     Route::post('/login', 'UsersController@postLogin')->name('postLogin');
 });
@@ -42,10 +45,13 @@ Route::group(['as' => 'gallery:', 'prefix'=>'gallery'], function () {
 });
 
 Route::group(['as' => 'supplements:', 'prefix'=>'directory'], function () {
+
+    Route::get('/{subalias?}', 'MiscController@item')->name('directory');
+    Route::get('/graph', 'SupplementsController@graph')->name('graph');
+
     Route::group(['prefix'=>'supplements'], function () {
         Route::get('/', 'SupplementsController@index')->name('index');
     });
-    Route::get('/graph', 'SupplementsController@graph')->name('graph');
 });
 
 Route::group(['as' => 'comments:', 'prefix'=>'comments'], function () {
@@ -57,6 +63,12 @@ Route::group(['as' => 'comments:', 'prefix'=>'comments'], function () {
 Route::post('/captcha/touch', 'UsersController@touchCaptcha');
 
 // External services interfaces
+// Captcha
+Route::get('/captcha/default', function(){
+    return captcha();
+});
+
+// Sitemap xml
 Route::get('/sitemap/get', 'SitemapController@get');
 
 Route::get('/instagram/auth', 'InstagramController@auth');
@@ -67,7 +79,6 @@ Route::group(['as' => 'webhook:', 'prefix'=>'webhook'], function () {
 
 // Misc route
 Route::group(['as' => 'misc:'], function () {
-    Route::get('/{alias}/{subalias?}', 'MiscController@item')
-        ->name('item');
+    //Route::get('/{alias}/{subalias?}', 'MiscController@item')->name('item');
 });
 

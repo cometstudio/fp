@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use DB;
 use App\Models\User;
 use App\Jobs\SubmitVerificationEmail;
+use App\Jobs\SubmitForgotEmail;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Str;
 
@@ -45,6 +45,52 @@ class UsersController extends Controller
             $password = $request->input('password');
 
             return $this->forceLogin($email, $password);
+        }
+    }
+
+    public function forgot()
+    {
+        $title = 'Напомнить пароль';
+
+        return view(
+            'users.forgot', [
+                'css'=>$this->css,
+                'title'=>$title,
+            ]
+        );
+    }
+
+    /**
+     * Submit a password to the user
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+      @throws \Exception
+     */
+    public function postForgot(Request $request)
+    {
+        $abstractUser = new User();
+
+        // Validate input
+        $this->validate($request, $abstractUser->getForgotValidationRules(), $abstractUser->getForgotValidationMessages());
+
+        try{
+            if(Auth::check()) throw new \Exception('Вы авторизованы');
+
+            $email = $request->get('email');
+
+            $user = User::where('email', '=', $email)->first();
+
+            if(empty($user)) throw new \Exception('Пользователь с указанными данными не зарегистрирован');
+
+            $password = Str::random(4);
+
+            $user->setAttribute('password', $user::encryptPassword($password));
+
+            $this->submitForgotEmail($user, $password);
+
+            return response()->json(['location'=>url()->route('login', [], false)]);
+        }catch (\Exception $e){
+            return response()->json(['message'=>$e->getMessage()]);
         }
     }
 
@@ -138,12 +184,28 @@ class UsersController extends Controller
     }
 
     /**
+     * Submit forgot email in a production environment
+     * @param User $user
+     */
+    public function submitForgotEmail(User $user, $password)
+    {
+        if(env('APP_ENV') == 'production') {
+
+            if(!$user->update()) {
+                throw new \PDOException;
+            }
+
+            $this->dispatch(new SubmitForgotEmail($user, $password));
+        }
+    }
+
+    /**
      * Submit verification email in a production environment
      * @param User $user
      */
     public function submitVerificationEmail(User $user)
     {
-        if(!env('APP_DEBUG')) {
+        if(env('APP_ENV') == 'production') {
             $user->setAttribute('token', Str::random(24));
 
             if(!$user->update()) {

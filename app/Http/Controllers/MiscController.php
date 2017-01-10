@@ -13,7 +13,7 @@ class MiscController extends Controller
 {
     protected $css = 'misc';
 
-    public function item($alias, $subalias = '')
+    public function item($alias = 'directory', $subalias = '')
     {
         $misc = Misc::where('alias', '=', (empty($subalias) ? $alias : $subalias))->first();
 

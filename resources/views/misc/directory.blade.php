@@ -9,7 +9,7 @@
                 @if($kids = $misc->kids()->get())
                     <ul>
                     @foreach($kids as $kid)
-                        <li><a href="{{ route('misc:item', ['alias'=>$misc->alias, 'subalias'=>$kid->alias], false) }}">{{ $kid->name }}</a></li>
+                        <li><a href="{{ route('supplements:directory', ['subalias'=>$kid->alias], false) }}">{{ $kid->name }}</a></li>
                     @endforeach
                     </ul>
                 @endif

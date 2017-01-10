@@ -112,6 +112,17 @@ function login()
     return false;
 }
 
+function forgot()
+{
+    var form = $('.forgot form');
+
+    ajaxSubmit(form, null, function(response){
+        touchCaptcha();
+    });
+
+    return false;
+}
+
 function saveProfile()
 {
     var form = $('.profile form');

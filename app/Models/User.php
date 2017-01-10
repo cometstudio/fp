@@ -38,6 +38,7 @@ class User extends PanelUser implements
      * @var array
      */
     protected $hidden = [
+        '_password',
         'password',
         'remember_token',
     ];
@@ -109,6 +110,24 @@ class User extends PanelUser implements
             'email.email' => 'Укажите реальный e-mail',
             'email.unique' => 'Пользователь с указанным e-mail уже зарегистрирован',
             'password.required' => 'Укажите пароль',
+            'captcha.required' => 'Повторите символы',
+            'captcha.captcha' => 'Повторите символы верно',
+        ];
+    }
+
+    public function getForgotValidationRules()
+    {
+        return [
+            'email' => 'required|email',
+            'captcha' => 'required|captcha',
+        ];
+    }
+
+    public function getForgotValidationMessages()
+    {
+        return [
+            'email.required'=>'Укажите e-mail',
+            'email.email'=>'Укажите реальный e-mail',
             'captcha.required' => 'Повторите символы',
             'captcha.captcha' => 'Повторите символы верно',
         ];

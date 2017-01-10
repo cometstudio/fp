@@ -10,8 +10,8 @@
 
 .s1{
   h2{
-    font-size: 75px;
-    line-height: 1.3em;
+    @extend h1;
+
     margin-bottom: 0;
   }
   .date-selector{

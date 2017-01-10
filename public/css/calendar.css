@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,500,500i,700,700i,900&subset=cyrillic");
 @import url("https://fonts.googleapis.com/css?family=PT+Serif:400i&subset=cyrillic");
-html, body, div, span, applet, object, iframe, h1, h2, .s0 h1, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, .s1 h2, .s1 .s0 h1, .s0 .s1 h1, h2, .s0 h1, .s0 .s1 h2, .s1 .s0 h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -202,7 +202,7 @@ b, strong, .b, .main-nav .l span, .main-nav .l a {
 i, .i, .main-nav .social-links, .media-grid .image .label {
   font-style: italic; }
 
-.extrabold, h1, h2, .s0 h1, h3 {
+.extrabold, h1, .s1 h2, h2, .s0 h1, h3 {
   font-weight: 700; }
 
 .centered {
@@ -256,12 +256,12 @@ a {
     text-decoration: none;
     color: #f28559; }
 
-h1 {
+h1, .s1 h2, .s1 .s0 h1, .s0 .s1 h1 {
   font-size: 50px;
   line-height: 1.3em;
   margin-bottom: 54px; }
 
-h2, .s0 h1 {
+h2, .s0 h1, .s0 .s1 h2, .s1 .s0 h2 {
   font-size: 30px;
   line-height: 1.3em;
   margin-bottom: 54px; }
@@ -271,6 +271,21 @@ h3 {
   line-height: 1.3em;
   margin-bottom: 18px; }
 
+@media screen and (max-width: 768px) {
+  h1, .s1 h2, .s1 .s0 h1, .s0 .s1 h1 {
+    font-size: 36px;
+    line-height: 1.3em;
+    margin-bottom: 54px; }
+
+  h2, .s0 h1, .s0 .s1 h2, .s1 .s0 h2 {
+    font-size: 20px;
+    line-height: 1.3em;
+    margin-bottom: 54px; }
+
+  h3 {
+    font-size: 18px;
+    line-height: 1.3em;
+    margin-bottom: 18px; } }
 .section > .wrapper {
   min-width: 196px;
   max-width: 1156px;
@@ -286,7 +301,7 @@ h3 {
     padding-bottom: 72px; }
 @media screen and (max-width: 768px) {
   .section > .wrapper {
-    padding: 18px 18px; } }
+    padding: 24px 18px; } }
 
 .body-fade, .body-wait {
   display: none;
@@ -322,6 +337,12 @@ h3 {
     float: left; }
   .main-nav nav i {
     margin-right: 0.2em; }
+  .main-nav nav img {
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    height: 30px;
+    margin-right: 5px; }
   .main-nav span {
     height: 72px; }
   .main-nav a {
@@ -365,11 +386,20 @@ h3 {
       .main-nav nav > span {
         display: block;
         float: none;
-        margin: 0; }
+        margin: 0;
+        border-top: 1px solid #5a5298; }
       .main-nav nav a {
         display: block;
-        padding: 0.5em 0;
-        border-top: 1px solid #5a5298; } }
+        padding: 0.5em 0; }
+      .main-nav nav img {
+        border-radius: 25px;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        display: inline-block;
+        height: 50px;
+        margin: 1em 0 0; }
+      .main-nav nav .fa {
+        display: none; } }
 
 .content-wrapper {
   position: relative;
@@ -433,12 +463,10 @@ h3 {
   .gallery-grid .image img {
     max-width: 100%; }
 
-.s0 h1 {
+.s0 h1, .s0 .s1 h2, .s1 .s0 h2 {
   margin-bottom: 0; }
 
 .s1 h2, .s1 .s0 h1, .s0 .s1 h1 {
-  font-size: 75px;
-  line-height: 1.3em;
   margin-bottom: 0; }
 .s1 .date-selector {
   text-align: right; }

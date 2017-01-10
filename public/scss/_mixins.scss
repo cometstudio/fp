@@ -6,11 +6,6 @@
       margin-right: 0;
     }
   }
-  &:last-child{
-    > .column{
-      //margin-bottom: 0;
-    }
-  }
 }
 
 @mixin round($radius){

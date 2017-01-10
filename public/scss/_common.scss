@@ -81,7 +81,7 @@ i, .i{
 .l{ float: left; }
 .r{ float: right; }
 
-.grid {
+.grid{
   .column {
     @extend .box;
 
@@ -96,6 +96,20 @@ i, .i{
   }
   .x4 {
     @include gridRow(4, $gridGutter / 4, $gridGutter / 4);
+  }
+
+  @media screen and (max-width: $mobileMaxWidth) {
+    .row{
+      .column {
+        width: auto;
+        margin: 0;
+        margin-bottom: 3%;
+      }
+    }
+    .column {
+      display: block;
+      float: none;
+    }
   }
 }
 
@@ -145,7 +159,7 @@ h3{
 
     min-width: $contentMinWidth - ($lrPadding * 2) - 16;
     max-width: $contentMaxWidth - ($lrPadding * 2) - 16;
-    padding: $lrPadding 0 0;
+    padding: $lrPadding $lrPadding 0;
     margin: 0 auto;
   }
   &.inverted{
@@ -162,7 +176,7 @@ h3{
       > .wrapper{
         $lrPadding: $contentPadding / 2;
 
-        padding: 0 $lrPadding;
+        padding: $lrPadding $lrPadding;
       }
   }
 }
@@ -226,7 +240,7 @@ h3{
   }
   .l{
     float: left;
-    font-size: 20px;
+    font-size: 21px;
     span, a{
       @extend .b;
     }
@@ -261,7 +275,7 @@ h3{
     }
     .index{
       span{
-        padding: 1.5em 0;
+        padding: 23px 0;
       }
     }
     .responsive-menu-control{

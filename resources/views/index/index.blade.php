@@ -5,7 +5,12 @@
     <div class="content-wrapper">
         <div class="section">
             <div class="wrapper">
-                Test
+                <div class="grid">
+                    <div class="x2 row">
+                        <div class="column">1</div>
+                        <div class="column">1</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

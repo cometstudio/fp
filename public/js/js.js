@@ -19,6 +19,10 @@ $(document).ready(function()
     initMagnificPopup();
 });
 
+$(window).on('resize', function(){
+    fixContentWrapperPosition();
+});
+
 function initMagnificPopup()
 {
     $('.popup-gallery').magnificPopup({

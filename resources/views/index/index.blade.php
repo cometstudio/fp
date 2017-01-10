@@ -1,17 +1,6 @@
 @extends('master')
+
 @section('content')
-
-    <div class="content-wrapper">
-        <div class="section">
-            <div class="wrapper">
-                Test
-            </div>
-        </div>
-    </div>
-
-@endsection
-
-@section('_content')
 
     <div class="s0 section">
         <div class="wrapper">

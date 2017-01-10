@@ -26,10 +26,11 @@
 <div class="body-wait"></div>
 <div class="body-fade"></div>
 
-@include('common._mainNav')
+@include('common.mainNav')
 
 @yield('content')
 
+@include('common.footer')
 
 <script src="/bower_components/jquery-form/jquery.form.js"></script>
 <script src="/bower_components/cookie/cookie.min.js"></script>

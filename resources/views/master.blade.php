@@ -26,7 +26,7 @@
 <div class="body-wait"></div>
 <div class="body-fade"></div>
 
-
+@include('common.mainNav')
 
 @yield('content')
 

@@ -1,7 +1,7 @@
 <div class="main-nav section">
     <div class="wrapper clearfix">
         <div class="l">
-            <span><a href="{{ route('index', [], false) }}">Фитнес-практика</a></span>
+            <span><a href="{{ route('index', [], false) }}">Index</a></span>
         </div>
 
         <div class="social-links l">

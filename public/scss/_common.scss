@@ -156,12 +156,12 @@ h3{
   h1{
     font-size: 36px;
     line-height: 1.3em;
-    margin-bottom: $contentPadding * 1.5;
+    margin-bottom: $contentPadding;
   }
   h2{
     font-size: 20px;
     line-height: 1.3em;
-    margin-bottom: $contentPadding * 1.5;
+    margin-bottom: $contentPadding;
   }
   h3{
     font-size: 18px;
@@ -191,7 +191,7 @@ h3{
   }
   @media screen and (max-width: $mobileMaxWidth) {
       > .wrapper{
-        padding: $contentPadding / 1.5 $contentPadding / 2;
+        padding: $contentPadding $contentPadding / 2;
       }
   }
 }

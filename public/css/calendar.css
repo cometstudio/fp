@@ -275,12 +275,12 @@ h3 {
   h1, .s1 h2, .s1 .s0 h1, .s0 .s1 h1 {
     font-size: 36px;
     line-height: 1.3em;
-    margin-bottom: 54px; }
+    margin-bottom: 36px; }
 
   h2, .s0 h1, .s0 .s1 h2, .s1 .s0 h2 {
     font-size: 20px;
     line-height: 1.3em;
-    margin-bottom: 54px; }
+    margin-bottom: 36px; }
 
   h3 {
     font-size: 18px;
@@ -301,7 +301,7 @@ h3 {
     padding-bottom: 72px; }
 @media screen and (max-width: 768px) {
   .section > .wrapper {
-    padding: 24px 18px; } }
+    padding: 36px 18px; } }
 
 .body-fade, .body-wait {
   display: none;

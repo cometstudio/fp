@@ -18,12 +18,12 @@
                         </div>
                         <div class="date-selector column">
                             <form action="{{ route('calendar:index', [], false) }}" method="GET">
-                                &larr; <a href="{{ route('calendar:index', ['date'=>\Date::getDateFromTime($startAt - 86400, 1)], false) }}">назад</a>
-                                <span>
+                                <span>&larr; <a href="{{ route('calendar:index', ['date'=>\Date::getDateFromTime($startAt - 86400, 1)], false) }}">назад</a></span>
+                                <span class="datepicker-container">
                                     <i class="fa fa-calendar"></i>
                                     <input name="date" class="datepicker" value="{{ Date::getDateFromTime($startAt, 1) }}" onchange="this.form.submit();" type="text" />
                                 </span>
-                                <a href="{{ route('calendar:index', ['date'=>\Date::getDateFromTime($startAt + 86400, 1)], false) }}">вперёд</a> &rarr;
+                                <span><a href="{{ route('calendar:index', ['date'=>\Date::getDateFromTime($startAt + 86400, 1)], false) }}">вперёд</a> &rarr;</span>
                             </form>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
         </div>
 
         @if(!empty($calendar->text))
-            <div class="s4 section">
+            <div class="s2 section">
                 <div class="wrapper">
                     {!! $calendar->text !!}
                 </div>
@@ -40,7 +40,7 @@
         @endif
 
         @if(!empty($calendar->video) && $calendar->collect_video)
-            <div class="s55 section">
+            <div class="s3 section">
                 <div class="wrapper">
                     <div class="video-player">
                         {!! $calendar->video !!}
@@ -50,7 +50,7 @@
         @endif
 
         @if(!empty($calendar->gallery) && $calendar->collect_gallery)
-            <div class="s6 section">
+            <div class="s4 section">
                 <div class="wrapper">
                     <div class="gallery-grid grid">
                         <div class="x4 row popup-gallery clearfix">
@@ -69,75 +69,51 @@
             </div>
         @endif
 
+
         @if(!empty($meals) && $meals->count())
-            <div class="s3 section">
+            <div class="s5 section">
                 <div class="wrapper">
                     <div class="grid">
                         <div class="x2 row clearfix">
                             <div class="column"><h2>Суточный рацион питания*</h2></div>
-                            <div class="small font size column" style="text-align: right;">
-                                <p>* Рецепты блюд составлены для мужчины весом 100 кг</p>
-                                <p>Размер порции для женщины весом 55 кг &mdash; меньше на 45%</p>
+                            <div class="small font size column">
+                                * Рецепты блюд составлены для мужчины весом 100 кг. Размер порции для женщины весом 55 кг &mdash; меньше на 45%
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="s6 section">
+                <div class="wrapper">
                     <div class="food-grid grid">
                         <?php $j = 0; ?>
                         @foreach($meals as $meal)
-                            <div class="x1 title row clearfix">
-                                <div class="column">
-                                    <div class="wrapper">
-                                        <b>{{ $meal->name }}</b>
-                                    </div>
-                                </div>
+
+                            <div class="title">
+                                <h3>{{ $meal->name }}</h3>
                             </div>
+
                             @if(!empty($recipes) && $recipes->count())
                                 @foreach($recipes->filter(function($recipe) use ($meal){ return $recipe->meal_id == $meal->id; }) as $recipe)
+                                    <div class="name">{{ $recipe->name }}</div>
                                     <div class="x2 row clearfix">
                                         <div class="column">
                                             <div class="wrapper">
-                                                <p><b>{{ $recipe->name }}</b></p>
-                                                <p>&nbsp;</p>
                                                 {!! $recipe->notice !!}
                                             </div>
                                         </div>
                                         <div class="column">
                                             <div class="wrapper">
                                                 {!! $recipe->text !!}
-
-                                                @if(!empty($recipe->macros))
-                                                    <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}macros-table">
-                                                        <div class="_row clearfix">
-                                                            <div class="column">&nbsp;</div>
-                                                            <div class="column">Белок</div>
-                                                            <div class="column">Жиры</div>
-                                                            <div class="column">Углеводы</div>
-                                                            <div class="column">Энергия</div>
-                                                        </div>
-                                                        <div class="_row clearfix">
-                                                            <div class="column">Мужчины</div>
-                                                            <div class="column">{{ $recipe->macros['protein'] }}</div>
-                                                            <div class="column">{{ $recipe->macros['fat'] }}</div>
-                                                            <div class="column">{{ $recipe->macros['carbohydrates'] }}</div>
-                                                            <div class="column">{{ $recipe->macros['energy'] }}</div>
-                                                        </div>
-                                                        <div class="_row clearfix">
-                                                            <div class="column">Женщины</div>
-                                                            <div class="column">{{ $recipe->macros['protein_f'] }}</div>
-                                                            <div class="column">{{ $recipe->macros['fat_f'] }}</div>
-                                                            <div class="column">{{ $recipe->macros['carbohydrates_f'] }}</div>
-                                                            <div class="column">{{ $recipe->macros['energy_f'] }}</div>
-                                                        </div>
+                                                @if(!empty($recipe->gallery))
+                                                    <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery popup-gallery clearfix">
+                                                        @foreach($recipe->getGallery() as $picture)
+                                                            <a href="/images/big/{{ $picture }}.jpg" class="image">
+                                                                <img src="/images/small/{{ $picture }}.jpg" />
+                                                            </a>
+                                                        @endforeach
                                                     </div>
                                                 @endif
-
-                                                <div class="gallery popup-gallery clearfix">
-                                                    @foreach($recipe->getGallery() as $picture)
-                                                        <a href="/images/big/{{ $picture }}.jpg" class="image">
-                                                            <img src="/images/small/{{ $picture }}.jpg" />
-                                                        </a>
-                                                    @endforeach
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -194,7 +170,7 @@
         @endif
 
         @if(!empty($exercises) && $exercises->count())
-            <div class="s2 section">
+            <div class="s7 section">
                 <div class="wrapper">
                     <h2>Упражнения</h2>
                     <div class="exercises-grid grid">
@@ -220,7 +196,7 @@
             </div>
         @endif
 
-        <div class="s7 section">
+        <div class="s8 section">
             <div class="wrapper">
                 @include('comments.container')
             </div>

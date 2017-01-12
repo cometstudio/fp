@@ -53,7 +53,7 @@
             <div class="s4 section">
                 <div class="wrapper">
                     <div class="gallery-grid grid">
-                        <div class="x4 row popup-gallery clearfix">
+                        <div class="x4 responsive row popup-gallery clearfix">
                             @foreach($calendar->getGallery() as $picture)
                                 <div class="column">
                                     <div class="image">
@@ -68,7 +68,6 @@
                 </div>
             </div>
         @endif
-
 
         @if(!empty($meals) && $meals->count())
             <div class="s5 section">
@@ -134,35 +133,48 @@
                     </div>
                 </div>
                 <div class="wrapper">
-                    <h3>Питательная ценность суточного рациона, суммарно</h3>
+                    <div>
+                        <h3>Питательная ценность суточного рациона, суммарно</h3>
+                    </div>
                     <div class="macros-table grid">
-                        <div class="_row clearfix">
+                        <div class="row clearfix">
                             <div class="column">&nbsp;</div>
-                            <div class="column">Белок, грамм</div>
-                            <div class="column">Жиры, грамм</div>
-                            <div class="column">Углеводы, грамм</div>
-                            <div class="column">Энергия, ККал</div>
+                            <div class="column">
+                                <span class="desktop-visible">Md</span>
+                                <span class="mobile-visible">Mm</span>
+                            </div>
+                            <div class="column">
+                                <span class="desktop-visible">Fd</span>
+                                <span class="mobile-visible">Fm</span>
+                            </div>
+                            <div class="column">
+                                <span class="desktop-visible">%d</span>
+                                <span class="mobile-visible">%m</span>
+                            </div>
                         </div>
-                        <div class="_row clearfix">
-                            <div class="column">Мужчины</div>
+                        <div class="row clearfix">
+                            <div class="column">P</div>
                             <div class="column">{{ $totalMacros['protein'] }}</div>
-                            <div class="column">{{ $totalMacros['fat'] }}</div>
-                            <div class="column">{{ $totalMacros['carbohydrates'] }}</div>
-                            <div class="column">{{ $totalMacros['energy'] }}</div>
-                        </div>
-                        <div class="_row clearfix">
-                            <div class="column">Женщины</div>
                             <div class="column">{{ $totalMacros['protein_f'] }}</div>
-                            <div class="column">{{ $totalMacros['fat_f'] }}</div>
-                            <div class="column">{{ $totalMacros['carbohydrates_f'] }}</div>
-                            <div class="column">{{ $totalMacros['energy_f'] }}</div>
+                            <div class="{{ $totalMacros['protein_daily']['active'] ? 'active ' : '' }}daily column">{{ $totalMacros['protein_daily']['total'] }}%</div>
                         </div>
-                        <div class="daily _row clearfix">
-                            <div class="column">% от нормы</div>
-                            <div class="{{ $totalMacros['protein_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['protein_daily']['total'] }}%</div>
-                            <div class="{{ $totalMacros['fat_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['fat_daily']['total'] }}%</div>
-                            <div class="{{ $totalMacros['carbohydrates_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['carbohydrates_daily']['total'] }}%</div>
-                            <div class="{{ $totalMacros['energy_daily']['active'] ? 'active ' : '' }}column">{{ $totalMacros['energy_daily']['total'] }}%</div>
+                        <div class="row clearfix">
+                            <div class="column">F</div>
+                            <div class="column">{{ $totalMacros['fat'] }}</div>
+                            <div class="column">{{ $totalMacros['fat_f'] }}</div>
+                            <div class="{{ $totalMacros['fat_daily']['active'] ? 'active ' : '' }}daily column">{{ $totalMacros['fat_daily']['total'] }}%</div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="column">C</div>
+                            <div class="column">{{ $totalMacros['carbohydrates'] }}</div>
+                            <div class="column">{{ $totalMacros['carbohydrates_f'] }}</div>
+                            <div class="{{ $totalMacros['carbohydrates_daily']['active'] ? 'active ' : '' }}daily column">{{ $totalMacros['carbohydrates_daily']['total'] }}%</div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="column">E</div>
+                            <div class="column">{{ $totalMacros['energy'] }}</div>
+                            <div class="column">{{ $totalMacros['energy_f'] }}</div>
+                            <div class="{{ $totalMacros['energy_daily']['active'] ? 'active ' : '' }}daily column">{{ $totalMacros['energy_daily']['total'] }}%</div>
                         </div>
                     </div>
                 </div>

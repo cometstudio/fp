@@ -167,6 +167,18 @@ input[type="checkbox"] {
   background: #f28559;
   border-color: #f28559; }
 
+@media screen and (max-width: 1024px) {
+  .mobile-visible {
+    display: block; }
+
+  .desktop-visible {
+    display: none; } }
+@media screen and (min-width: 1025px) {
+  .mobile-visible {
+    display: none; }
+
+  .desktop-visible {
+    display: block; } }
 .box, input, select, textarea, button, .button, .grid .column {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -233,11 +245,11 @@ i, .i, .main-nav .social-links, .media-grid .image .label {
   .grid .x4 > .column:nth-child(4n) {
     margin-right: 0; }
 @media screen and (max-width: 768px) {
-  .grid .row .column {
+  .grid .x2 .column, .grid .x3 .column, .grid .x4 .column {
     width: auto;
     margin: 0;
     margin-bottom: 3%; }
-  .grid .column {
+  .grid .x2 .column, .grid .x3 .column, .grid .x4 .column {
     display: block;
     float: none; } }
 
@@ -377,8 +389,6 @@ h3 {
     .main-nav .responsive-menu-control {
       display: inline-block;
       float: right; }
-    .main-nav .social-links {
-      display: none; }
     .main-nav .menu {
       display: none; }
     .main-nav nav {
@@ -400,6 +410,9 @@ h3 {
         margin: 1em 0 0; }
       .main-nav nav .fa {
         display: none; } }
+  @media screen and (max-width: 1024px) {
+    .main-nav .social-links {
+      display: none; } }
 
 .content-wrapper {
   position: relative;
@@ -457,7 +470,6 @@ h3 {
     border-bottom: none; }
 
 .gallery-grid .image {
-  height: 180px;
   margin-bottom: 11%;
   background: #4a447e; }
   .gallery-grid .image img {

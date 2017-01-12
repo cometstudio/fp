@@ -2,7 +2,7 @@
     <div class="wrapper clearfix">
         <div class="l index">
             <span>
-                <a href="{{ route('index', [], false) }}">Фитнес-практика</a>
+                <a href="{{ route('index', [], false) }}">Index</a>
                 <a onclick="$('.main-nav .menu').toggle();" class="responsive-menu-control fa fa-bars" href="javascript:void(0);"></a>
             </span>
         </div>

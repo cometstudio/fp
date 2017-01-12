@@ -2,12 +2,11 @@
 
 @section('content')
 
-    @include('common.mainNav')
-
     <div class="content-wrapper">
         <div class="s0 section">
             <div class="wrapper">
                 <h1>{{ $title }}</h1>
+
                 <div class="video-player">
                     {!! $item->video !!}
                 </div>
@@ -18,7 +17,7 @@
                         @if($item->comments_total)
                             <a href="#comments">{{ $item->comments_total }} {{ \Dictionary::get('comments', $item->comments_total) }}</a>
                         @else
-                            <a href="#comments">Оставьте свой комментарий</a>
+                            <a href="#comments">Ваш комментарий</a>
                         @endif
                     </div>
                 </div>

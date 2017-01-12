@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,500,500i,700,700i,900&subset=cyrillic");
 @import url("https://fonts.googleapis.com/css?family=PT+Serif:400i&subset=cyrillic");
-html, body, div, span, applet, object, iframe, h1, .s0 .container, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, .s0 .title, h2, h3, .s0 .description, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -214,7 +214,7 @@ b, strong, .b, .main-nav .l span, .main-nav .l a {
 i, .i, .main-nav .social-links, .media-grid .image .label {
   font-style: italic; }
 
-.extrabold, h1, .s0 .container, h2, h3 {
+.extrabold, h1, .s0 .title, h2, h3, .s0 .description {
   font-weight: 700; }
 
 .centered {
@@ -268,7 +268,7 @@ a {
     text-decoration: none;
     color: #f28559; }
 
-h1, .s0 .container {
+h1, .s0 .title {
   font-size: 50px;
   line-height: 1.3em;
   margin-bottom: 54px; }
@@ -278,13 +278,13 @@ h2 {
   line-height: 1.3em;
   margin-bottom: 54px; }
 
-h3 {
+h3, .s0 .description {
   font-size: 20px;
   line-height: 1.3em;
   margin-bottom: 18px; }
 
 @media screen and (max-width: 768px) {
-  h1, .s0 .container {
+  h1, .s0 .title {
     font-size: 37px;
     line-height: 1.3em;
     margin-bottom: 36px; }
@@ -294,7 +294,7 @@ h3 {
     line-height: 1.3em;
     margin-bottom: 36px; }
 
-  h3 {
+  h3, .s0 .description {
     font-size: 19px;
     line-height: 1.3em;
     margin-bottom: 18px; } }
@@ -424,7 +424,6 @@ h3 {
 .media-grid .image {
   display: block;
   position: relative;
-  height: 365px;
   background: #4a447e; }
   .media-grid .image img {
     max-width: 100%; }
@@ -444,30 +443,31 @@ h3 {
   .media-grid .stat .r {
     float: right; }
 
-.video-player {
-  height: 670px;
-  background: #4a447e url("../img/preloader_accent.gif") 50% 50% no-repeat; }
-
 .comments-grid .item {
   border-bottom: 1px solid #ddd; }
   .comments-grid .item .column {
     display: inline-block;
     float: left; }
     .comments-grid .item .column > .wrapper {
-      padding: 36px 0 36px 36px; }
+      padding: 36px 0 36px 2%; }
     .comments-grid .item .column.c1 {
-      width: 8%; }
+      width: 5.5%; }
       .comments-grid .item .column.c1 img {
         max-width: 100%; }
     .comments-grid .item .column.c2 {
-      width: 92%; }
-    .comments-grid .item .column:last-child > .wrapper {
-      padding-right: 36px; }
+      width: 94.5%; }
   .comments-grid .item .info {
     margin-bottom: 12px; }
   .comments-grid .item:last-child {
     margin-bottom: 0;
     border-bottom: none; }
+@media screen and (max-width: 768px) {
+  .comments-grid .item .column > .wrapper {
+    padding: 18px 0; }
+  .comments-grid .item .column.c1 {
+    display: none; }
+  .comments-grid .item .column.c2 {
+    width: 100%; } }
 
 .gallery-grid .image {
   margin-bottom: 11%;
@@ -477,8 +477,8 @@ h3 {
 
 .s0 {
   height: 100vh;
-  min-height: 768px;
-  background: #000 url("../images/indexResized.jpg") 50% 50% no-repeat;
+  min-height: 640px;
+  background: #4a447e;
   background-size: cover;
   color: #fff; }
   .s0 > .wrapper {
@@ -487,8 +487,31 @@ h3 {
     height: inherit; }
   .s0 .container {
     position: absolute;
-    right: 0;
+    right: 18px;
     top: 50%;
     margin-top: -137px; }
+  .s0 .title {
+    font-size: 80px;
+    line-height: 1.2em;
+    text-transform: uppercase; }
+    .s0 .title p:nth-child(2) {
+      font-size: 0.5em; }
+  .s0 .description {
+    margin-bottom: 0; }
+  @media screen and (max-width: 768px) {
+    .s0 .container {
+      right: auto;
+      left: 18px;
+      top: auto;
+      bottom: 20%; }
+    .s0 .title {
+      font-size: 40px;
+      line-height: 1.2em; } }
+
+.s1 .button, .s2 .button {
+  float: right; }
+@media screen and (max-width: 768px) {
+  .s1 .button, .s2 .button {
+    float: none; } }
 
 /*# sourceMappingURL=index.css.map */

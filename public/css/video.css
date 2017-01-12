@@ -201,14 +201,14 @@ input[type="checkbox"] {
   .font.classic.size, body {
     font-size: 17px;
     line-height: 1.5em; }
-.font.medium.size, .form label, .form .label {
+.font.medium.size, .form label, .form .label, .s0 .stat {
   font-size: 15px;
   line-height: 1.5em; }
 .font.small.size, .media-grid .stat, .comments-grid .item .info {
   font-size: 13px;
   line-height: 1.5em; }
 
-b, strong, .b, .main-nav .l span, .main-nav .l a {
+b, strong, .b, .main-nav .l span, .main-nav .l a, .s0 .stat .l {
   font-weight: 500; }
 
 i, .i, .main-nav .social-links, .media-grid .image .label {
@@ -424,7 +424,6 @@ h3 {
 .media-grid .image {
   display: block;
   position: relative;
-  height: 365px;
   background: #4a447e; }
   .media-grid .image img {
     max-width: 100%; }
@@ -444,30 +443,31 @@ h3 {
   .media-grid .stat .r {
     float: right; }
 
-.video-player {
-  height: 670px;
-  background: #4a447e url("../img/preloader_accent.gif") 50% 50% no-repeat; }
-
 .comments-grid .item {
   border-bottom: 1px solid #ddd; }
   .comments-grid .item .column {
     display: inline-block;
     float: left; }
     .comments-grid .item .column > .wrapper {
-      padding: 36px 0 36px 36px; }
+      padding: 36px 0 36px 2%; }
     .comments-grid .item .column.c1 {
-      width: 8%; }
+      width: 5.5%; }
       .comments-grid .item .column.c1 img {
         max-width: 100%; }
     .comments-grid .item .column.c2 {
-      width: 92%; }
-    .comments-grid .item .column:last-child > .wrapper {
-      padding-right: 36px; }
+      width: 94.5%; }
   .comments-grid .item .info {
     margin-bottom: 12px; }
   .comments-grid .item:last-child {
     margin-bottom: 0;
     border-bottom: none; }
+@media screen and (max-width: 768px) {
+  .comments-grid .item .column > .wrapper {
+    padding: 18px 0; }
+  .comments-grid .item .column.c1 {
+    display: none; }
+  .comments-grid .item .column.c2 {
+    width: 100%; } }
 
 .gallery-grid .image {
   margin-bottom: 11%;
@@ -475,7 +475,16 @@ h3 {
   .gallery-grid .image img {
     max-width: 100%; }
 
+.video-player {
+  height: 50vh;
+  background: #4a447e url("../img/preloader_accent.gif") 50% 50% no-repeat; }
+
 .s0 .stat {
-  margin-top: 18px; }
+  margin-top: 3%; }
+@media screen and (max-width: 768px) {
+  .s0 .stat .l, .s0 .stat .r {
+    float: none; }
+  .s0 .stat .l {
+    margin: 15px 0 5px; } }
 
 /*# sourceMappingURL=video.css.map */

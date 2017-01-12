@@ -2,8 +2,6 @@
 
 @section('content')
 
-    @include('common.mainNav')
-
     <div class="content-wrapper">
         <div class="s0 section">
             <div class="wrapper">

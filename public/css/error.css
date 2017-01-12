@@ -424,7 +424,6 @@ h3 {
 .media-grid .image {
   display: block;
   position: relative;
-  height: 365px;
   background: #4a447e; }
   .media-grid .image img {
     max-width: 100%; }
@@ -444,30 +443,31 @@ h3 {
   .media-grid .stat .r {
     float: right; }
 
-.video-player {
-  height: 670px;
-  background: #4a447e url("../img/preloader_accent.gif") 50% 50% no-repeat; }
-
 .comments-grid .item {
   border-bottom: 1px solid #ddd; }
   .comments-grid .item .column {
     display: inline-block;
     float: left; }
     .comments-grid .item .column > .wrapper {
-      padding: 36px 0 36px 36px; }
+      padding: 36px 0 36px 2%; }
     .comments-grid .item .column.c1 {
-      width: 8%; }
+      width: 5.5%; }
       .comments-grid .item .column.c1 img {
         max-width: 100%; }
     .comments-grid .item .column.c2 {
-      width: 92%; }
-    .comments-grid .item .column:last-child > .wrapper {
-      padding-right: 36px; }
+      width: 94.5%; }
   .comments-grid .item .info {
     margin-bottom: 12px; }
   .comments-grid .item:last-child {
     margin-bottom: 0;
     border-bottom: none; }
+@media screen and (max-width: 768px) {
+  .comments-grid .item .column > .wrapper {
+    padding: 18px 0; }
+  .comments-grid .item .column.c1 {
+    display: none; }
+  .comments-grid .item .column.c2 {
+    width: 100%; } }
 
 .gallery-grid .image {
   margin-bottom: 11%;

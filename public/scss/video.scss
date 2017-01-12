@@ -1,7 +1,27 @@
 @import "common";
 
+.video-player{
+  height: 50vh;
+  background: $accent url("../img/preloader_accent.gif") 50% 50% no-repeat;
+}
+
 .s0{
   .stat{
-    margin-top: $contentPadding / 2;
+    @extend .medium.font.size;
+
+    margin-top: 3%;
+    .l{
+      @extend .b;
+    }
+  }
+  @media screen and (max-width: $mobileMaxWidth) {
+    .stat{
+      .l, .r{
+        float: none;
+      }
+      .l{
+        margin: 15px 0 5px;
+      }
+    }
   }
 }

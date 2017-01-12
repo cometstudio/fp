@@ -366,7 +366,6 @@ h3{
   .image{
     display: block;
     position: relative;
-    height: 365px;
     background: $accent;
     img{
       max-width: 100%;
@@ -398,11 +397,6 @@ h3{
   }
 }
 
-.video-player{
-  height: 670px;
-  background: $accent url("../img/preloader_accent.gif") 50% 50% no-repeat;
-}
-
 .comments-grid{
   .item{
     border-bottom: 1px solid #ddd;
@@ -410,21 +404,16 @@ h3{
       display: inline-block;
       float: left;
       > .wrapper{
-        padding: $contentPadding 0 $contentPadding $contentPadding;
+        padding: $contentPadding 0 $contentPadding 2%;
       }
       &.c1{
-        width: 8%;
+        width: 5.5%;
         img{
           max-width: 100%;
         }
       }
       &.c2{
-        width: 92%;
-      }
-      &:last-child{
-        > .wrapper{
-          padding-right: $contentPadding;
-        }
+        width: 94.5%;
       }
     }
     .info{
@@ -435,6 +424,21 @@ h3{
     &:last-child{
       margin-bottom: 0;
       border-bottom: none;
+    }
+  }
+  @media screen and (max-width: $mobileMaxWidth) {
+    .item{
+      .column{
+        > .wrapper{
+          padding: $contentPadding / 2 0;
+        }
+        &.c1{
+          display: none;
+        }
+        &.c2{
+          width: 100%;
+        }
+      }
     }
   }
 }

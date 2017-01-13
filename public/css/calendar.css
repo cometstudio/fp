@@ -524,7 +524,7 @@ h3 {
 .exercises-grid .name, .food-grid .name {
   padding-top: 15px; }
 .exercises-grid .row .wrapper, .food-grid .row .wrapper {
-  padding: 15px 0; }
+  padding: 15px 0 0; }
 .exercises-grid .gallery, .food-grid .gallery {
   margin-top: 25px; }
   .exercises-grid .gallery .image, .food-grid .gallery .image {

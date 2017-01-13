@@ -41,16 +41,16 @@ return [
             'energy'=>0.89,
         ],
         6=>[
-            'protein'=>1.1,
+            'protein'=>1,
             'fat'=>0.75,
             'carbohydrates'=>0.7,
-            'energy'=>0.86,
+            'energy'=>0.82,
         ],
         7=>[
             'protein'=>1,
-            'fat'=>0.5,
+            'fat'=>0.6,
             'carbohydrates'=>0.5,
-            'energy'=>0.6,
+            'energy'=>0.71,
         ],
     ],
 ];

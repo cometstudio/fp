@@ -70,6 +70,7 @@
         @endif
 
         @if(!empty($meals) && $meals->count())
+
             <div class="s5 section">
                 <div class="wrapper">
                     <div class="grid">
@@ -82,6 +83,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="s6 section">
                 <div class="wrapper">
                     <div class="food-grid grid">
@@ -95,27 +97,29 @@
                             @if(!empty($recipes) && $recipes->count())
                                 @foreach($recipes->filter(function($recipe) use ($meal){ return $recipe->meal_id == $meal->id; }) as $recipe)
                                     <div class="name">{{ $recipe->name }}</div>
-                                    <div class="x2 row clearfix">
-                                        <div class="column">
-                                            <div class="wrapper">
-                                                {!! $recipe->notice !!}
+                                    @if(!empty($recipe->notice) || !empty($recipe->text) || !empty($recipe->gallery))
+                                        <div class="x2 row clearfix">
+                                            <div class="column">
+                                                <div class="wrapper">
+                                                    {!! $recipe->notice !!}
+                                                </div>
+                                            </div>
+                                            <div class="column">
+                                                <div class="wrapper">
+                                                    {!! $recipe->text !!}
+                                                    @if(!empty($recipe->gallery))
+                                                        <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery popup-gallery clearfix">
+                                                            @foreach($recipe->getGallery() as $picture)
+                                                                <a href="/images/big/{{ $picture }}.jpg" class="image">
+                                                                    <img src="/images/small/{{ $picture }}.jpg" />
+                                                                </a>
+                                                            @endforeach
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="column">
-                                            <div class="wrapper">
-                                                {!! $recipe->text !!}
-                                                @if(!empty($recipe->gallery))
-                                                    <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery popup-gallery clearfix">
-                                                        @foreach($recipe->getGallery() as $picture)
-                                                            <a href="/images/big/{{ $picture }}.jpg" class="image">
-                                                                <img src="/images/small/{{ $picture }}.jpg" />
-                                                            </a>
-                                                        @endforeach
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endif
 
                                 @endforeach
                             @endif

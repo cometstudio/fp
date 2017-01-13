@@ -6,12 +6,14 @@
         <div class="wrapper">
             <div class="container">
                 <div class="title">
-                    <p>1</p>
-                    <p>1</p>
-                    <p>1</p>
+                    <p>Эти двое</p>
+                    <p>взялись за себя</p>
+                    <p>всеръёз</p>
                 </div>
                 <div class="description">
-                    1
+                    <p>Регулярные тренировки</p>
+                    <p>и строгая диета в течение года</p>
+                    <p>сделают из них людей.</p>
                 </div>
             </div>
         </div>
@@ -23,10 +25,10 @@
                 <div class="grid">
                     <div class="x2 row clearfix">
                         <div class="column">
-                            <h2>V</h2>
+                            <h2>Недавние видеоотчёты</h2>
                         </div>
                         <div class="column clearfix">
-                            <a href="{{ route('videos:index', [], false) }}" class="empty pair button">Смотреть все</a>
+                            <a href="{{ route('videos:index', [], false) }}" class="empty pair button">Смотреть все видео</a>
                         </div>
                     </div>
                 </div>
@@ -42,10 +44,10 @@
                 <div class="grid">
                     <div class="x2 row clearfix">
                         <div class="column">
-                            <h2>G</h2>
+                            <h2>Случайные фотогалереи</h2>
                         </div>
                         <div class="column clearfix">
-                            <a href="{{ route('gallery:index', [], false) }}" class="modal empty pair button">Смотреть все</a>
+                            <a href="{{ route('gallery:index', [], false) }}" class="modal empty pair button">Смотреть все фото</a>
                         </div>
                     </div>
                 </div>

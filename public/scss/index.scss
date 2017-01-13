@@ -2,9 +2,8 @@
 
 .s0{
   height: 100vh;
-  min-height: 640px;
-  //background: #000 url("../images/indexResized.jpg") 50% 50% no-repeat;
-  background: $accent;
+  min-height: 780px;
+  background: #000 url("../images/indexResized.jpg") 50% 50% no-repeat;
   background-size: cover;
   color: #fff;
   > .wrapper{
@@ -15,7 +14,7 @@
   .container{
     position: absolute;
     right: $contentPadding / 2;
-    top: 50%;
+    bottom: 12%;
     margin-top: - (274px / 2);
   }
   .title{
@@ -35,16 +34,19 @@
 
     margin-bottom: 0;
   }
-  @media screen and (max-width: $mobileMaxWidth) {
+  @media screen and (max-width: $tabletMaxWidth) {
     .container{
       right: auto;
-      left: $contentPadding / 2;
-      top: auto;
-      bottom: 20%;
+      left: $contentPadding;
     }
     .title{
       font-size: 40px;
       line-height: 1.2em;
+    }
+  }
+  @media screen and (max-width: $mobileMaxWidth) {
+    .container{
+      left: $contentPadding / 2;
     }
   }
 }

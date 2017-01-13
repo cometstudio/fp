@@ -295,7 +295,7 @@ h3, .s0 .description {
     margin-bottom: 36px; }
 
   h3, .s0 .description {
-    font-size: 19px;
+    font-size: 17px;
     line-height: 1.3em;
     margin-bottom: 18px; } }
 .section > .wrapper {
@@ -477,8 +477,8 @@ h3, .s0 .description {
 
 .s0 {
   height: 100vh;
-  min-height: 640px;
-  background: #4a447e;
+  min-height: 780px;
+  background: #000 url("../images/indexResized.jpg") 50% 50% no-repeat;
   background-size: cover;
   color: #fff; }
   .s0 > .wrapper {
@@ -488,7 +488,7 @@ h3, .s0 .description {
   .s0 .container {
     position: absolute;
     right: 18px;
-    top: 50%;
+    bottom: 12%;
     margin-top: -137px; }
   .s0 .title {
     font-size: 80px;
@@ -498,15 +498,16 @@ h3, .s0 .description {
       font-size: 0.5em; }
   .s0 .description {
     margin-bottom: 0; }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     .s0 .container {
       right: auto;
-      left: 18px;
-      top: auto;
-      bottom: 20%; }
+      left: 36px; }
     .s0 .title {
       font-size: 40px;
       line-height: 1.2em; } }
+  @media screen and (max-width: 768px) {
+    .s0 .container {
+      left: 18px; } }
 
 .s1 .button, .s2 .button {
   float: right; }

@@ -5,7 +5,8 @@
 <head lang="ru">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=9">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $title or 404 }}{{ request()->is('/') ? '' : $settings->title }}</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="csrf-token" content="{!! csrf_token() !!}" />
@@ -25,9 +26,11 @@
 <div class="body-wait"></div>
 <div class="body-fade"></div>
 
-
+@include('common.mainNav')
 
 @yield('content')
+
+@include('common.footer')
 
 <script src="/bower_components/jquery-form/jquery.form.js"></script>
 <script src="/bower_components/cookie/cookie.min.js"></script>

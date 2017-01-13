@@ -140,38 +140,38 @@
                         <div class="row clearfix">
                             <div class="column">&nbsp;</div>
                             <div class="column">
-                                <span class="desktop-visible">Md</span>
-                                <span class="mobile-visible">Mm</span>
+                                <span class="desktop-visible">Мужчины</span>
+                                <span class="mobile-visible">М</span>
                             </div>
                             <div class="column">
-                                <span class="desktop-visible">Fd</span>
-                                <span class="mobile-visible">Fm</span>
+                                <span class="desktop-visible">Женщины</span>
+                                <span class="mobile-visible">Ж</span>
                             </div>
                             <div class="column">
-                                <span class="desktop-visible">%d</span>
-                                <span class="mobile-visible">%m</span>
+                                <span class="desktop-visible">% от нормы</span>
+                                <span class="mobile-visible">%</span>
                             </div>
                         </div>
                         <div class="row clearfix">
-                            <div class="column">P</div>
+                            <div class="column">Белки, г</div>
                             <div class="column">{{ $totalMacros['protein'] }}</div>
                             <div class="column">{{ $totalMacros['protein_f'] }}</div>
                             <div class="{{ $totalMacros['protein_daily']['active'] ? 'active ' : '' }}daily column">{{ $totalMacros['protein_daily']['total'] }}%</div>
                         </div>
                         <div class="row clearfix">
-                            <div class="column">F</div>
+                            <div class="column">Жиры, г</div>
                             <div class="column">{{ $totalMacros['fat'] }}</div>
                             <div class="column">{{ $totalMacros['fat_f'] }}</div>
                             <div class="{{ $totalMacros['fat_daily']['active'] ? 'active ' : '' }}daily column">{{ $totalMacros['fat_daily']['total'] }}%</div>
                         </div>
                         <div class="row clearfix">
-                            <div class="column">C</div>
+                            <div class="column">Углеводы, г</div>
                             <div class="column">{{ $totalMacros['carbohydrates'] }}</div>
                             <div class="column">{{ $totalMacros['carbohydrates_f'] }}</div>
                             <div class="{{ $totalMacros['carbohydrates_daily']['active'] ? 'active ' : '' }}daily column">{{ $totalMacros['carbohydrates_daily']['total'] }}%</div>
                         </div>
                         <div class="row clearfix">
-                            <div class="column">E</div>
+                            <div class="column">Энергия, ККал</div>
                             <div class="column">{{ $totalMacros['energy'] }}</div>
                             <div class="column">{{ $totalMacros['energy_f'] }}</div>
                             <div class="{{ $totalMacros['energy_daily']['active'] ? 'active ' : '' }}daily column">{{ $totalMacros['energy_daily']['total'] }}%</div>

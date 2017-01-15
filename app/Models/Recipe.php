@@ -55,7 +55,7 @@ class Recipe extends Model
                     if(!empty($supplement->$key)){
                         $absMacros = intval($supplement->$key * $supplement->weight / 100);
                         $macros[$key] += $absMacros;
-                        $macros[$key.'_f'] += intval($absMacros * 55/100);
+                        $macros[$key.'_f'] += intval($absMacros * 0.75);
                     }
                 }
             }

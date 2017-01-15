@@ -3,10 +3,10 @@
 return [
     'months'=>[
         0=>[
-            'protein'=>200,
-            'fat'=>60,
-            'carbohydrates'=>200,
-            'energy'=>2140,
+            'protein'=>190,
+            'fat'=>85,
+            'carbohydrates'=>220,
+            'energy'=>2405,
         ]
     ],
     'weekdays'=>[
@@ -16,40 +16,40 @@ return [
             'carbohydrates'=>1,
             'energy'=>1,
         ],
-        1=>[
+        5=>[
             'protein'=>1.2,
             'fat'=>1.4,
             'carbohydrates'=>1.5,
             'energy'=>1.38,
         ],
-        2=>[
+        6=>[
             'protein'=>1.1,
             'fat'=>1.2,
             'carbohydrates'=>1.3,
             'energy'=>1.2,
         ],
-        4=>[
+        1=>[
             'protein'=>1,
             'fat'=>0.9,
             'carbohydrates'=>0.85,
             'energy'=>0.92,
         ],
-        5=>[
+        2=>[
             'protein'=>1.05,
             'fat'=>0.8,
             'carbohydrates'=>0.8,
             'energy'=>0.89,
         ],
-        6=>[
+        3=>[
             'protein'=>1,
             'fat'=>0.75,
             'carbohydrates'=>0.7,
             'energy'=>0.82,
         ],
-        7=>[
+        4=>[
             'protein'=>1,
             'fat'=>0.6,
-            'carbohydrates'=>0.5,
+            'carbohydrates'=>0.4,
             'energy'=>0.71,
         ],
     ],

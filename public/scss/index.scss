@@ -2,7 +2,6 @@
 
 .s0{
   height: 100vh;
-  min-height: 780px;
   background: #000 url("../images/indexResized.jpg") 50% 50% no-repeat;
   background-size: cover;
   color: #fff;
@@ -13,21 +12,16 @@
   }
   .container{
     position: absolute;
-    right: $contentPadding / 2;
+    left: $contentPadding / 2;
     bottom: 12%;
-    margin-top: - (274px / 2);
+    width: 50%;
   }
   .title{
     @extend h1;
 
-    font-size: 80px;
-    line-height: 1.2em;
+    font-size: 60px;
+    line-height: 1.4em;
     text-transform: uppercase;
-    p{
-      &:nth-child(2){
-        font-size: 0.5em;
-      }
-    }
   }
   .description{
     @extend h3;
@@ -36,17 +30,34 @@
   }
   @media screen and (max-width: $tabletMaxWidth) {
     .container{
-      right: auto;
       left: $contentPadding;
+      bottom: 17%;
+      width: auto;
     }
     .title{
-      font-size: 40px;
+      margin-bottom: $contentPadding / 2;
+      font-size: 35px;
+      line-height: 1.4em;
+    }
+    .description{
+      font-size: 19px;
       line-height: 1.2em;
     }
   }
   @media screen and (max-width: $mobileMaxWidth) {
     .container{
       left: $contentPadding / 2;
+      padding-right: $contentPadding / 2;
+      bottom: 12%;
+    }
+    .title{
+      margin-bottom: $contentPadding / 2;
+      font-size: 25px;
+      line-height: 1.4em;
+    }
+    .description{
+      font-size: 17px;
+      line-height: 1.2em;
     }
   }
 }

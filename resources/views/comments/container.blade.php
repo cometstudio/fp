@@ -19,13 +19,12 @@
                                 <div class="b column">
                                     Ваш ({{ !empty($currentUser) ? $currentUser->name : 'Incognito' }}) текст:
                                 </div>
-                                <div class="column" style="text-align: right;">
+                                <div class="note column">
                                     @if(empty($currentUser))
                                         <a href="{{ route('login', [], false) }}" rel="nofollow">Авторизуйтесь</a>, чтобы комментировать от своего имени
                                     @endif
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
                             <textarea name="text"></textarea>

@@ -3,10 +3,15 @@
 @section('content')
 
     <div class="content-wrapper">
+        <div class="s1 section">
+            <div class="wrapper">
+                <h1{!! empty($item->text) ? ' class="nomargin"' : '' !!}>{{ $title }}</h1>
+                {!! $item->text !!}
+            </div>
+        </div>
+
         <div class="s0 section">
             <div class="wrapper">
-                <h1>{{ $title }}</h1>
-
                 <div class="video-player">
                     {!! $item->video !!}
                 </div>
@@ -21,12 +26,6 @@
                         @endif
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="s1 section">
-            <div class="wrapper">
-                {!! $item->text !!}
             </div>
         </div>
 

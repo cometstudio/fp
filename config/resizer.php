@@ -16,12 +16,13 @@ return [
         ,'calendar'=>[
             'thumbs'=>[130, 130, true],
             'small'=>[300, 202, true],
-            'medium'=>[600, 399, true],
+            'medium'=>[768, 576, true],
             'big'=>[1280, 1024, false],
         ]
         ,'recipe'=>[
             'thumbs'=>[130, 130, true],
             'small'=>[150, 100, true],
+            'medium'=>[768, 576, true],
             'big'=>[1280, 1024, false],
         ],
     ],

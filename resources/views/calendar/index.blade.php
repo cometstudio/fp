@@ -58,7 +58,7 @@
                                 <div class="column">
                                     <div class="image">
                                         <a href="/images/big/{{ $picture }}.jpg" class="image">
-                                            <img src="/images/small/{{ $picture }}.jpg" />
+                                            <img src="/images/medium/{{ $picture }}.jpg" />
                                         </a>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                                         <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery popup-gallery clearfix">
                                                             @foreach($recipe->getGallery() as $picture)
                                                                 <a href="/images/big/{{ $picture }}.jpg" class="image">
-                                                                    <img src="/images/small/{{ $picture }}.jpg" />
+                                                                    <img src="/images/medium/{{ $picture }}.jpg" />
                                                                 </a>
                                                             @endforeach
                                                         </div>
@@ -191,11 +191,10 @@
                     <h2>Упражнения</h2>
                     <div class="exercises-grid grid">
                         @foreach($exercises as $exercise)
+                            <div class="name">{{ $exercise->name }}</div>
                             <div class="x2 row clearfix">
                                 <div class="column">
                                     <div class="wrapper">
-                                        <p><b>{{ $exercise->name }}</b></p>
-                                        <p>&nbsp;</p>
                                         {!! $exercise->text !!}
                                     </div>
                                 </div>

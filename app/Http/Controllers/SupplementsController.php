@@ -47,15 +47,19 @@ class SupplementsController extends Controller
             ->orderBy('start_at', 'ASC')
             ->get();
 
-        $maxValue = 0;
+        $maxValue = [];
         $graphData = [];
-        $type = $request->get('type', 'energy');
+        $macrosConfig = config('macros', []);
         foreach($segment as $id=>$calendar){
             $graphData[$id] = $calendar->totalMacros();
             $graphData[$id]['calendar'] = $calendar;
-            if($graphData[$id][$type.'_daily']['value'] > $maxValue){
-                $maxValue = $graphData[$id][$type.'_daily']['value'];
-                if($graphData[$id][$type.'_daily']['total'] > 100) $maxValue *= $graphData[$id][$type.'_daily']['total'] / 100;
+            if(!empty($macrosConfig['months'][0])){
+                foreach($macrosConfig['months'][0] as $type=>$value){
+                    if(empty($maxValue[$type]) || $graphData[$id][$type.'_daily']['value'] > $maxValue[$type]){
+                        $maxValue[$type] = $graphData[$id][$type.'_daily']['value'];
+                        if($graphData[$id][$type.'_daily']['total'] > 100) $maxValue[$type] *= $graphData[$id][$type.'_daily']['total'] / 100;
+                    }
+                }
             }
         }
 

@@ -10,6 +10,7 @@ class Recipe extends Model
         'name',
         'notice',
         'text',
+        'size',
         'gallery',
         'gallery_titles',
     ];

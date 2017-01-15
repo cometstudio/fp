@@ -30,4 +30,8 @@
             @include('panel.edit.recipeSupplements', ['binded'=>$options['recipeSupplements']])
         </div>
     </div>
+    <div class="row">
+        <dl>Размер порции</dl>
+        <textarea name="size" class="ck">{{ $item->size }}</textarea>
+    </div>
 @endsection

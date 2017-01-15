@@ -8,12 +8,7 @@
 
                 <form action="{{ route('supplements:graph', [], false) }}" method="get">
                     <input name="date" class="datepicker" value="{{ Date::getDateFromTime($startAt, 1) }}" onchange="this.form.submit();" type="text" style="width: auto;" />
-                    <select name="type">
-                        <option value="protein"{{ request()->get('type') == 'protein' ? ' selected' : '' }}>Белки</option>
-                        <option value="fat"{{ request()->get('type') == 'fat' ? ' selected' : '' }}>Жиры</option>
-                        <option value="carbohydrates"{{ request()->get('type') == 'carbohydrates' ? ' selected' : '' }}>Углеводы</option>
-                        <option value="energy"{{ request()->get('type') == 'energy' || !request()->has('type')  ? ' selected' : '' }}>Энергия</option>
-                    </select> <button class="button">Показать</button>
+                    <button class="button">Показать</button>
                 </form>
             </div>
         </div>
@@ -22,19 +17,90 @@
     <div class="content-wrapper">
         <div class="s1 section">
             <div class="wrapper">
-                <div class="supplements-graph">
-                    Maксимально в сутки ({{ $maxValue }})
+                <h3>Энергия</h3>
+                <div class="supplements-graph" style="margin: 0 0 36px;">
+                    Maксимально в сутки ({{ $maxValue['energy'] }})
                     <div class="graph">
                         <div class="row clearfix">
                             @foreach($graphData as $day)
                                 <div class="column">
-                                    <div class="daily-value marker" style="height: {{ $day[$type.'_daily']['value'] * 100 / $maxValue }}%;">
-                                        <div class="{{ $day[$type.'_daily']['active'] ? 'active ' : '' }}total marker" style="height: {{ $day[$type.'_daily']['total'] }}%;"></div>
+                                    <div class="daily-value marker" style="height: {{ $day['energy_daily']['value'] * 100 / $maxValue['energy'] }}%;">
+                                        <div class="{{ $day['energy_daily']['active'] ? 'active ' : '' }}total marker" style="height: {{ $day['energy_daily']['total'] }}%;"></div>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
                     </div>
+
+                    <div class="row clearfix">
+                        @foreach($graphData as $day)
+                            <div class="column">
+                                {{ \Date::getDateFromTime($day['calendar']->start_at, 2) }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <h3>Белки</h3>
+                <div class="supplements-graph" style="margin: 36px 0;">
+                    Maксимально в сутки ({{ $maxValue['protein'] }})
+                    <div class="graph">
+                        <div class="row clearfix">
+                            @foreach($graphData as $day)
+                                <div class="column">
+                                    <div class="daily-value marker" style="height: {{ $day['protein_daily']['value'] * 100 / $maxValue['protein'] }}%;">
+                                        <div class="{{ $day['protein_daily']['active'] ? 'active ' : '' }}total marker" style="height: {{ $day['protein_daily']['total'] }}%;"></div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        @foreach($graphData as $day)
+                            <div class="column">
+                                {{ \Date::getDateFromTime($day['calendar']->start_at, 2) }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <h3>Жиры</h3>
+                <div class="supplements-graph" style="margin: 36px 0;">
+                    Maксимально в сутки ({{ $maxValue['fat'] }})
+                    <div class="graph">
+                        <div class="row clearfix">
+                            @foreach($graphData as $day)
+                                <div class="column">
+                                    <div class="daily-value marker" style="height: {{ $day['fat_daily']['value'] * 100 / $maxValue['fat'] }}%;">
+                                        <div class="{{ $day['fat_daily']['active'] ? 'active ' : '' }}total marker" style="height: {{ $day['fat_daily']['total'] }}%;"></div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        @foreach($graphData as $day)
+                            <div class="column">
+                                {{ \Date::getDateFromTime($day['calendar']->start_at, 2) }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <h3>Углеводы</h3>
+                <div class="supplements-graph" style="margin: 36px 0 0;">
+                    Maксимально в сутки ({{ $maxValue['carbohydrates'] }})
+                    <div class="graph">
+                        <div class="row clearfix">
+                            @foreach($graphData as $day)
+                                <div class="column">
+                                    <div class="daily-value marker" style="height: {{ $day['carbohydrates_daily']['value'] * 100 / $maxValue['carbohydrates'] }}%;">
+                                        <div class="{{ $day['carbohydrates_daily']['active'] ? 'active ' : '' }}total marker" style="height: {{ $day['carbohydrates_daily']['total'] }}%;"></div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                     <div class="row clearfix">
                         @foreach($graphData as $day)
                             <div class="column">

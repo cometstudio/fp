@@ -122,6 +122,9 @@ i, .i{
         width: auto;
         margin: 0;
         margin-bottom: 3%;
+        &:last-child{
+          margin-bottom: 0;
+        }
       }
       .column {
         display: block;

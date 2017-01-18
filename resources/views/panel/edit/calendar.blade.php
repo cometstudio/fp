@@ -40,6 +40,12 @@
                         @foreach($options['exercises'] as $exercise))
                             <option value="{{ $exercise->id }}">{{ str_limit($exercise->name, 65) }}</option>
                         @endforeach
+                    </select>
+                    <select name="_exercise_type">
+                        <option value="">тип...</option>
+                        @foreach(config('exercise_types') as $id=>$name)
+                            <option value="{{ $id }}">{{ $name }}</option>
+                        @endforeach
                     </select> <a onclick="return addBinding(this, $('.calendar-exercises'));" href="{{ route('admin::act', ['action'=>'bindexercise', 'modelName'=>$currentPanelModel->public_model_name, 'id'=>$item->id], false) }}" class="empty button">Привязать</a>
                 </div>
             @endif

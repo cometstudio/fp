@@ -81,7 +81,7 @@ class Calendar extends Model
     {
         return $this->belongsToMany('App\Models\Exercise', 'calendar_exercises', 'calendar_id', 'exercise_id')
             ->orderBy('calendar_exercises.id', 'ASC')
-            ->withPivot('id');
+            ->withPivot(['id', 'type']);
     }
 
     public function getByTime($startAt = 0)

@@ -249,6 +249,8 @@ i, .i, .main-nav .social-links, .media-grid .image .label {
     width: auto;
     margin: 0;
     margin-bottom: 3%; }
+    .grid .x2 .column:last-child, .grid .x3 .column:last-child, .grid .x4 .column:last-child {
+      margin-bottom: 0; }
   .grid .x2 .column, .grid .x3 .column, .grid .x4 .column {
     display: block;
     float: none; } }

@@ -539,6 +539,7 @@ class ActionsController extends Controller
 
                 $binding->calendar_id = $this->id;
                 $binding->exercise_id = $this->request->input('_exercise_id');
+                $binding->type = $this->request->input('_exercise_type');
 
                 $binding->save();
             }

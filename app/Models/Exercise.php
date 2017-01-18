@@ -9,6 +9,8 @@ class Exercise extends Model
         'name',
         'text',
         'notice',
+        'notice1',
+        'notice2',
         'gallery',
         'gallery_titles',
     ];

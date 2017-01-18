@@ -10,7 +10,15 @@
         <textarea name="text" class="ck">{{ $item->text }}</textarea>
     </div>
     <div class="row">
-        <dl>notice</dl>
+        <dl>Ordinary</dl>
         <textarea name="notice" class="ck">{{ $item->notice }}</textarea>
+    </div>
+    <div class="row">
+        <dl>Strength</dl>
+        <textarea name="notice1" class="ck">{{ $item->notice1 }}</textarea>
+    </div>
+    <div class="row">
+        <dl>Pump</dl>
+        <textarea name="notice2" class="ck">{{ $item->notice2 }}</textarea>
     </div>
 @endsection

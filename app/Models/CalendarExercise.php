@@ -8,6 +8,7 @@ class CalendarExercise extends Model
 
     protected $fillable = [
         'calendar_id',
-        'exercise_id'
+        'exercise_id',
+        'type'
     ];
 }

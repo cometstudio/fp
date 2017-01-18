@@ -122,6 +122,9 @@ i, .i{
         width: auto;
         margin: 0;
         margin-bottom: 3%;
+        &:last-child{
+          margin-bottom: 0;
+        }
       }
       .column {
         display: block;
@@ -159,6 +162,9 @@ h1{
   font-size: 50px;
   line-height: 1.3em;
   margin-bottom: $contentPadding * 1.5;
+  &.nomargin{
+    margin-bottom: 0;
+  }
 }
 h2{
   font-size: 30px;
@@ -279,14 +285,18 @@ h3{
   }
   .l{
     float: left;
-    font-size: 21px;
+
     span, a{
       @extend .b;
+    }
+    &.index{
+      font-size: 21px;
     }
   }
   .r{
     float: right;
   }
+
   .responsive-menu-control{
     display: none;
   }
@@ -296,14 +306,14 @@ h3{
     margin-left: $contentPadding;
     color: $lightAccent;
     a{
-      margin-left: 14px;
+      margin-left: 12px;
       text-decoration: none;
       &:hover{
         color: #fff;
       }
     }
   }
-  @media screen and (max-width: $mobileMaxWidth) {
+  @media screen and (max-width: $tabletMaxWidth) {
     span, .l, .r{
         display: block;
         float: none;
@@ -317,6 +327,7 @@ h3{
         padding: 23px 0;
       }
     }
+    .social-links{ display: none; }
     .responsive-menu-control{
       display: inline-block;
       float: right;
@@ -347,9 +358,6 @@ h3{
         display: none;
       }
     }
-  }
-  @media screen and (max-width: $tabletMaxWidth) {
-    .social-links{ display: none; }
   }
 }
 
@@ -400,7 +408,7 @@ h3{
 .comments-grid{
   .item{
     border-bottom: 1px solid #ddd;
-    .column{
+    > .column{
       display: inline-block;
       float: left;
       > .wrapper{
@@ -421,6 +429,9 @@ h3{
 
       margin-bottom: $contentPadding / 3;
     }
+    .note{
+      text-align: right;
+    }
     &:last-child{
       margin-bottom: 0;
       border-bottom: none;
@@ -438,6 +449,9 @@ h3{
         &.c2{
           width: 100%;
         }
+      }
+      .note{
+        text-align: left;
       }
     }
   }

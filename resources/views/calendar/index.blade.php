@@ -58,7 +58,7 @@
                                 <div class="column">
                                     <div class="image">
                                         <a href="/images/big/{{ $picture }}.jpg" class="image">
-                                            <img src="/images/small/{{ $picture }}.jpg" />
+                                            <img src="/images/medium/{{ $picture }}.jpg" />
                                         </a>
                                     </div>
                                 </div>
@@ -73,14 +73,7 @@
 
             <div class="s5 section">
                 <div class="wrapper">
-                    <div class="grid">
-                        <div class="x2 row clearfix">
-                            <div class="column"><h2>Суточный рацион питания*</h2></div>
-                            <div class="small font size column">
-                                * Рецепты блюд составлены для мужчины весом 100 кг. Размер порции для женщины весом 55 кг &mdash; меньше на 25%
-                            </div>
-                        </div>
-                    </div>
+                    <h2>Суточный рацион питания</h2>
                 </div>
             </div>
 
@@ -99,25 +92,29 @@
                                     <div class="name">{{ $recipe->name }}</div>
                                     @if(!empty($recipe->notice) || !empty($recipe->text) || !empty($recipe->gallery))
                                         <div class="x2 row clearfix">
-                                            <div class="column">
-                                                <div class="wrapper">
-                                                    {!! $recipe->notice !!}
+                                            @if(!empty($recipe->notice))
+                                                <div class="column">
+                                                    <div class="wrapper">
+                                                        {!! $recipe->notice !!}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="column">
-                                                <div class="wrapper">
-                                                    {!! $recipe->text !!}
-                                                    @if(!empty($recipe->gallery))
-                                                        <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery popup-gallery clearfix">
-                                                            @foreach($recipe->getGallery() as $picture)
-                                                                <a href="/images/big/{{ $picture }}.jpg" class="image">
-                                                                    <img src="/images/small/{{ $picture }}.jpg" />
-                                                                </a>
-                                                            @endforeach
-                                                        </div>
-                                                    @endif
+                                            @endif
+                                            @if(!empty($recipe->text) || !empty($recipe->gallery))
+                                                <div class="column">
+                                                    <div class="wrapper">
+                                                        {!! $recipe->text !!}
+                                                        @if(!empty($recipe->gallery))
+                                                            <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery popup-gallery clearfix">
+                                                                @foreach($recipe->getGallery() as $picture)
+                                                                    <a href="/images/big/{{ $picture }}.jpg" class="image">
+                                                                        <img src="/images/medium/{{ $picture }}.jpg" />
+                                                                    </a>
+                                                                @endforeach
+                                                            </div>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                         </div>
                                     @endif
 
@@ -138,7 +135,15 @@
                 </div>
                 <div class="wrapper">
                     <div>
-                        <h3>Питательная ценность суточного рациона, суммарно</h3>
+
+                        <div class="grid">
+                            <div class="x2 row clearfix">
+                                <div class="column"><h3>Питательная ценность суточного рациона, суммарно*</h3></div>
+                                <div class="small font size column">
+                                    * Размеры порций и их питательная ценность рассчитаны для мужчины весом 100 кг. Размер порции для женщины весом 55 кг &mdash; меньше на 25%
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="macros-table grid">
                         <div class="row clearfix">
@@ -191,11 +196,10 @@
                     <h2>Упражнения</h2>
                     <div class="exercises-grid grid">
                         @foreach($exercises as $exercise)
+                            <div class="name">{{ $exercise->name }}</div>
                             <div class="x2 row clearfix">
                                 <div class="column">
                                     <div class="wrapper">
-                                        <p><b>{{ $exercise->name }}</b></p>
-                                        <p>&nbsp;</p>
                                         {!! $exercise->text !!}
                                     </div>
                                 </div>

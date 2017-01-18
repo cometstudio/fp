@@ -34,6 +34,9 @@
         @if(!empty($calendar->text))
             <div class="s2 section">
                 <div class="wrapper">
+                    @if(!empty($calendar->title))
+                        <h2>{{ $calendar->title }}</h2>
+                    @endif
                     {!! $calendar->text !!}
                 </div>
             </div>

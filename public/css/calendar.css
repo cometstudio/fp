@@ -514,6 +514,9 @@ h3 {
         display: inline-block;
         margin: 0; } }
 
+.s2 img {
+  max-width: 100%; }
+
 .s5 h2, .s5 .s0 h1, .s0 .s5 h1 {
   margin-bottom: 0; }
 .s5 > .wrapper {

@@ -5,6 +5,14 @@
         <dl>Дата начала</dl>
         <input name="_start_at" value="{{ $item->getStartDate() }}" type="text" class="x4 datepicker" autocomplete="off" />
     </div>
+    <div class="row">
+        <dl>Title</dl>
+        <input name="title" value="{{ $item->title }}" type="text" />
+    </div>
+    <div class="row">
+        <dl>Текст</dl>
+        <textarea name="text" class="ck">{{ $item->text }}</textarea>
+    </div>
     @if(!empty($item->id))
         <div class="row" style="padding-bottom: 10px;">
             <dl>Питание</dl>
@@ -54,10 +62,6 @@
             </div>
         </div>
     @endif
-    <div class="row">
-        <dl>Текст</dl>
-        <textarea name="text" class="ck">{{ $item->text }}</textarea>
-    </div>
     <div style="margin: 2em 0 1em;">
         <div class="row">
             <input name="collect_video" value="0" type="hidden" />

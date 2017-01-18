@@ -17,6 +17,7 @@ class Calendar extends Model
         'collect_gallery',
         'video',
         'collect_video',
+        'title',
     ];
 
     /**

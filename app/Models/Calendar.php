@@ -11,13 +11,15 @@ class Calendar extends Model
     public $orderByDefault = ['start_at', 'DESC'];
 
     protected $fillable = [
+        'title',
         'text',
+        'collect_text',
         'gallery',
         'gallery_titles',
         'collect_gallery',
         'video',
         'collect_video',
-        'title',
+
     ];
 
     /**

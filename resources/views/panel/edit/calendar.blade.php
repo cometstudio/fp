@@ -1,9 +1,14 @@
 @extends('panel.edit.form')
 
 @section('input')
+
     <div class="row">
         <dl>Дата начала</dl>
         <input name="_start_at" value="{{ $item->getStartDate() }}" type="text" class="x4 datepicker" autocomplete="off" />
+    </div>
+    <div class="row">
+        <input name="collect_text" value="0" type="hidden" />
+        <input name="collect_text" value="1" type="checkbox"{{ !empty($item->collect_text) ? ' checked' : '' }} /> <label>публиковать статью</label>
     </div>
     <div class="row">
         <dl>Title</dl>
@@ -62,10 +67,11 @@
             </div>
         </div>
     @endif
-    <div style="margin: 2em 0 1em;">
+    <div style="margin: 1em 0;">
         <div class="row">
+            Публиковать:
             <input name="collect_video" value="0" type="hidden" />
-            Коллекционировать: <input name="collect_video" value="1" type="checkbox"{{ !empty($item->collect_video) ? ' checked' : '' }} /> <label> видео</label>
+            <input name="collect_video" value="1" type="checkbox"{{ !empty($item->collect_video) ? ' checked' : '' }} /> <label> видео</label>
             <input name="collect_gallery" value="0" type="hidden" />
             <input name="collect_gallery" value="1" type="checkbox"{{ !empty($item->collect_gallery) ? ' checked' : '' }} /> <label>галерею</label>
         </div>

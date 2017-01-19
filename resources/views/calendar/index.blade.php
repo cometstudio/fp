@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        @if(!empty($calendar->text))
+        @if(!empty($calendar->collect_text) && !empty($calendar->text))
             <div class="s2 section">
                 <div class="wrapper">
                     @if(!empty($calendar->title))

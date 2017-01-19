@@ -29,6 +29,7 @@ function CheckAuthentication()
 	// ... where $_SESSION['IsAuthorized'] is set to "true" as soon as the
 	// user logs in your system. To be able to use session variables don't
 	// forget to add session_start() at the top of this file.
+
     try{
 		include 'checkAuth.php';
 
@@ -55,8 +56,8 @@ $chars = array(
     11 => 6,
     8 => 1,
     12 => 'E',
-  3 => null,// Calculate later
-  1 => '1' // Check factor for 3
+    3 => null,// Calculate later
+    1 => '1' // Check factor for 3
 );
 $a_bs = '123456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 $chars[3] = $a_bs[(strlen($config['LicenseName']) + strpos($a_bs, $chars[1])) * 9 % 32];
@@ -70,7 +71,7 @@ for ($i = 0; $i < $min_chars; $i++) $config['LicenseKey'] .= array_key_exists($i
  Uncomment lines below to enable PHP error reporting and displaying PHP errors.
  Do not do this on a production server. Might be helpful when debugging why CKFinder does not work as expected.
 */
-//error_reporting(E_ALL);
+// error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 
 /*
@@ -88,7 +89,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '/public/';
+$baseUrl = '/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -325,7 +326,7 @@ If possible, it is recommended to set more restrictive permissions, like 0755.
 Set to 0 to disable this feature.
 Note: not needed on Windows-based servers.
 */
-$config['ChmodFiles'] = 0644 ;
+$config['ChmodFiles'] = 0777 ;
 
 /*
 See comments above.

@@ -6,6 +6,11 @@
         @if(!empty($item->name))
             <h1>{{ $item->name or '' }}</h1>
         @endif
+        @if(!empty($canUpdate))
+            <div class="row">
+                <button onclick="return save();" class="button">Сохранить</button>
+            </div>
+        @endif
         <form action="{{ route('admin::act', ['action'=>'save', 'modelName'=>$currentPanelModel->public_model_name, 'id'=>(!empty($item->id) ? $item->id : null)], false) }}" method="post">
 
             @yield('input')
@@ -18,7 +23,7 @@
 
             <div class="clearfix">
                 @if(!empty($canUpdate))
-                <button onclick="return save();" class="button" style="float: left;">Сохранить</button>
+                    <button onclick="return save();" class="button" style="float: left;">Сохранить</button>
                 @endif
                 @if(!empty($item->id) && !empty($canDelete))
                     <a href="{{ route('admin::act', ['action'=>'drop', 'modelName'=>$currentPanelModel->public_model_name, 'id'=>$item->id], false) }}" onclick="return drop(this);" class="empty black button" style="float: right;">Удалить</a>

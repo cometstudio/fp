@@ -45,7 +45,7 @@ class CalendarController extends Controller
 
         $commentsHash = (new Comment)->hash($request->segments()[0].'_'.$startAt);
 
-        $title = !empty($calendar->title) ? $calendar->title : 'Календарь. День '.$seasonDaysLeft;
+        $title = (!empty($calendar->collect_text) && !empty($calendar->text)) ? $calendar->title : 'Календарь. День '.$seasonDaysLeft;
 
         return view(
             'calendar.index', [

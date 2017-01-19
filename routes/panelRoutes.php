@@ -38,6 +38,6 @@ Route::group(['as' => 'admin::', 'prefix' => 'admin', 'namespace'=>'Panel'], fun
             ->where('id', '[0-9]+');
 
         // Export lists to a .csv file
-        Route::post('/excel/export/{modelName}/{format}', 'ExcelController@export')->name('exportAsExcel');
+        //Route::post('/excel/export/{modelName}/{format}', 'ExcelController@export')->name('exportAsExcel');
     });
 });

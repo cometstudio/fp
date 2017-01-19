@@ -1,20 +1,5 @@
 var timeout;
 
-$(document).ready(function(){
-
-});
-
-function exportAsExcel(el)
-{
-    var form = $('.filter form');
-    var control = $(el);
-    var target = control.attr('href');
-
-    ajaxSubmit(form, null, null, {}, target);
-
-    return false;
-}
-
 function addBinding(el, container)
 {
     var control = $(el);

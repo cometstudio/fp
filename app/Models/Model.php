@@ -111,6 +111,11 @@ class Model extends BaseModel
         return $this;
     }
 
+    public function afterSave($attrubutes = [])
+    {
+        return $this;
+    }
+
     public function beforeUpdate($attrubutes = [])
     {
         return $this;

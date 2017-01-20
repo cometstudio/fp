@@ -44,7 +44,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        if($request->ajax() && !env('APP_DEBUG')){
+            return response()->json(['message' => $exception->getMessage()], 500);
+        }else{
+            return parent::render($request, $exception);
+        }
     }
 
     /**

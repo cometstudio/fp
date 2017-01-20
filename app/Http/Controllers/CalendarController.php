@@ -18,19 +18,19 @@ class CalendarController extends Controller
 
         $seasonDaysLeft = Date::seasonDaysLeft($startAt);
 
-        $calendar = Calendar::where('start_at', '>=', mktime(0,0,0, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
-            ->where('start_at', '<=', mktime(23,59,59, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
-            ->first();
+        $calendar = (new Calendar)->day($startAt);
 
         if(empty($calendar)) {
             $title = 'Календарь';
 
-            return view('calendar.empty', [
-                'css'=>$this->css,
-                'title'=>$title,
-                'startAt'=>$startAt,
-                'seasonDaysLeft'=>$seasonDaysLeft,
-            ]);
+            return response(
+                view('calendar.empty', [
+                    'css'=>$this->css,
+                    'title'=>$title,
+                    'startAt'=>$startAt,
+                    'seasonDaysLeft'=>$seasonDaysLeft,
+                ]), 404
+            );
         }
 
         $exercises = $calendar->exercises()->get();
@@ -45,7 +45,7 @@ class CalendarController extends Controller
 
         $commentsHash = (new Comment)->hash($request->segments()[0].'_'.$startAt);
 
-        $title = (!empty($calendar->collect_text) && !empty($calendar->text)) ? $calendar->title : 'Календарь. День '.$seasonDaysLeft;
+        $title = (!empty($calendar->collect_article) && !empty($calendar->text)) ? $calendar->title : 'Календарь. День '.$seasonDaysLeft;
 
         return view(
             'calendar.index', [

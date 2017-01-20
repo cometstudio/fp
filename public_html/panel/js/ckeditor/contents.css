@@ -2,11 +2,15 @@
 Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,500,500i,700,700i,900&subset=cyrillic');
+
 body
 {
 	/* Font */
-	font-family: Arial,Helvetica,sans-serif;
-    font-weight: 400;
+	font-family: 'Rubik', sans-serif;
+	font-size: 17px;
+	line-height: 1.5em;
+    font-weight: 300;
 
 	/* Text color */
 	color: #333;
@@ -20,11 +24,14 @@ body
 .cke_editable
 {
 	font-size: 16px;
-    line-height: 19px;
+	line-height: 1.4em;
 }
 .cke_editable p{
 	margin: 0;
-	padding-bottom: 7px;
+}
+
+b, strong{
+    font-weight: 500;
 }
 
 blockquote
@@ -59,48 +66,15 @@ a
 ol,ul,dl
 {
 	/* IE7: reset rtl list margin. (#7334) */
-	*margin-right: 0;
+	*margin-right: 0px;
 	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
-	padding: 0 0;
-}
-ul, ol{
-  padding: 10px 15px;
-}
-ul{
-    list-style-type: none;
-}
-ul li, ol li{
-    margin-bottom: 15px;
-    padding: 0 0 0 15px;
-}
-ul li{
-    background: rgba(0, 0, 0, 0) url("/img/dynamicTextLi.png") no-repeat scroll 0 0.4em;
-}
-ol{
-    margin-left: 20px;
-    list-style-type: decimal;
-}
-ol li{
-    list-style-position: outside;
+	padding: 0 40px;
 }
 
 h1,h2,h3,h4,h5,h6
 {
 	font-weight: normal;
 	line-height: 1.2;
-    margin: 0;
-}
-h2{
-    margin-top: 20px;
-    color: #f15b29;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 20px;
-    padding-bottom: 8px;
-}
-h3{
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 1.4em;
 }
 
 hr

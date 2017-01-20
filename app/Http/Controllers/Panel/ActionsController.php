@@ -487,6 +487,9 @@ class ActionsController extends Controller
             if(array_key_exists('gallery', $data)) Resizer::moveToPermanentLocation($this->request->input('gallery'), $model->getResizerConfigSet());
         }
 
+        // Do something after save an item
+        if(method_exists($item, 'afterSave')) $item->afterSave($data);
+
         return response()->json([
             'location'=>url()->route('admin::act', [
                 'action'=>'show',

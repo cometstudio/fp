@@ -13,14 +13,25 @@ class Calendar extends Model
     protected $fillable = [
         'title',
         'text',
-        'collect_text',
+        'collect_article',
         'gallery',
         'gallery_titles',
         'collect_gallery',
         'video',
         'collect_video',
+        'start_at',
 
     ];
+
+    public function day($startAt = 0)
+    {
+        if(empty($startAt)) $startAt = time();
+
+        return $this
+            ->where('start_at', '>=', mktime(0, 0, 0, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
+            ->where('start_at', '<=', mktime(23, 59, 59, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
+            ->first();
+    }
 
     /**
      * @return $this
@@ -85,23 +96,6 @@ class Calendar extends Model
         return $this->belongsToMany('App\Models\Exercise', 'calendar_exercises', 'calendar_id', 'exercise_id')
             ->orderBy('calendar_exercises.id', 'ASC')
             ->withPivot(['id', 'type']);
-    }
-
-    public function getByTime($startAt = 0)
-    {
-        try{
-            $builder = $this;
-
-            if(!empty($startAt)){
-                $builder
-                    ->where('start_at', '>=', mktime(0,0,0, date('m', $startAt), date('j', $startAt), date('Y', $startAt)))
-                    ->where('start_at', '<=', mktime(23,59,59, date('m', $startAt), date('j', $startAt), date('Y', $startAt)));
-            }
-
-            return $builder->first();
-        }catch (\Exception $e){
-            return null;
-        }
     }
 
     public function getOptions()

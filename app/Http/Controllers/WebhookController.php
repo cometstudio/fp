@@ -64,9 +64,12 @@ class WebhookController extends Controller
                     break;
                     case 'meal':
                         try {
-                            $calendar = Calendar::firstOrFail();
+                            $calendar = (new Calendar)->day();
+
+                            if(empty($calendar)) throw new \Exception;
 
                             $recipes = $calendar->recipes()->get();
+
                             if (empty($recipes) || !$recipes->count()) throw new \Exception;
 
                             // The meal has been chosen, show recipes
@@ -79,10 +82,12 @@ class WebhookController extends Controller
                                 foreach($recipes->filter(function($recipe) use ($meal){ return $recipe->meal_id == $meal->id; }) as $recipe){
                                     $messages[] = '';
                                     $messages[] = '*'.$i . ') ' . $recipe->name.'*';
-                                    if($text = trim(strip_tags(html_entity_decode($recipe->notice)))) $messages[] = $text;
+                                    if($text = trim(strip_tags(html_entity_decode($recipe->notice)))) {
+                                        $messages[] = $this->prepareText($text);
+                                    }
                                     if($text = trim(strip_tags(html_entity_decode($recipe->text)))){
                                         $messages[] = '';
-                                        $messages[] = $text;
+                                        $messages[] = $this->prepareText($text);
                                     }
                                     $i++;
                                 }
@@ -100,7 +105,6 @@ class WebhookController extends Controller
                                 }
                             }
                         } catch (\Exception $e) {
-                            echo $e->getLine();
                             $messages[] = 'Рацион не составлен';
                         }
 
@@ -110,6 +114,8 @@ class WebhookController extends Controller
 
             $message = implode(PHP_EOL, $messages);
 
+            //print_r($message); die;
+
             $data = array(
                 'chat_id' => $envelope->message->chat->id,
                 'text' => $message,
@@ -118,8 +124,15 @@ class WebhookController extends Controller
 
             Telegram::touchAPI('sendMessage', $data);
         }catch (\Exception $e){
-            echo $e->getLine();
         }
+    }
+
+    private function prepareText($string = '')
+    {
+        $string = str_replace("\t", '', $string);
+        $string = str_replace("\n\n", "\n", $string);
+
+        return $string;
     }
 
     private function getTelegramExercises(&$messages, $startAt = 0)
@@ -127,7 +140,7 @@ class WebhookController extends Controller
         try {
             $calendarModel = new Calendar();
 
-            $calendar = $calendarModel->getByTime($startAt);
+            $calendar = $calendarModel->day($startAt);
 
             if (empty($calendar)) throw new \Exception;
 

@@ -7,11 +7,11 @@
         <input name="_start_at" value="{{ $item->getStartDate() }}" type="text" class="x4 datepicker" autocomplete="off" />
     </div>
     <div class="row">
-        <input name="collect_text" value="0" type="hidden" />
-        <input name="collect_text" value="1" type="checkbox"{{ !empty($item->collect_text) ? ' checked' : '' }} /> <label>публиковать статью</label>
+        <input name="collect_article" value="0" type="hidden" />
+        <input name="collect_article" value="1" type="checkbox"{{ !empty($item->collect_article) ? ' checked' : '' }} /> <label>опубликовать статью</label>
     </div>
     <div class="row">
-        <dl>Title</dl>
+        <dl>Заголовок, Title</dl>
         <input name="title" value="{{ $item->title }}" type="text" />
     </div>
     <div class="row">

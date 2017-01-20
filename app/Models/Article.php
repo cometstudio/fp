@@ -31,6 +31,11 @@ class Article extends Model
     {
         $this->setStartTime($attrubutes);
 
+        return $this;
+    }
+
+    public function afterSave($attrubutes = [])
+    {
         // Push this record in the calendar
         if(!empty($attrubutes['publish'])){
 
@@ -51,16 +56,9 @@ class Article extends Model
                 $calendar->collect_article = 1;
 
                 $calendar->save();
+
+                $this->destroy($this->id);
             }else throw new \Exception('Не создан день календаря');
-        }
-
-        return $this;
-    }
-
-    public function afterSave($attrubutes = [])
-    {
-        if(!empty($attrubutes['publish'])){
-            $this->destroy($this->id);
         }
     }
 }

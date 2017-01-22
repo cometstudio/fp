@@ -532,6 +532,7 @@ h3, .s0 .description {
   float: right; }
 @media screen and (max-width: 768px) {
   .s1 .button, .s2 .button {
-    float: none; } }
+    float: none;
+    margin-bottom: 18px; } }
 
 /*# sourceMappingURL=index.css.map */

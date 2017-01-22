@@ -13,6 +13,7 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         $videos = Calendar::where('collect_video', '=', 1)
+            ->where('video', '!=', '')
             ->join('comments', 'comments.hash', '=', \DB::raw('MD5(CONCAT("videos_", calendar.id))'), 'LEFT')
             ->select([
                 'calendar.*',
@@ -27,6 +28,7 @@ class IndexController extends Controller
 
         $gallery = Calendar::where('collect_gallery', '=', 1)
             ->join('comments', 'comments.hash', '=', \DB::raw('MD5(CONCAT("gallery_", calendar.id))'), 'LEFT')
+            ->where('gallery', '!=', '')
             ->select([
                 'calendar.*',
                 \DB::raw('COUNT(comments.id) AS comments_total'),

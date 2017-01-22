@@ -14,7 +14,7 @@ class CalendarController extends Controller
 
     public function index(Request $request)
     {
-        $startAt = $request->has('date') ? \Date::getTimeFromDate($request->get('date')) : time();
+        $startAt = $request->has('date') ? \Date::getTimeFromDate($request->get('date')) : mktime(0, 0, 0, date('n'), date('j'), date('Y'));
 
         $seasonDaysLeft = Date::seasonDaysLeft($startAt);
 

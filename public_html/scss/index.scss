@@ -69,6 +69,7 @@
   @media screen and (max-width: $mobileMaxWidth) {
     .button{
       float: none;
+      margin-bottom: $contentPadding / 2;
     }
   }
 }

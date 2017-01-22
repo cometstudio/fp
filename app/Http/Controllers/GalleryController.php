@@ -19,6 +19,7 @@ class GalleryController extends Controller
 
         $gallery = Calendar::where('collect_gallery', '=', 1)
             ->join('comments', 'comments.hash', '=', \DB::raw('MD5(CONCAT("'.$request->segments()[0].'_", calendar.id))'), 'LEFT')
+            ->where('gallery', '!=', '')
             ->select([
                 'calendar.*',
                 \DB::raw('COUNT(comments.id) AS comments_total'),

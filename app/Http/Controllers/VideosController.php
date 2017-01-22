@@ -19,6 +19,7 @@ class VideosController extends Controller
 
         $videos = Calendar::where('collect_video', '=', 1)
             ->join('comments', 'comments.hash', '=', \DB::raw('MD5(CONCAT("'.$request->segments()[0].'_", calendar.id))'), 'LEFT')
+            ->where('video', '!=', '')
             ->select([
                 'calendar.*',
                 \DB::raw('COUNT(comments.id) AS comments_total'),

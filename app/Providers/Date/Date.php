@@ -149,6 +149,8 @@ class Date
     {
         $seasonStartedAt = !empty(view()->shared('settings')->start_at) ? view()->shared('settings')->start_at : time();
 
+        if(empty($startAt)) $startAt = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
         return intval(($startAt - $seasonStartedAt) / 86400) + 1;
     }
 }

@@ -528,8 +528,10 @@ h3 {
   .exercises-grid ul li, .food-grid ul li {
     margin-left: 1.5em; }
 .exercises-grid .title, .food-grid .title {
-  margin-top: 25px;
-  border-bottom: 1px dashed #4a447e; }
+  margin-top: 36px;
+  color: #f28559; }
+  .exercises-grid .title h3, .food-grid .title h3 {
+    margin-bottom: 0; }
   .exercises-grid .title:first-child, .food-grid .title:first-child {
     margin-top: 0; }
 .exercises-grid .name, .food-grid .name {

@@ -14,6 +14,6 @@ $response = $kernel->handle(
 );
 
 ////@TODO Modify this line to check if current user ($user = Auth::user()) has access rights
-if (!Auth::check() && empty($_SESSION['test'])) throw new \Exception();
+if (!Auth::check() && empty($_SESSION['authenticated'])) throw new \Exception();
 
-$_SESSION['test'] = 1;
+$_SESSION['authenticated'] = 1;

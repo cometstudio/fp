@@ -6,18 +6,6 @@
         <dl>Дата начала</dl>
         <input name="_start_at" value="{{ $item->getStartDate() }}" type="text" class="x4 datepicker" autocomplete="off" />
     </div>
-    <div class="row">
-        <input name="collect_article" value="0" type="hidden" />
-        <input name="collect_article" value="1" type="checkbox"{{ !empty($item->collect_article) ? ' checked' : '' }} /> <label>опубликовать статью</label>
-    </div>
-    <div class="row">
-        <dl>Заголовок, Title</dl>
-        <input name="title" value="{{ $item->title }}" type="text" />
-    </div>
-    <div class="row">
-        <dl>Текст</dl>
-        <textarea name="text" class="ck">{{ $item->text }}</textarea>
-    </div>
     @if(!empty($item->id))
         <div class="row" style="padding-bottom: 10px;">
             <dl>Питание</dl>
@@ -70,11 +58,21 @@
     <div style="margin: 1em 0;">
         <div class="row">
             Публиковать:
+            <input name="collect_article" value="0" type="hidden" />
+            <input name="collect_article" value="1" type="checkbox"{{ !empty($item->collect_article) ? ' checked' : '' }} /> <label>статью</label>
             <input name="collect_video" value="0" type="hidden" />
             <input name="collect_video" value="1" type="checkbox"{{ !empty($item->collect_video) ? ' checked' : '' }} /> <label> видео</label>
             <input name="collect_gallery" value="0" type="hidden" />
             <input name="collect_gallery" value="1" type="checkbox"{{ !empty($item->collect_gallery) ? ' checked' : '' }} /> <label>галерею</label>
         </div>
+    </div>
+    <div class="row">
+        <dl>Заголовок, Title</dl>
+        <input name="title" value="{{ $item->title }}" type="text" />
+    </div>
+    <div class="row">
+        <dl>Текст</dl>
+        <textarea name="text" class="ck">{{ $item->text }}</textarea>
     </div>
     <div class="row">
         <dl>Видео</dl>

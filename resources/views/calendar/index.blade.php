@@ -91,6 +91,7 @@
                                             @if(!empty($recipe->notice))
                                                 <div class="column">
                                                     <div class="wrapper">
+                                                        <p class="i">Ингридиенты:</p>
                                                         {!! $recipe->notice !!}
                                                     </div>
                                                 </div>
@@ -98,7 +99,10 @@
                                             @if(!empty($recipe->text) || !empty($recipe->gallery))
                                                 <div class="column">
                                                     <div class="wrapper">
-                                                        {!! $recipe->text !!}
+                                                        @if(!empty($recipe->text))
+                                                            <p class="i">Способ приготовления:</p>
+                                                            {!! $recipe->text !!}
+                                                        @endif
                                                         @if(!empty($recipe->gallery))
                                                             <div class="{{ empty($recipe->text) ? 'nomargin ' : '' }}gallery popup-gallery clearfix">
                                                                 @foreach($recipe->getGallery() as $picture)

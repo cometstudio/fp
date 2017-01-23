@@ -153,4 +153,11 @@ class Date
 
         return intval(($startAt - $seasonStartedAt) / 86400) + 1;
     }
+
+    public function weekday($time = 0, $type = 0)
+    {
+        if(empty($time)) $time = time();
+
+        return config('dictionary.daysOfWeek.'.date('N', $time))[$type];
+    }
 }

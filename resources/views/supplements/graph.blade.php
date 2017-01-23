@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <h3>Белки</h3>
-                <div class="supplements-graph" style="margin: 36px 0;">
+                <div class="supplements-graph" style="margin: 0 0 36px;">
                     Maксимально в сутки ({{ $maxValue['protein'] }})
                     <div class="graph">
                         <div class="row clearfix">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <h3>Жиры</h3>
-                <div class="supplements-graph" style="margin: 36px 0;">
+                <div class="supplements-graph" style="margin: 0 0 36px;">
                     Maксимально в сутки ({{ $maxValue['fat'] }})
                     <div class="graph">
                         <div class="row clearfix">
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <h3>Углеводы</h3>
-                <div class="supplements-graph" style="margin: 36px 0 0;">
+                <div class="supplements-graph" style="margin: 0 0 36px;">
                     Maксимально в сутки ({{ $maxValue['carbohydrates'] }})
                     <div class="graph">
                         <div class="row clearfix">

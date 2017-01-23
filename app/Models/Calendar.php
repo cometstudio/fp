@@ -106,7 +106,7 @@ class Calendar extends Model
 
         $meals = Meal::orderBy('ord', 'DESC')->get();
 
-        $recipes = Recipe::orderBy('name', 'DESC')->get();
+        $recipes = Recipe::orderBy('name', 'ASC')->get();
 
         $calendarRecipes = $this->recipes()->get();
 

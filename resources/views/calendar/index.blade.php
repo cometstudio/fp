@@ -149,12 +149,12 @@
                         <div class="row clearfix">
                             <div class="column">&nbsp;</div>
                             <div class="column">
-                                <span class="desktop-visible">Мужчины</span>
-                                <span class="mobile-visible">М</span>
+                                <span class="desktop-visible">Саша</span>
+                                <span class="mobile-visible">С</span>
                             </div>
                             <div class="column">
-                                <span class="desktop-visible">Женщины</span>
-                                <span class="mobile-visible">Ж</span>
+                                <span class="desktop-visible">Настя</span>
+                                <span class="mobile-visible">Н</span>
                             </div>
                             <div class="column">
                                 <span class="desktop-visible">% от нормы</span>

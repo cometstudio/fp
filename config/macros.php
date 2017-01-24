@@ -19,8 +19,8 @@ return [
         5=>[
             'protein'=>1.2,
             'fat'=>1.4,
-            'carbohydrates'=>1.5,
-            'energy'=>1.38,
+            'carbohydrates'=>1.8,
+            'energy'=>1.48,
         ],
         6=>[
             'protein'=>1.1,

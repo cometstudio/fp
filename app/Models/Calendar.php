@@ -98,6 +98,51 @@ class Calendar extends Model
             ->withPivot(['id', 'type']);
     }
 
+    public function cloneWeeklyRecipesTemplate($timestamp = 0)
+    {
+        try{
+            if(empty($timestamp)) $timestamp = time();
+
+            $weekStartsAt = mktime(0, 0, 0, date('n', $timestamp), date('j', $timestamp), date('Y', $timestamp));
+
+            $calendar = Calendar::orderBy('start_at', 'ASC')->limit(7)->get();
+
+            if(empty($calendar) || !$calendar->count()) throw new \Exception;
+
+            $i = 0;
+            foreach($calendar as $day)
+            {
+                $cloneStartsAt = $weekStartsAt + (86400 * $i);
+
+                if(!$this->where('start_at', '=', $cloneStartsAt)->first()){
+                    $clone = $this->create([
+                        'start_at'=>$cloneStartsAt,
+                    ]);
+
+                    if(!empty($clone->id)){
+                        $recipesToClone = $day->recipes()->get();
+
+                        if(!empty($recipesToClone) && $recipesToClone->count()){
+                            foreach($recipesToClone as $bind){
+                                CalendarRecipe::create([
+                                    'meal_id'=>$bind->meal_id,
+                                    'calendar_id'=>$clone->id,
+                                    'recipe_id'=>$bind->pivot->recipe_id,
+                                ]);
+                            }
+                        }
+                    }
+                }
+
+                $i++;
+            }
+
+            return true;
+        }catch (\Exception $e){
+            return false;
+        }
+    }
+
     public function getOptions()
     {
         $exercises = Exercise::orderBy('name', 'DESC')->get();

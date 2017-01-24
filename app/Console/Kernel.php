@@ -4,7 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Models\Misc;
+use App\Models\Calendar;
+use App\Models\Settings;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,9 +29,13 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-//        $schedule->call(function () {
-//
-//        })->everyMinute();
+        $schedule->call(function ()
+        {
+            $timestamp = time() + 86400;
+
+            (new Calendar)->cloneWeeklyRecipesTemplate($timestamp);
+
+        })->cron('1 0 * * 7');
     }
 
     /**

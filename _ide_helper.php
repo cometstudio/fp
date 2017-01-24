@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.28 on 2017-01-22.
+ * Generated for Laravel 5.3.29 on 2017-01-24.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -2690,7 +2690,7 @@ namespace {
         /**
          * Encrypt the given value.
          *
-         * @param string $value
+         * @param mixed $value
          * @return string 
          * @throws \Illuminate\Contracts\Encryption\EncryptException
          * @static 
@@ -2702,7 +2702,7 @@ namespace {
         /**
          * Decrypt the given value.
          *
-         * @param string $payload
+         * @param mixed $payload
          * @return string 
          * @throws \Illuminate\Contracts\Encryption\DecryptException
          * @static 
@@ -12651,8 +12651,8 @@ namespace {
          *
          * @static 
          */
-        public static function weekday($time = 0){
-            return \App\Providers\Date\Date::weekday($time);
+        public static function weekday($time = 0, $type = 0){
+            return \App\Providers\Date\Date::weekday($time, $type);
         }
         
     }

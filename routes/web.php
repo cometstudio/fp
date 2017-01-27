@@ -32,6 +32,9 @@ Route::get('/verify/{token}', 'UsersController@doVerify')->name('verify');
 
 Route::group(['as' => 'calendar:', 'prefix'=>'calendar'], function () {
     Route::get('/', 'CalendarController@index')->name('index');
+//    Route::get('/cloneWeeklyRecipesTemplate', function (\App\Models\Calendar $calendar) {
+//        return $calendar->cloneWeeklyRecipesTemplate();
+//    });
 });
 
 Route::group(['as' => 'videos:', 'prefix'=>'videos'], function () {

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Subscription;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -9,22 +10,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\User;
 use Illuminate\Contracts\Mail\Mailer;
 
-class SubmitForgotEmail implements ShouldQueue
+class SubmitSubscriptionEmail implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $subscription;
     protected $user;
-    protected $password;
 
     /**
      * Create a new job instance.
-     * SendVerificationEmail constructor.
+     * @param $subscription
      * @param User $user
      */
-    public function __construct(User $user, $password)
+    public function __construct(Subscription $subscription, User $user)
     {
+        $this->subscription = $subscription;
         $this->user = $user;
-        $this->password = $password;
     }
 
     /**
@@ -36,14 +37,18 @@ class SubmitForgotEmail implements ShouldQueue
     public function handle(Mailer $mailer)
     {
         if(empty($this->user->email)) throw new \Exception;
-        if(empty($this->user->token)) throw new \Exception;
 
         $settings = view()->shared('settings');
 
-        $mailer->send('emails.forgot', ['password'=>$this->password, 'settings' => $settings], function ($message) use ($settings) {
+        $this->subscription->text = preg_replace("/\/images/i", env('APP_URL')."/images", $this->subscription->text);
+
+        $mailer->send('emails.subscription', ['subscription'=>$this->subscription, 'settings' => $settings], function ($message) use ($settings) {
             $message->from('alex@fitnespraktika.ru', $settings->name);
             $message->to($this->user->email);
-            $message->subject('Ваш пароль');
+            $message->subject($this->subscription->name);
         });
+
+        $this->user->subscription_sent = 1;
+        $this->user->update();
     }
 }

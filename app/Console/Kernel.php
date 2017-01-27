@@ -5,7 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Models\Calendar;
-use App\Models\Settings;
+use App\Models\Subscription;
 
 class Kernel extends ConsoleKernel
 {
@@ -36,6 +36,11 @@ class Kernel extends ConsoleKernel
             (new Calendar)->cloneWeeklyRecipesTemplate($timestamp);
 
         })->cron('1 0 * * 7');
+
+        $schedule->call(function ()
+        {
+            (new Subscription)->submitSubscription();
+        })->everyMinute();
     }
 
     /**

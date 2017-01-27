@@ -101,11 +101,15 @@ class Calendar extends Model
     public function cloneWeeklyRecipesTemplate($timestamp = 0)
     {
         try{
+            $config = config('macros');
+
             if(empty($timestamp)) $timestamp = time();
 
             $weekStartsAt = mktime(0, 0, 0, date('n', $timestamp), date('j', $timestamp), date('Y', $timestamp));
 
-            $calendar = Calendar::orderBy('start_at', 'ASC')->limit(7)->get();
+            $skip = (!empty($config['templateWeekNum']) ? $config['templateWeekNum'] : 0) * 7;
+
+            $calendar = Calendar::orderBy('start_at', 'ASC')->skip($skip)->limit(7)->get();
 
             if(empty($calendar) || !$calendar->count()) throw new \Exception;
 

@@ -21,6 +21,10 @@
                                     <input name="email" value="{{ $currentUser->email }}" type="text" />
                                 </div>
                                 <div class="row">
+                                    <input name="subscribed" type="hidden" value="0" />
+                                    <label><input name="subscribed" type="checkbox" value="1"{{ $currentUser->subscribed ? ' checked' : '' }} /> изредка получать от нас интересное на этот e-mail</label>
+                                </div>
+                                <div class="row">
                                    <div class="label">Пароль (не указывайте, если не меняется)</div>
                                     <i class="fa fa-eye-slash" onclick="$(this).parent().find('input').prop('type', 'text');$(this).removeClass('fa-eye-slash').addClass('fa-eye');"></i>
                                     <input name="_password" value="" type="password" autocomplete="off" />

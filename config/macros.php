@@ -1,12 +1,13 @@
 <?php
 
 return [
+    'templateWeekNum'=>0,
     'months'=>[
         0=>[
             'protein'=>190,
-            'fat'=>85,
-            'carbohydrates'=>220,
-            'energy'=>2405,
+            'fat'=>90,
+            'carbohydrates'=>230,
+            'energy'=>2490,
         ]
     ],
     'weekdays'=>[

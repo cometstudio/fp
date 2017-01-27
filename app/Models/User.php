@@ -30,6 +30,8 @@ class User extends PanelUser implements
         'password',
         'gallery',
         'gallery_titles',
+        'subscribed',
+        'subscription_sent',
     ];
 
     /**

@@ -6,4 +6,4 @@
 <br /><br />
 {{ $settings->name }}
 <br />
-<a href="{{ $rootURL }}">{{ $rootURL }}</a>
+<a href="{{ env('APP_URL') }}">{{ env('APP_URL') }}</a>

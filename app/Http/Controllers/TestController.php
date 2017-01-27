@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Auth;
-use App\Jobs\SubmitVerificationEmail;
+use App\Models\Subscription;
 
 class TestController extends Controller
 {
     public function index()
     {
-        $replyMarkup = array(
-            'inline_keyboard' => [[['text' =>  'A', 'callback_data' => '/meal/1']], [['text' =>  'B', 'callback_data' => '/meal/2']]]
-        );
+        $subscription = Subscription::where('queued', '=', 1)
+            ->orderBy('updated_at', 'DESC')
+            ->first();
 
-//        $replyMarkup = array(
-//        'inline_keyboard' => array(
-//            array('text'=>'A')
-//        );
+        if(!empty($subscription)) {
 
-        $encodedMarkup = json_encode($replyMarkup);
+            $subscription->text = preg_replace("/\/images/i", env('APP_URL') . "/images", $subscription->text);
 
-        echo $encodedMarkup;
+            dd($subscription);
+        }
+
         die;
         //$this->dispatch(new SubmitVerificationEmail(Auth::user()));
     }

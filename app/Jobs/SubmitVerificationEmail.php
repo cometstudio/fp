@@ -38,11 +38,9 @@ class SubmitVerificationEmail implements ShouldQueue
 
         $settings = view()->shared('settings');
 
-        $rootURL = request()->root();
-
         $verificationURL = url()->route('verify', ['token'=>$this->user->token]);
 
-        $mailer->send('emails.verify', ['verificationURL' => $verificationURL, 'rootURL' => $rootURL, 'settings' => $settings], function ($message) use ($settings) {
+        $mailer->send('emails.verify', ['verificationURL' => $verificationURL, 'settings' => $settings], function ($message) use ($settings) {
             $message->from('alex@fitnespraktika.ru', $settings->name);
             $message->to($this->user->email);
             $message->subject('Подтвердите свой e-mail');

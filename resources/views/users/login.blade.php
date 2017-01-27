@@ -24,6 +24,10 @@
                                    </div>
                                     <input id="email" name="email" type="text" />
                                 </div>
+                                <div class="hidden row">
+                                    <input name="subscribed" type="hidden" value="0" />
+                                    <label><input name="subscribed" type="checkbox" value="1" checked /> изредка получать от нас интересное на этот e-mail</label>
+                                </div>
                                 <div class="row">
                                    <div class="label">Пароль <a href="{{ route('forgot', [], false) }}" id="forgotten" style="float: right;">Не помню пароль</a></div>
                                     <i class="fa fa-eye-slash" onclick="$(this).parent().find('input').prop('type', 'text');$(this).removeClass('fa-eye-slash').addClass('fa-eye');"></i>

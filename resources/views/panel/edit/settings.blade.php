@@ -25,4 +25,12 @@
         <dl>Дата начала сезона</dl>
         <input name="_start_at" value="{{ $item->getStartDate() }}" type="text" class="x4 datepicker" autocomplete="off" />
     </div>
+    <div class="row">
+        <a href="https://www.instagram.com/oauth/authorize/?client_id={{ env('INSTAGRAM_CLIENT_ID') }}&redirect_uri={{ route('instagram:auth') }}&response_type=code&scope=basic+public_content+follower_list+comments+relationships+likes">Получить Instagram access token</a>
+    </div>
+
+    <div class="row">
+        <dl>Instagram access token</dl>
+        <input name="instagram_access_token" value="{{ $item->instagram_access_token }}" type="text" />
+    </div>
 @endsection

@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subscription;
+use Instagram;
 
 class TestController extends Controller
 {
     public function index()
     {
-        $subscription = Subscription::where('queued', '=', 1)
-            ->orderBy('updated_at', 'DESC')
-            ->first();
 
-        if(!empty($subscription)) {
-
-            $subscription->text = preg_replace("/\/images/i", env('APP_URL') . "/images", $subscription->text);
-
-            dd($subscription);
-        }
+        dd(Instagram::follow(3609615257));
 
         die;
         //$this->dispatch(new SubmitVerificationEmail(Auth::user()));

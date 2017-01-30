@@ -66,7 +66,11 @@ Route::post('/captcha/touch', 'UsersController@touchCaptcha');
 // Sitemap xml
 Route::get('/sitemap/get', 'SitemapController@get');
 
-Route::get('/instagram/auth', 'InstagramController@auth');
+Route::group(['as' => 'instagram:', 'prefix'=>'instagram'], function () {
+    Route::get('/auth', 'InstagramController@auth')->name('auth');
+    Route::get('/test', 'InstagramController@test')->name('test');
+});
+
 
 Route::group(['as' => 'webhook:', 'prefix'=>'webhook'], function () {
     Route::post('/{type}', 'WebhookController@type')->name('type')->where('type', '[a-z_]+');

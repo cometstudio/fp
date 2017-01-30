@@ -15,6 +15,7 @@ class Settings extends Model
         'title',
         'name',
         'counter',
+        'instagram_access_token',
     ];
 
     public function beforeSave($attrubutes = [])

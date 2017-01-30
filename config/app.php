@@ -194,6 +194,8 @@ return [
         App\Providers\Date\ServiceProvider::class,
         // Telegram
         App\Providers\Telegram\ServiceProvider::class,
+        // Instagram
+        App\Providers\Instagram\ServiceProvider::class,
     ],
 
     /*
@@ -248,6 +250,7 @@ return [
         'Date'=> App\Providers\Date\Facade::class,
         'Dictionary' => App\Providers\Dictionary\Facade::class,
         'Telegram' => App\Providers\Telegram\Facade::class,
+        'Instagram' => App\Providers\Instagram\Facade::class,
     ],
 
 ];

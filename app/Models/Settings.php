@@ -16,6 +16,7 @@ class Settings extends Model
         'name',
         'counter',
         'instagram_access_token',
+        'vkontakte_access_token',
     ];
 
     public function beforeSave($attrubutes = [])

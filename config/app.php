@@ -196,6 +196,8 @@ return [
         App\Providers\Telegram\ServiceProvider::class,
         // Instagram
         App\Providers\Instagram\ServiceProvider::class,
+        // Vkontakte
+        App\Providers\Vk\ServiceProvider::class,
     ],
 
     /*
@@ -251,6 +253,7 @@ return [
         'Dictionary' => App\Providers\Dictionary\Facade::class,
         'Telegram' => App\Providers\Telegram\Facade::class,
         'Instagram' => App\Providers\Instagram\Facade::class,
+        'Vk' => App\Providers\Vk\Facade::class,
     ],
 
 ];

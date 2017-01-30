@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.30 on 2017-01-29.
+ * Generated for Laravel 5.3.29 on 2017-01-30.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -7925,7 +7925,7 @@ namespace {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         * @return static 
+         * @return \Request The duplicated request
          * @static 
          */
         public static function duplicate($query = null, $request = null, $attributes = null, $cookies = null, $files = null, $server = null){
@@ -8095,7 +8095,7 @@ namespace {
         /**
          * Creates a new request with values from PHP's super globals.
          *
-         * @return static 
+         * @return \Request A new request
          * @static 
          */
         public static function createFromGlobals(){
@@ -8116,7 +8116,7 @@ namespace {
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
          * @param string $content The raw body data
-         * @return static 
+         * @return \Request A Request instance
          * @static 
          */
         public static function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null){
@@ -12738,8 +12738,49 @@ namespace {
          *
          * @static 
          */
-        public static function touchAPI($method = '', $data = array()){
-            return \App\Providers\Instagram\Instagram::touchAPI($method, $data);
+        public static function _touchAPI($method = '', $data = array()){
+            return \App\Providers\Instagram\Instagram::_touchAPI($method, $data);
+        }
+        
+    }
+
+
+    class Vk extends \App\Providers\Vk\Facade{
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function auth($request){
+            return \App\Providers\Vk\Vk::auth($request);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function like($mediaId = null){
+            return \App\Providers\Vk\Vk::like($mediaId);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function follow($userId = 0){
+            return \App\Providers\Vk\Vk::follow($userId);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function _touchAPI($method = '', $data = array()){
+            return \App\Providers\Vk\Vk::_touchAPI($method, $data);
         }
         
     }

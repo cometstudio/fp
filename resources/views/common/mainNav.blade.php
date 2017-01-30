@@ -19,7 +19,7 @@
 
         <div class="r menu">
             <nav>
-                <span><a href="{{ route('calendar:index', [], false) }}">Календарь</a></span>
+                <span><a href="{{ route('calendar:index', [], false) }}">Дневник</a></span>
                 <span><a href="{{ route('videos:index', [], false) }}">Видеоотчёты</a></span>
                 <span><a href="{{ route('gallery:index', [], false) }}">Фотоотчёты</a></span>
                 @if(!empty($currentUser))

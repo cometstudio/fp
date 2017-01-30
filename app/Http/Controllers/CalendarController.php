@@ -21,7 +21,7 @@ class CalendarController extends Controller
         $calendar = (new Calendar)->day($startAt);
 
         if(empty($calendar)) {
-            $title = 'Календарь';
+            $title = 'Дневник';
 
             return response(
                 view('calendar.empty', [
@@ -45,7 +45,7 @@ class CalendarController extends Controller
 
         $commentsHash = (new Comment)->hash($request->segments()[0].'_'.$startAt);
 
-        $title = (!empty($calendar->collect_article) && !empty($calendar->text)) ? $calendar->title : 'Календарь. День '.$seasonDaysLeft;
+        $title = (!empty($calendar->collect_article) && !empty($calendar->text)) ? $calendar->title : 'Дневник. День '.$seasonDaysLeft;
 
         return view(
             'calendar.index', [

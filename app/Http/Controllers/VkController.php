@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Instagram;
+use Vk;
 use Illuminate\Http\Request;
 
-class InstagramController extends Controller
+class VkController extends Controller
 {
     public function auth(Request $request)
     {
-        Instagram::auth($request);
-
         return response()->redirectToRoute('admin::act', [
             'action'=>'edit',
             'modelName'=>'settings',
@@ -20,9 +18,7 @@ class InstagramController extends Controller
 
     public function test(Request $request)
     {
-        $res = (new Instagram())->like('1420547202161685232_1139664986');
 
-        dd($res);
     }
 
 

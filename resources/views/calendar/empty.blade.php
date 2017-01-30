@@ -5,7 +5,7 @@
     <div class="content-wrapper">
         <div class="s0 section">
             <div class="wrapper">
-                <h1>Календарь</h1>
+                <h1>Дневник</h1>
             </div>
         </div>
 
